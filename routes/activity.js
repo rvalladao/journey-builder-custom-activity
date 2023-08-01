@@ -111,23 +111,7 @@ exports.execute = function (req, res) {
                             "language": {
                                 "policy": "deterministic",
                                 "code": "pt_BR"
-                            },
-                            "components": [
-                                {
-                                  "type": "body",
-                                  "parameters": [
-                                    {
-                                      "type": "text",
-                                      "text": "Renato"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "Marcele"
-                                    }
-                                  ]
-                                }
-                            ]
-                            
+                            }
                         }
                     }
                 }
