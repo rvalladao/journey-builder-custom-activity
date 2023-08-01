@@ -77,12 +77,10 @@ exports.execute = function (req, res) {
             const templateName = decodedArgs['templateName'];
             const phoneNumber = decodedArgs['phoneNumber'];
             const parameters = decodedArgs['parameters'];
-            const account = decodedArgs['account'];
 
             console.log('templateName', templateName);
             console.log('phoneNumber', phoneNumber);
             console.log('parameters', parameters);
-            console.log('account', account);
 
             const headers = {
                 'Content-Type': 'application/json',
@@ -98,7 +96,9 @@ exports.execute = function (req, res) {
                 "uri": `lime://wa.gw.msging.net/accounts/+${phoneNumber}`
             }
 
-            axios.post('https://msging.net/commands', post_save, { headers: headers }).then((res) => {
+            console.log(post_save);
+
+            axios.post('https://genialinvestimentos.http.msging.net/commands', post_save, { headers: headers }).then((res) => {
                 const post_hsm = {
                     "id": guid_id,
                     "to": `${phoneNumber}@wa.gw.msging.net`,
@@ -134,7 +134,7 @@ exports.execute = function (req, res) {
                     }
                 }
 
-                axios.post('https://msging.net/messages', post_hsm, { headers: headers }).then((res) => {
+                axios.post('https://genialinvestimentos.http.msging.net/messages', post_hsm, { headers: headers }).then((res) => {
                     console.log(`Success send whatsapp to ${phoneNumber}`);
                 }).catch((err) => {
                     console.error(`ERROR send whatsapp to ${phoneNumber}: ${err}`)
