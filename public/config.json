@@ -8,12 +8,12 @@
   "type": "REST",
   "lang": {
     "en-US": {
-      "name": "Send Whatsapp HSM DEV",
-      "description": "HSM template submission via WhatsApp."
+      "name": "MATH WhatsApp Sender",
+      "description": "Template submission via WhatsApp."
     },
     "pt-BR": {
-      "name": "Send Whatsapp HSM DEV",
-      "description": "Envio de template HSM via WhatsApp."
+      "name": "MATH WhatsApp Sender",
+      "description": "Envio de template via WhatsApp."
     }
   },
   "arguments": {
@@ -54,7 +54,7 @@
   },
   "wizardSteps": [
     {
-      "label": "Configure HSM Template",
+      "label": "Configure a mensagem",
       "key": "step1"
     }
   ],
