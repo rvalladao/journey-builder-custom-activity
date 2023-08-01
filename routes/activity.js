@@ -104,15 +104,32 @@ exports.execute = function (req, res) {
                     "to": `${phoneNumber}@wa.gw.msging.net`,
                     "type": "application/json",
                     "content": {
-                        "type": "hsm",
-                        "hsm": {
-                            "namespace": "0cf88f37_b88f_d3bd_b5be_f22588aabf89",
+                        "type": "template",
+                        "template": {
+                            "namespace": "3780c0dc_8aef_48e8_bbe1_af7f0af827db",
                             "element_name": templateName,
                             "language": {
                                 "policy": "deterministic",
                                 "code": "pt_BR"
                             },
-                            "localizable_params": parameters.map(x => { return { 'default': x } })
+                            "components": [
+                                {
+                                  "type": "body",
+                                  "parameters": [
+                                    {
+                                      "type": "text",
+                                      "text": "Renato"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Marcele"
+                                    }
+                    
+                    
+                                  ]
+                                }
+                            ]
+                            
                         }
                     }
                 }
