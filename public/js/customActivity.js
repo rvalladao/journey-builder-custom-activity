@@ -11,7 +11,6 @@ define(function (require) {
     var templateCode = null;
     var phoneFieldName = null;
     var parameterList = null;
-    var whatsappAccount = null;
 
     $(window).ready(onRender);
 
@@ -85,9 +84,6 @@ define(function (require) {
                 document.getElementById('parameterList').disabled = true;
                 parameterList = $('#parameterList').val();
 
-                document.getElementById('whatsappAccount').disabled = true;
-                whatsappAccount = $('#whatsappAccount').val();
-
                 document.getElementById('toggleActive').disabled = true;
                 document.getElementById('toggleActive').innerHTML = "Ativado";
             }
@@ -110,9 +106,6 @@ define(function (require) {
 
             document.getElementById('parameterList').disabled = true;
             document.getElementById('parameterList').value = templateCode;
-
-            document.getElementById('whatsappAccount').disabled = true;
-            document.getElementById('whatsappAccount').value = templateCode;
 
             document.getElementById('toggleActive').disabled = true;
             document.getElementById('toggleActive').innerHTML = "Ativado";
@@ -147,7 +140,6 @@ define(function (require) {
             "contactIdentifier": "{{Contact.Key}}",
             "phoneNumber": `{{Event.${eventDefinitionKey}.\"${phoneFieldName}\"}}`,
             "parameters": parameters,
-            "account": whatsappAccount
         }];
 
         payload['metaData'].isConfigured = true;
