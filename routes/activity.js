@@ -60,7 +60,7 @@ exports.save = function (req, res) {
 };
 
 exports.execute = function (req, res) {
-    // logData(req);
+    logData(req);
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
             console.error(err);
@@ -87,6 +87,8 @@ exports.execute = function (req, res) {
                 'Authorization': `Key ${process.env.BLIPAUTHORIZATIONKEY}`
             }
 
+            console.log(headers);
+
             const guid_id = uuidv4();
 
             const post_save = {
@@ -95,8 +97,6 @@ exports.execute = function (req, res) {
                 "method": "get",
                 "uri": `lime://wa.gw.msging.net/accounts/+${phoneNumber}`
             }
-
-            console.log(post_save);
 
             axios.post('https://genialinvestimentos.http.msging.net/commands', post_save, { headers: headers }).then((res) => {
                 const post_hsm = {
@@ -124,8 +124,6 @@ exports.execute = function (req, res) {
                                         "type": "text",
                                         "text": "Marcele"
                                     }
-                    
-                    
                                   ]
                                 }
                             ]
@@ -133,6 +131,7 @@ exports.execute = function (req, res) {
                         }
                     }
                 }
+
 
                 axios.post('https://genialinvestimentos.http.msging.net/messages', post_hsm, { headers: headers }).then((res) => {
                     console.log(`Success send whatsapp to ${phoneNumber}`);
@@ -153,13 +152,13 @@ exports.execute = function (req, res) {
 
 exports.publish = function (req, res) {
     console.log('publish request');
-    // logData(req);
+    logData(req);
     res.send(200, 'Publish');
 };
 
 exports.validate = function (req, res) {
     console.log('validate request');
-    // logData(req);
+    logData(req);
     res.send(200, 'Validate');
 };
 
