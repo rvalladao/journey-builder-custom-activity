@@ -61,6 +61,9 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     logData(req);
+    console.log('req: ' + req);
+    console.log('req: ' + res);
+
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
             console.error(err);
@@ -88,11 +91,11 @@ exports.execute = function (req, res) {
 exports.publish = function (req, res) {
     console.log('publish request');
     logData(req);
-    res.send(200, 'Publish');
+    res.status(200).send('Publish');
 };
 
 exports.validate = function (req, res) {
     console.log('validate request');
     logData(req);
-    res.send(200, 'Validate');
+    res.status(200).send('Validate');
 };
