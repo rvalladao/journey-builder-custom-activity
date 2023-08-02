@@ -75,7 +75,7 @@ exports.execute = function (req, res) {
             // console.log('inArguments', JSON.stringify(decoded.inArguments));
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
 
-            const payload = decodedArgs['payload'];
+            const payload = decodedArgs['payloadCode'];
             console.log(payload);
 
 
