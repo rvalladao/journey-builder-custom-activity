@@ -114,7 +114,7 @@ define(function (require) {
             eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
             document.getElementById('select-entryevent-defkey').value = eventDefinitionKey;
         } catch (err) {
-            console.error("e:" + err);
+            console.error(err);
         }
     }
 
