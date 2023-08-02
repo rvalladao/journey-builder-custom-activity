@@ -77,7 +77,6 @@ exports.execute = function (req, res) {
             const payload = decodedArgs['payload'];
             const phoneNumber = decodedArgs['phoneNumber'];
 
-            console.log('templateName', payload);
             
             const headers = {
                 'Content-Type': 'application/json',
