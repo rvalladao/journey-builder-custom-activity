@@ -75,51 +75,7 @@ exports.execute = function (req, res) {
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
 
             const payload = decodedArgs['payload'];
-            const phoneNumber = decodedArgs['phoneNumber'];
 
-            
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Key ${process.env.BLIPAUTHORIZATIONKEY}`
-            }
-
-
-            const guid_id = uuidv4();
-
-            const post_save = {
-                "id": guid_id,
-                "to": "postmaster@wa.gw.msging.net",
-                "method": "get",
-                "uri": `lime://wa.gw.msging.net/accounts/+${phoneNumber}`
-            }
-
-            axios.post('https://genialinvestimentos.http.msging.net/commands', post_save, { headers: headers }).then((res) => {
-                const post_hsm = {
-                    "id": guid_id,
-                    "to": `${phoneNumber}@wa.gw.msging.net`,
-                    "type": "application/json",
-                    "content": {
-                        "type": "template",
-                        "template": {
-                            "namespace": "3780c0dc_8aef_48e8_bbe1_af7f0af827db",
-                            "element_name": templateName,
-                            "language": {
-                                "policy": "deterministic",
-                                "code": "pt_BR"
-                            }
-                        }
-                    }
-                }
-
-
-                axios.post('https://genialinvestimentos.http.msging.net/messages', post_hsm, { headers: headers }).then((res) => {
-                    console.log(`Success send whatsapp to ${phoneNumber}`);
-                }).catch((err) => {
-                    console.error(`ERROR send whatsapp to ${phoneNumber}: ${err}`)
-                })
-            }).catch((err) => {
-                console.error(`ERROR verify whatsapp to ${phoneNumber}: ${err}`)
-            })
 
             res.send(200, 'Execute');
         } else {
@@ -140,10 +96,3 @@ exports.validate = function (req, res) {
     logData(req);
     res.send(200, 'Validate');
 };
-
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
