@@ -10,7 +10,6 @@ define(function (require) {
     var eventDefinitionKey = null;
     var payloadCode = null;
     var phoneFieldName = null;
-    var parameterList = null;
 
     $(window).ready(onRender);
 
@@ -129,7 +128,7 @@ define(function (require) {
 
         payload['metaData'].isConfigured = true;
 
-        // console.log('payload', JSON.stringify(payload));
+        console.log('payload', JSON.stringify(payload));
 
         connection.trigger('updateActivity', payload);
     }
