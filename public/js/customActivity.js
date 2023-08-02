@@ -92,7 +92,8 @@ define(function (require) {
 
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
-            payloadCode = $('#payload > textarea').val();
+            var payloadOriginal = $('#payload > textarea').val();
+            payloadCode = payloadOriginal.replace("%%", "");
 
             document.getElementById('toggleActive').disabled = true;
             document.getElementById('toggleActive').innerHTML = "Ativado";
