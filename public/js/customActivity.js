@@ -93,7 +93,7 @@ define(function (require) {
 
         if (templateCode) {
             document.getElementById('payload').disabled = true;
-            document.getElementById('payload').value = payloadCode;
+            payloadCode = $('#payload > textarea').val();
 
             document.getElementById('toggleActive').disabled = true;
             document.getElementById('toggleActive').innerHTML = "Ativado";
@@ -119,15 +119,12 @@ define(function (require) {
     }
 
     function save() {
-        var parameters = parameterList.split(';');
-        parameters = parameters.map(parameterName => `{{Event.${eventDefinitionKey}.\"${parameterName}\"}}`);
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
             "templateName": templateCode,
             "contactIdentifier": "{{Contact.Key}}",
-            "phoneNumber": `{{Event.${eventDefinitionKey}.\"${phoneFieldName}\"}}`,
-            "parameters": parameters,
+            "phoneNumber": `{{Event.${eventDefinitionKey}.\"${phoneFieldName}\"}}`
         }];
 
         payload['metaData'].isConfigured = true;
