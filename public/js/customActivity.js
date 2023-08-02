@@ -76,8 +76,8 @@ define(function (require) {
             if (validate()) {
                 document.getElementById('payload').disabled = true;
                 var payloadOriginal = $('#payload > textarea').val();
-                reg = /(?<=%%)\S*?(?=%%)/g;
-                payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"${reg}\"}}`);
+                var reg = /(%%)(\S*)(%%)/g;
+                payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
 
                 document.getElementById('toggleActive').disabled = true;
                 document.getElementById('toggleActive').innerHTML = "Salvo!";
@@ -95,8 +95,8 @@ define(function (require) {
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
             var payloadOriginal = $('#payload > textarea').val();
-            reg = /(?<=%%)\S*?(?=%%)/g;
-            payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"${reg}\"}}`);
+            var reg = /(%%)(\S*)(%%)/g;
+            payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
 
             document.getElementById('toggleActive').disabled = true;
             document.getElementById('toggleActive').innerHTML = "Ativado";
