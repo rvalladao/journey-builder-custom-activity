@@ -91,7 +91,7 @@ define(function (require) {
 
         payloadCode = payload['arguments'].payloadCode;
 
-        if (templateCode) {
+        if (payloadCode) {
             document.getElementById('payload').disabled = true;
             payloadCode = $('#payload > textarea').val();
 
