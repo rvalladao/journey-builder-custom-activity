@@ -74,8 +74,12 @@ exports.execute = function (req, res) {
             var decodedArgs = decoded.inArguments[0];
             // console.log('inArguments', JSON.stringify(decoded.inArguments));
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
-
+            
             var payload = decodedArgs['payloadCode'];
+            exports.main = async (event, callback) => {
+                payload;
+            }
+            console.log(JSON.stringify(payload));
 
 
             res.status(200).send('Execute');
