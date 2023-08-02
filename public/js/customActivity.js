@@ -123,12 +123,12 @@ define(function (require) {
             "tokens": authTokens,
             "templateName": payloadCode,
             "contactIdentifier": "{{Contact.Key}}",
-            "phoneNumber": `{{Event.${eventDefinitionKey}.\"${phoneFieldName}\"}}`
+            "phoneNumber": `{{Event.${eventDefinitionKey}.\"phone\"}}`
         }];
 
         payload['metaData'].isConfigured = true;
 
-        console.log('payload', JSON.stringify(payload));
+        console.log(JSON.stringify(payload));
 
         connection.trigger('updateActivity', payload);
     }
