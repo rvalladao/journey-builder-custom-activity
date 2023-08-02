@@ -75,7 +75,9 @@ define(function (require) {
 
             if (validate()) {
                 document.getElementById('payload').disabled = true;
-                payloadCode = $('#payload > textarea').val();
+                var payloadOriginal = $('#payload > textarea').val();
+                reg = /(?<=%%)\S*?(?=%%)/g;
+                payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"${reg}\"}}`);
 
                 document.getElementById('toggleActive').disabled = true;
                 document.getElementById('toggleActive').innerHTML = "Salvo!";
