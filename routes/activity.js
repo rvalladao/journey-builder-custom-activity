@@ -61,8 +61,6 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     logData(req);
-    console.log('req: ' + req);
-    console.log('req: ' + res);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
@@ -78,6 +76,7 @@ exports.execute = function (req, res) {
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
 
             const payload = decodedArgs['payload'];
+            console.log(payload);
 
 
             res.status(200).send('Execute');
