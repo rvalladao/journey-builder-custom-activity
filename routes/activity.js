@@ -84,7 +84,6 @@ exports.execute = function (req, res) {
                 'Authorization': `Key ${process.env.BLIPAUTHORIZATIONKEY}`
             }
 
-            console.log(headers);
 
             const guid_id = uuidv4();
 

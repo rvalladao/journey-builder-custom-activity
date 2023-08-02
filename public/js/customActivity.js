@@ -8,7 +8,7 @@ define(function (require) {
     var authTokens = {};
 
     var eventDefinitionKey = null;
-    var templateCode = null;
+    var payloadCode = null;
     var phoneFieldName = null;
     var parameterList = null;
 
@@ -75,17 +75,11 @@ define(function (require) {
             evt.preventDefault();
 
             if (validate()) {
-                document.getElementById('templateCode').disabled = true;
-                templateCode = $('#templateCode').val();
-
-                document.getElementById('phoneFieldName').disabled = true;
-                phoneFieldName = $('#phoneFieldName').val();
-
-                document.getElementById('parameterList').disabled = true;
-                parameterList = $('#parameterList').val();
+                document.getElementById('payload').disabled = true;
+                payloadCode = $('#payload > textarea').val();
 
                 document.getElementById('toggleActive').disabled = true;
-                document.getElementById('toggleActive').innerHTML = "Ativado";
+                document.getElementById('toggleActive').innerHTML = "Salvo!";
             }
         });
     }
@@ -95,17 +89,11 @@ define(function (require) {
             payload = data;
         }
 
-        templateCode = payload['arguments'].templateCode;
+        payloadCode = payload['arguments'].payloadCode;
 
         if (templateCode) {
-            document.getElementById('templateCode').disabled = true;
-            document.getElementById('templateCode').value = templateCode;
-
-            document.getElementById('phoneFieldName').disabled = true;
-            document.getElementById('phoneFieldName').value = templateCode;
-
-            document.getElementById('parameterList').disabled = true;
-            document.getElementById('parameterList').value = templateCode;
+            document.getElementById('payload').disabled = true;
+            document.getElementById('payload').value = payloadCode;
 
             document.getElementById('toggleActive').disabled = true;
             document.getElementById('toggleActive').innerHTML = "Ativado";

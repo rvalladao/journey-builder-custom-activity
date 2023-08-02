@@ -25,6 +25,11 @@
   src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
 }
 
+@font-face {
+  font-family: Source Code Pro;
+  src: url('../fonts/source-code-pro/SourceCodePro-Regular.ttf')
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
 
 /*//////////////////////////////////////////////////////////////////
@@ -170,16 +175,12 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #0f5a16;
-  background: -webkit-linear-gradient(-135deg, #2da639, #0f4614);
-  background: -o-linear-gradient(-135deg, #2da639, #0f4614);
-  background: -moz-linear-gradient(-135deg, #2da639, #0f4614);
-  background: linear-gradient(-135deg, #2da639, #0f4614);
+  background: #000;
 }
 
 .wrap-login100 {
   width: 960px;
-  background: #fff;
+  background: rgba(27,25,25,1) !important;
   border-radius: 10px;
   overflow: hidden;
 
@@ -190,36 +191,37 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 100px 130px 33px 95px;
+  padding: 70px 60px 33px 60px;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
-  width: 316px;
+  width: 320px;
+  text-align: center;
 }
 
 .login100-pic img {
-  max-width: 100%;
+  max-width: 200px;
 }
 
 
 /*------------------------------------------------------------------
 [  ]*/
 .login100-form {
-  width: 290px;
+  width: 450px;
 }
 
 .login100-form-title {
   font-family: Source Code Pro;
-  font-size: 24px;
-  color: #333333;
+  font-size: 18px;
+  color: rgb(232, 233, 229);
   line-height: 1.2;
   text-align: center;
 
   width: 100%;
   display: block;
-  padding-bottom: 54px;
+  padding-bottom: 40px;
 }
 
 
@@ -332,8 +334,9 @@ iframe {
 
   width: 100%;
   height: 50px;
-  border-radius: 25px;
-  background: #57b846;
+  background: none;
+  border-radius:3px;
+  border: #fff 2px solid;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -343,14 +346,15 @@ iframe {
   align-items: center;
   padding: 0 25px;
 
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+  -webkit-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .login100-form-btn:hover {
-  background: #333333;
+  background: rgb(255,0,0);
+  border-color: rgb(255,0,0);
 }
 
 

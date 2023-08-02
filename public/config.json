@@ -8,12 +8,12 @@
   "type": "REST",
   "lang": {
     "en-US": {
-      "name": "MATH WhatsApp Sender",
-      "description": "Template submission via WhatsApp."
+      "name": "MATH Journey API",
+      "description": "The amazing Journey API caller"
     },
     "pt-BR": {
-      "name": "MATH WhatsApp Sender",
-      "description": "Envio de template via WhatsApp."
+      "name": "MATH Journey API",
+      "description": "O incrível chamador de APIs da MATH para Jornadas"
     }
   },
   "arguments": {
