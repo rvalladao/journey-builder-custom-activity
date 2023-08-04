@@ -76,8 +76,7 @@ exports.execute = function (req, res) {
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
             
             var payload = decodedArgs['payloadCode'];
-            payload;
-            console.log(payload);
+            eval(JSON.parse(payload));
 
 
             res.status(200).send('Execute');
