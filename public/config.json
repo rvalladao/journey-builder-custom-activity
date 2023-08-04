@@ -3,6 +3,7 @@
   "metaData": {
     "icon": "images/mathicon.png",
     "iconSmall": "images/mathiconiconSmall.png",
+    "iconBackground": "#000000",
     "category": "message"
   },
   "type": "REST",
