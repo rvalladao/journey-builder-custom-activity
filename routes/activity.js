@@ -75,8 +75,15 @@ exports.execute = function (req, res) {
             // console.log('inArguments', JSON.stringify(decoded.inArguments));
             // console.log('decodedArgs', JSON.stringify(decodedArgs));
             
+
             var payload = decodedArgs['payloadCode'];
-            eval(payload);
+            
+            function runCustomCode(payload) {
+                eval(payload);
+                console.log(res);
+            }
+
+            runCustomCode(payload);
 
 
             res.status(200).send('Execute');
