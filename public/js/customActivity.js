@@ -8,7 +8,7 @@ define(function (require) {
     var authTokens = {};
 
     var eventDefinitionKey = null;
-    var payloadCode = null;
+    //var payloadCode = null;
     var phoneFieldName = null;
 
     $(window).ready(onRender);
@@ -123,8 +123,7 @@ define(function (require) {
     }
 
     function save() {
-        var name = $('#payload > textarea').val();
-        payload.name = name;
+        var savepayload = $('#payload > textarea').val();
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
