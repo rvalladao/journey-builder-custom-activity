@@ -104,17 +104,18 @@ define(function (require) {
     }
 
     function onGetTokens(tokens) {
-        // console.log(tokens);
+        console.log(tokens);
         authTokens = tokens;
     }
 
     function onGetEndpoints(endpoints) {
-        // console.log(endpoints);
+        console.log(endpoints);
     }
 
     function requestedInteractionHandler(settings) {
         try {
-            eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+            //eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+            eventDefinitionKey = settings.triggers[0].eventDefinitionKey;
             document.getElementById('select-entryevent-defkey').value = eventDefinitionKey;
         } catch (err) {
             console.log(err);
