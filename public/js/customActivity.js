@@ -324,7 +324,6 @@ define([
 		 catch(err) {}
 		
 		document.getElementById('configuration').value = JSON.stringify(data,null,2);
-
 		var configuration = JSON.parse(document.getElementById('configuration').value);
 
 		var jsonBody = JSON.parse(data.arguments.execute.body); //JSON.parse(configuration['arguments'].execute.body);
