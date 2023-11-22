@@ -90,6 +90,12 @@ define(function (require) {
             payload = data;
         }
 
+        console.log(payload);
+        console.log(payload['arguments']);
+        console.log(payload['arguments'].execute);
+        console.log(payload['arguments.execute']);
+        
+
         payloadCode = payload['arguments'].execute.inArguments.payloadCode;
         console.log(payloadCode);
 
