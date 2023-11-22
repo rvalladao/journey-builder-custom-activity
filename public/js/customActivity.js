@@ -91,10 +91,9 @@ define(function (require) {
         }
 
         payloadCode = payload['arguments'].payloadCode;
-        console.log('initialized');
+        console.log(payloadCode);
 
         if (payloadCode) {
-            console.log('configurado');
             document.getElementById('payload').disabled = true;
             $('#payload > textarea').value = payloadCode;
             var payloadOriginal = $('#payload > textarea').val();
