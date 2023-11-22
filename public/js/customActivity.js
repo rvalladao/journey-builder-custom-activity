@@ -8,7 +8,7 @@ define(function (require) {
     var authTokens = {};
 
     var eventDefinitionKey = null;
-    //var payloadCode = null;
+    var payloadCode = null;
     var phoneFieldName = null;
 
     $(window).ready(onRender);
@@ -94,6 +94,7 @@ define(function (require) {
 
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
+            $('#payload > textarea').value = payloadCode;
             var payloadOriginal = $('#payload > textarea').val();
             var reg = /(%%)(\S*)(%%)/g;
             payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
@@ -123,7 +124,6 @@ define(function (require) {
     }
 
     function save() {
-        var savepayload = $('#payload > textarea').val();
 
         payload['arguments'].execute.inArguments = [{
             "tokens": authTokens,
