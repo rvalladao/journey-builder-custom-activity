@@ -90,13 +90,11 @@ define(function (require) {
             payload = data;
         }
 
-        console.log(payload);
-        console.log(payload['arguments']);
-        console.log(payload['arguments'].execute);
-        console.log(payload['arguments.execute']);
+        console.log(payload['arguments'].execute.inArguments[0].payloadCode);
+        
         
 
-        payloadCode = payload['arguments'].execute.inArguments.payloadCode;
+        payloadCode = payload['arguments'].execute.inArguments[0].payloadCode;
         console.log(payloadCode);
 
         if (payloadCode) {
