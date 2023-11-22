@@ -101,7 +101,6 @@ define(function (require) {
     }
 
     function onGetTokens(tokens) {
-        //console.log(tokens);
         authTokens = tokens;
     }
 
@@ -113,7 +112,6 @@ define(function (require) {
         try {
             //eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
             eventDefinitionKey = settings.triggers[0].eventDefinitionKey;
-            console.log(eventDefinitionKey);
             //document.getElementById('select-entryevent-defkey').value = eventDefinitionKey;
         } catch (err) {
             console.log(err);
@@ -130,8 +128,6 @@ define(function (require) {
         }];
 
         payload['metaData'].isConfigured = true;
-
-        console.log("ultimo: " + payloadCode);
 
         connection.trigger('updateActivity', payload);
     }
