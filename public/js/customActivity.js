@@ -88,10 +88,9 @@ define(function (require) {
     function initialize(data) {
         if (data) {
             payload = data;
-            console.log(data);
         }
 
-        payloadCode = payload['arguments'].payloadCode;
+        payloadCode = payload['arguments'].execute.inArguments.payloadCode;
         console.log(payloadCode);
 
         if (payloadCode) {
