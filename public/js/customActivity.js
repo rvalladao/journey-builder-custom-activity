@@ -95,12 +95,8 @@ define(function (require) {
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
             $('#payload').val(payloadCode);
-            var payloadOriginal = $('#payload > textarea').val();
-            var reg = /(%%)(\S*)(%%)/g;
-            payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
-
-            document.getElementById('toggleActive').disabled = true;
-            document.getElementById('toggleActive').innerHTML = "Ativado";
+            
+            document.getElementById('toggleActive').innerHTML = "Atualizar";
         }
     }
 
