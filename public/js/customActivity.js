@@ -88,6 +88,7 @@ define(function (require) {
     function initialize(data) {
         if (data) {
             payload = data;
+            console.log(data);
         }
 
         payloadCode = payload['arguments'].payloadCode;
@@ -136,7 +137,7 @@ define(function (require) {
 
         payload['metaData'].isConfigured = true;
 
-        //console.log(JSON.stringify(payload));
+        console.log("ultimo: " + payloadCode);
 
         connection.trigger('updateActivity', payload);
     }
