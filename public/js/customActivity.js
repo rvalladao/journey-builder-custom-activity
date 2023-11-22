@@ -90,16 +90,11 @@ define(function (require) {
             payload = data;
         }
 
-        console.log(payload['arguments'].execute.inArguments[0].payloadCode);
-        
-        
-
         payloadCode = payload['arguments'].execute.inArguments[0].payloadCode;
-        console.log(payloadCode);
 
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
-            $('#payload > textarea').value = payloadCode;
+            $('#payload > textarea').val(payloadCode);
             var payloadOriginal = $('#payload > textarea').val();
             var reg = /(%%)(\S*)(%%)/g;
             payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
