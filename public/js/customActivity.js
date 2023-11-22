@@ -94,7 +94,7 @@ define(function (require) {
 
         if (payloadCode) {
             document.getElementById('payload').disabled = true;
-            $('#payload > textarea').val(payloadCode);
+            $('#payload').val(payloadCode);
             var payloadOriginal = $('#payload > textarea').val();
             var reg = /(%%)(\S*)(%%)/g;
             payloadCode = payloadOriginal.replace(reg, `{{Event.${eventDefinitionKey}.\"$2\"}}`);
