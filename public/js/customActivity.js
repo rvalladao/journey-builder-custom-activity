@@ -278,8 +278,9 @@ define([
 
 	
 	connection.on('initActivity', function(data){
-		
+        console.log(data);
 		  debugger;
+
 
 
 		 
