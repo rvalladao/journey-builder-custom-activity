@@ -61,7 +61,8 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     console.log('execute request');
-    logData(req);
+    console.log(req.body);
+    //logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
@@ -71,15 +72,15 @@ exports.execute = function (req, res) {
 
         // console.log('buffer hex', req.body.toString('hex'));
 
-        if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
-            var decodedArgs = decoded.inArguments[0];
-             console.log('inArguments', JSON.stringify(decoded.inArguments));
+        if (decoded && decoded.outArguments && decoded.outArguments.length > 0) {
+            var decodedArgs = decoded.outArguments[0];
+             console.log('outArguments', JSON.stringify(decoded.outArguments));
              console.log('decodedArgs', JSON.stringify(decodedArgs));
             
 
-            var payload = decodedArgs['payloadCode'];
+            //var payload = decodedArgs['payloadCode'];
             
-            eval(payload);
+            //eval(payload);
 
 
             res.status(200).send('Execute');
