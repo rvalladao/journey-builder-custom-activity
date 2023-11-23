@@ -73,11 +73,19 @@ exports.execute = function (req, res) {
         // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded) {
+            
             const postData = decoded.data;
             const options = {
                 hostname: decoded.url,
                 method: decoded.methodType,
-                headers: decoded.headers
+                headers: {
+                    'Content-Type':'Application/json'
+                }
+            }
+            for (i=0; i<decoded.headers.length; i++){
+                var headerKey = decoded.headers[i].key;
+                var headerValue = decoded.headers[i].value;
+                options.headers[headerKey] = headerValue;
             }
             const req = http.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
