@@ -91,12 +91,12 @@ exports.execute = function (req, res) {
 
 exports.publish = function (req, res) {
     console.log('publish request');
-    logData(req);
+    //logData(req);
     res.status(200).send('Publish');
 };
 
 exports.validate = function (req, res) {
     console.log('validate request');
-    logData(req);
+    //logData(req);
     res.status(200).send('Validate');
 };
