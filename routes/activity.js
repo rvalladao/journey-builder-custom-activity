@@ -72,10 +72,13 @@ exports.execute = function (req, res) {
 
         // console.log('buffer hex', req.body.toString('hex'));
 
-        if (decoded && decoded.outArguments && decoded.outArguments.length > 0) {
-            var decodedArgs = decoded.outArguments[0];
-             console.log('outArguments', JSON.stringify(decoded.outArguments));
-             console.log('decodedArgs', JSON.stringify(decodedArgs));
+        if (decoded > 0) {
+            var payload = decoded.data;
+            var headers = decoded.headers;
+            var url = decoded.url;
+            var methodType = decoded.methodType;
+            var mediaType = decoded.mediaType;
+             console.log("payload: " + payload + "\n" + "headers: " + headers + "\n" + "url: " + url + "\n" + "methodType: " + methodType + "\n" + "mediaType: " + mediaType);
             
 
             //var payload = decodedArgs['payloadCode'];
