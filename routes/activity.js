@@ -73,10 +73,12 @@ exports.execute = function (req, res) {
         // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded) {
-            
+            var parser = document.createElement('a');
+            parser.href = decoded.url;
             const postData = decoded.data;
             const options = {
-                hostname: decoded.url,
+                hostname: parser.hostname,
+                path: parser.pathname,
                 method: decoded.methodType,
                 headers: {
                     'Content-Type':'Application/json'
@@ -87,6 +89,7 @@ exports.execute = function (req, res) {
                 var headerValue = decoded.headers[i].value;
                 options.headers[headerKey] = headerValue;
             }
+
             const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
