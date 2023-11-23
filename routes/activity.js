@@ -3,7 +3,7 @@
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const util = require('util');
-const http = require('http');
+const https = require('https');
 
 exports.logExecuteData = [];
 
@@ -82,13 +82,12 @@ exports.execute = function (req, res) {
                     'Content-Type':'Application/json'
                 }
             }
-            console.log(decoded.headers);
             for (var i=0; i<decoded.headers.length; i++){
                 var headerKey = decoded.headers[i].key;
                 var headerValue = decoded.headers[i].value;
                 options.headers[headerKey] = headerValue;
             }
-            const req = http.request(options, (res) => {
+            const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
