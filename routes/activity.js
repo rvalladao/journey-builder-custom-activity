@@ -60,7 +60,7 @@ exports.save = function (req, res) {
 };
 
 exports.execute = function (req, res) {
-    //logData(req);
+    logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
@@ -72,8 +72,8 @@ exports.execute = function (req, res) {
 
         if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
             var decodedArgs = decoded.inArguments[0];
-            // console.log('inArguments', JSON.stringify(decoded.inArguments));
-            // console.log('decodedArgs', JSON.stringify(decodedArgs));
+             console.log('inArguments', JSON.stringify(decoded.inArguments));
+             console.log('decodedArgs', JSON.stringify(decodedArgs));
             
 
             var payload = decodedArgs['payloadCode'];
