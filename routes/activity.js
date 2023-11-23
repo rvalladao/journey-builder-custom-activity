@@ -73,17 +73,31 @@ exports.execute = function (req, res) {
         // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded) {
-            var payload = decoded.data;
-            var headers = decoded.headers;
-            var url = decoded.url;
-            var methodType = decoded.methodType;
-            var mediaType = decoded.mediaType;
-             console.log("payload: " + payload + "\n" + "headers: " + headers + "\n" + "url: " + url + "\n" + "methodType: " + methodType + "\n" + "mediaType: " + mediaType);
-            
-
-            //var payload = decodedArgs['payloadCode'];
-            
-            //eval(payload);
+            const postData = decoded.data;
+            const options = {
+                hostname: decoded.url,
+                method: methodType,
+                headers: decoded.headers
+            }
+            const req = http.request(options, (res) => {
+                console.log(`STATUS: ${res.statusCode}`);
+                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+                res.setEncoding('utf8');
+                res.on('data', (chunk) => {
+                  console.log(`BODY: ${chunk}`);
+                });
+                res.on('end', () => {
+                  console.log('No more data in response.');
+                });
+              });
+              
+              req.on('error', (e) => {
+                console.error(`problem with request: ${e.message}`);
+              });
+              
+              // Write data to request body
+              req.write(postData);
+              req.end();
 
 
             res.status(200).send('Execute');
