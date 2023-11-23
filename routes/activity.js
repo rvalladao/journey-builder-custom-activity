@@ -60,6 +60,7 @@ exports.save = function (req, res) {
 };
 
 exports.execute = function (req, res) {
+    console.log('execute request');
     logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
