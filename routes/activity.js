@@ -82,7 +82,8 @@ exports.execute = function (req, res) {
                     'Content-Type':'Application/json'
                 }
             }
-            for (i=0; i<decoded.headers.length; i++){
+            console.log(decoded.headers);
+            for (var i=0; i<decoded.headers.length; i++){
                 var headerKey = decoded.headers[i].key;
                 var headerValue = decoded.headers[i].value;
                 options.headers[headerKey] = headerValue;
