@@ -3,7 +3,7 @@
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const util = require('util');
-const axios = require('axios');
+const http = require('node:http');
 
 exports.logExecuteData = [];
 
