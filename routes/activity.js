@@ -72,7 +72,7 @@ exports.execute = function (req, res) {
 
         // console.log('buffer hex', req.body.toString('hex'));
 
-        if (decoded > 0) {
+        if (decoded) {
             var payload = decoded.data;
             var headers = decoded.headers;
             var url = decoded.url;
@@ -88,7 +88,7 @@ exports.execute = function (req, res) {
 
             res.status(200).send('Execute');
         } else {
-            console.error('inArguments invalid.');
+            console.error('decode failed');
             return res.status(400).end();
         }
     });
