@@ -589,6 +589,7 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
+        console.log(configuration['arguments'].execute.body);
 	});
 	
 
