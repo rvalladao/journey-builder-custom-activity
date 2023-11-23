@@ -76,7 +76,7 @@ exports.execute = function (req, res) {
             const postData = decoded.data;
             const options = {
                 hostname: decoded.url,
-                method: methodType,
+                method: decoded.methodType,
                 headers: decoded.headers
             }
             const req = http.request(options, (res) => {
