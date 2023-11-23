@@ -25,7 +25,7 @@
     "execute": {
 	  "inArguments": [],
       "outArguments": [{"postman_error":"Text"},{"postman_request":"Text"},{"postman_response":"Text"}],
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/execute",
+      "url": "https://mcvxpr0njwtk-pfr1rl6370nckg4.pub.sfmc-content.com/agrurmmhdph",
       "verb": "POST",
       "body": "{\"data\":\"\",\"headers\":[],\"outArgumentCode\":[],\"url\":\"\",\"methodType\":\"\",\"mediaType\":\"application/json\",\"t\":\"\",\"journeyName\":\"\",\"logData\":\"\",\"mid\":\"\",\"subscriberKey\":\"{{Contact.Key}}\",\"journeyVersionNumber\":\"{{Context.VersionNumber}}\",\"additional\":\"{{Context}}\",\"journeyIDReal\":\"\"}",
 	  "journeyDataObject": "",
