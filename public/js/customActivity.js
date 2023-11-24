@@ -32,7 +32,7 @@ define([
     'use strict';
     var connection = new Postmonger.Session();
 	
-	editor = CodeMirror.fromTextArea(document.getElementById('jsonBody'), {mode: "javascript",lineNumbers: true});
+	editor = CodeMirror.fromTextArea(document.getElementById('jsonBody'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark'});
 	
 	connection.trigger('requestEndpoints');
 	connection.on('requestedEndpoints', function(endpoints) {

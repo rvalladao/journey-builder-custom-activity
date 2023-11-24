@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
         <!-- Code Mirror -->
         <link rel="stylesheet" href="css/codemirror.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/theme/base16-dark.css">
         <script type="text/javascript" src='js/codemirror.js'></script>
         <script type="text/javascript" src='js/codeeditor.js'></script>
         <!-- jQuery library -->
@@ -25,6 +26,9 @@
         <script type="text/javascript" src="js/require.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	<script>
+      codeInput.registerTemplate("syntax-highlighted", codeInput.templates.hljs(hljs, [new codeInput.plugins.Indent()]));
+	</script>
         <script type="text/javascript">
             (function() {
                 var config = {
@@ -509,9 +513,9 @@
         <div id="MainActivity"  class="container-fluid">
             <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
                 <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
-                    <img src="images/mathicon.png" alt="" class="d-inline-block crown" height="24">
-                    <ul class="nav col-12 col-md-auto ms-2 mb-2 mb-md-0">
-                        <li>Configure sua REST API:</li>
+                    <img src="images/MATH_logo_claro.svg" alt="" class="d-inline-block crown" height="24">
+                    <ul class="nav col-12 col-md-auto ms-4 mb-2 mb-md-0">
+                        <li style="font-family:'Source Code Pro', Courier, monospace; font-size:22px; font-weight:700;">Journey API</li>
                     </ul>
                 </div>
                 <div class="col-md-6 text-end">
@@ -718,7 +722,7 @@
                     <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" href="#journeyAttr" role="tab">
-                                <span class="d-none d-sm-block">Atributos da Jornada</span>
+                                <span class="d-none d-sm-block" style="font-family:'Source Code Pro', 'Courier', monospace;">Atributos</span>
                             </a>
                         </li>
                     </ul>
