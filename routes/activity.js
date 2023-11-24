@@ -75,7 +75,7 @@ exports.execute = function (req, res) {
 
         if (decoded) {
             var postURL = url.parse(decoded.url, true);
-            const postData = decoded.data;
+            const postData = JSON.stringify(decoded.data);
             console.log(JSON.stringify(postData));
             const options = {
                 hostname: postURL.host,
