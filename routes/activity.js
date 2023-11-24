@@ -75,7 +75,7 @@ exports.execute = function (req, res) {
 
         if (decoded) {
             var postURL = url.parse(decoded.url, true);
-            console.log(JSON.striginfy(postURL));
+            console.log(JSON.stringify(postURL));
             console.log(decoded.url);
             console.log(postURL.pathname);
             console.log(postURL.hostname);
