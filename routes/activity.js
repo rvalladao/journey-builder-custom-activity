@@ -74,7 +74,10 @@ exports.execute = function (req, res) {
         // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded) {
-            const postURL = new URL(decoded.url); ;
+            const postURL = new URL(decoded.url);
+            console.log(postURL.pathname);
+            console.log(postURL.hostname);
+
             const postData = decoded.data;
             const options = {
                 hostname: postURL.hostname,
