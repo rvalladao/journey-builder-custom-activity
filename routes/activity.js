@@ -75,18 +75,14 @@ exports.execute = function (req, res) {
 
         if (decoded) {
             var postURL = url.parse(decoded.url, true);
-            console.log(JSON.stringify(postURL));
-            console.log(decoded.url);
-            console.log(postURL.pathname);
-            console.log(postURL.hostname);
-
             const postData = decoded.data;
+            console.log(JSON.stringify(postData));
             const options = {
                 hostname: postURL.host,
                 path: postURL.pathname,
                 method: decoded.methodType,
                 headers: {
-                    'Content-Type':'Application/json'
+                    
                 }
             }
             for (var i=0; i<decoded.headers.length; i++){
