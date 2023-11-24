@@ -4,7 +4,7 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const util = require('util');
 const https = require('https');
-const URL = require('url').Url;
+var url = require('url');
 
 exports.logExecuteData = [];
 
@@ -74,7 +74,8 @@ exports.execute = function (req, res) {
         // console.log('buffer hex', req.body.toString('hex'));
 
         if (decoded) {
-            const postURL = new URL(decoded.url);
+            var postURL = url.parse(decoded.url, true);
+            console.log(decoded.url);
             console.log(postURL.pathname);
             console.log(postURL.hostname);
 
