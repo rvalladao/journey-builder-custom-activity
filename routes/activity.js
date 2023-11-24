@@ -90,6 +90,8 @@ exports.execute = function (req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
+            console.log(JSON.stringify(options));
+
             const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
