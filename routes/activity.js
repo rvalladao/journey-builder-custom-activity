@@ -82,7 +82,7 @@ exports.execute = function (req, res) {
                 path: postURL.pathname,
                 method: decoded.methodType,
                 headers: {
-                    
+                    "Content-Type": "application/json"
                 }
             }
             for (var i=0; i<decoded.headers.length; i++){
