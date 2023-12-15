@@ -108,7 +108,7 @@ define([
 			}
 			catch(err){
 				journeyIDReal = "unknown";
-				alert("Please save your journey first before using the postman activity to ensure best experience.");
+				alert("Salve sua jornada antes");
 			}
 			
 		
@@ -203,18 +203,6 @@ define([
 		  SetDefaultConfig(); 
         });
 		
-		  $('#LogoutButton').click(function(data) {
-			
-			  
-					window.localStorage.setItem('sfmc_postman_activity', JSON.stringify({"email":"reset","password":"reset","counter":false}));
-					window.localStorage.removeItem('sfmc_postman_activity')
-					t = "";
-					UserAutheticated = false;
-					document.getElementById('AuthenticateActivity').style.display = 'block';
-					document.getElementById('MainActivity').style.display = 'none';
-					document.getElementById('loginMessage').style.display = 'none';			
-        });
-	 
 	 }
 	 
 
