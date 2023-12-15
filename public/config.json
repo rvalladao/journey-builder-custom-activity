@@ -81,35 +81,7 @@
     "arguments": {
       "execute": {
         "inArguments": [],
-        "outArguments": [
-		   {
-            "postman_error": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "Out",
-              "readOnly": false,
-              "access": "Visible"
-            }
-          },
-          {
-            "postman_request": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "Out",
-              "readOnly": false,
-              "access": "Visible"
-            }
-          },
-          {
-            "postman_response": {
-              "dataType": "Text",
-              "isNullable": true,
-              "direction": "Out",
-              "readOnly": false,
-              "access": "Visible"
-            }
-          }
-		]
+        "outArguments": []
       }
     }
   }

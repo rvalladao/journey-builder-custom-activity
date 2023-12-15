@@ -114,22 +114,22 @@ exports.execute = function (req, res) {
               req.end();
 
 
-            res.status(200).end();
+            res.status(200).send('Execute');
         } else {
-            console.error('decode failed');
+            //console.error('decode failed');
             return res.status(400).end();
         }
     });
 };
 
 exports.publish = function (req, res) {
-    console.log('publish request');
+    //console.log('publish request');
     //logData(req);
     res.status(200).send('Publish');
 };
 
 exports.validate = function (req, res) {
-    console.log('validate request');
+    //console.log('validate request');
     //logData(req);
     res.status(200).send('Validate');
 };
