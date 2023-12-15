@@ -4,6 +4,7 @@ const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const util = require('util');
 const https = require('https');
+const axios = require('axios');
 var url = require('url');
 
 exports.logExecuteData = [];
@@ -76,7 +77,7 @@ exports.execute = function (req, res) {
         if (decoded) {
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
-            console.log("postData:" + JSON.stringify(postData));
+            //console.log("postData:" + JSON.stringify(postData));
             const options = {
                 hostname: postURL.host,
                 path: postURL.pathname,
@@ -91,11 +92,17 @@ exports.execute = function (req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
-            console.log("options:" + JSON.stringify(options));
+            //console.log("options:" + JSON.stringify(options));
 
-            const req = https.request(options, (res) => {
-                console.log(`STATUS: ${res.statusCode}`);
-                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+            axios.post(postURL, postData, { headers: options.headers }).then((res) => {
+                console.log(`Success`);
+            }).catch((err) => {
+                console.error(`ERROR: ${err}`)
+            })
+
+            /*const req = https.request(options, (res) => {
+                //console.log(`STATUS: ${res.statusCode}`);
+                //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
                   console.log(`BODY: ${chunk}`);
@@ -111,11 +118,10 @@ exports.execute = function (req, res) {
               
               // Write data to request body
               req.write(postData);
-              res.status(200).send('Execute');
               req.end();
 
-              //console.log(res);
-            
+              //console.log(res);*/
+              res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
             return res.status(400).end();
