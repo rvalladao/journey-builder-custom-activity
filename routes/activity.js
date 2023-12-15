@@ -96,7 +96,7 @@ exports.execute = function (req, res) {
             const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-                console.log(`full res: ${JSON.stringify(res)}` );
+                console.log(`full res: ${res}` );
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
                   console.log(`BODY: ${chunk}`);
