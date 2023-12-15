@@ -55,13 +55,13 @@ exports.edit = function (req, res) {
 };
 
 exports.save = function (req, res) {
-    console.log('save request');
+    //console.log('save request');
     // logData(req);
     res.send(200, 'Save');
 };
 
 exports.execute = function (req, res) {
-    console.log('execute request');
+    //console.log('execute request');
     console.log(req.body);
     //logData(req);
 
@@ -113,7 +113,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();
 
-
+              console.log(res);
             res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
