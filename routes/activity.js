@@ -111,7 +111,7 @@ exports.execute = function (req, res) {
               
               // Write data to request body
               req.write(postData);
-            //  req.end();
+              req.send();
 
               //console.log(res);
             res.status(200).send('Execute');
