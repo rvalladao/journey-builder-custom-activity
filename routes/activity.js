@@ -51,18 +51,18 @@ function logData(req) {
 exports.edit = function (req, res) {
     console.log('edit request');
     // logData(req);
-    res.send(200, 'Edit');
+    res.status(200).send('Edit');
 };
 
 exports.save = function (req, res) {
     //console.log('save request');
     // logData(req);
-    res.send(200, 'Save');
+    res.status(200).send('Save');
 };
 
 exports.execute = function (req, res) {
     //console.log('execute request');
-    console.log(req.body);
+    //console.log(req.body);
     //logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -96,6 +96,7 @@ exports.execute = function (req, res) {
             const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+                console.log(`full res: ${JSON.stringify(res)}` );
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
                   console.log(`BODY: ${chunk}`);
@@ -113,7 +114,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();
 
-              console.log(res);
+              //console.log(res);
             res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
