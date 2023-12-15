@@ -111,10 +111,10 @@ exports.execute = function (req, res) {
               
               // Write data to request body
               req.write(postData);
-              res.send();
+              req.end();
 
 
-            res.status(200).send('Execute');
+            res.status(200).end();
         } else {
             console.error('decode failed');
             return res.status(400).end();
