@@ -120,7 +120,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();
 
-              res.status(200).send(chunk);
+              res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
             return res.status(400).end();
