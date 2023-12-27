@@ -103,13 +103,13 @@ exports.execute = function (req, res) {
                 //console.log(`STATUS: ${res.statusCode}`);
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
-                /*res.on('data', (chunk) => {
-                  console.log(`BODY: ${chunk}`);
+                res.on('data', (chunk) => {
+                  console.log(chunk);
                 });
                 res.on('end', () => {
-                  console.log('No more data in response.');
-                });*/
-                console.log(res);
+                  console.log(res);
+                });
+                
               });
               
               req.on('error', (e) => {
@@ -120,7 +120,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();
 
-              res.status(200).send('Execute');
+              res.status(200).send(chunk);
         } else {
             //console.error('decode failed');
             return res.status(400).end();
