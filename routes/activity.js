@@ -100,9 +100,9 @@ exports.execute = function (req, res) {
                 console.error(`ERROR: ${err}`)
             })
 
-            /*const req = https.request(options, (res) => {
-                //console.log(`STATUS: ${res.statusCode}`);
-                //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+            const req = https.request(options, (res) => {
+                console.log(`STATUS: ${res.statusCode}`);
+                console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
                   console.log(`BODY: ${chunk}`);
