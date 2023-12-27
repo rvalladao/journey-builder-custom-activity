@@ -92,10 +92,10 @@ exports.execute = function (req, res) {
 
             const handleSubmit = async () => {
                 const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                res.status(200).send('Execute');
-                console.log(res);
+                return response;
             }
-            handleSubmit();
+            console.log(handleSubmit);
+            return res.status(200).json(handleSubmit);
             
             /*const req = https.request(options, (resp) => {
                 //console.log(`STATUS: ${res.statusCode}`);
