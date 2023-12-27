@@ -90,26 +90,23 @@ exports.execute = function (req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
-            /*const handleSubmit = async () => {
-                const response = await axios.post(postURL, postData, { headers: options.headers });
-                res.on('data', (chunk) => {
-                    console.log(`BODY: ${chunk}`);
-                });
+            const handleSubmit = async () => {
+                const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
                 res.status(200).send(response.data);
+                console.log(res);
             }
-            handleSubmit();*/
+            handleSubmit();
             
-            const req = https.request(options, (resp) => {
+            /*const req = https.request(options, (resp) => {
                 //console.log(`STATUS: ${res.statusCode}`);
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 resp.setEncoding('utf8');
                 resp.on('data', (chunk) => {
-                    res.json(chunk)
+                    return chunk;
                 });
                 resp.on('end', () => {
                   console.log('No more data in response.');
                 });
-                
               });
               
               req.on('error', (e) => {
@@ -121,7 +118,7 @@ exports.execute = function (req, res) {
               req.end();
 
               console.log(res);
-              res.status(200).send('Execute');
+              res.status(200).send('Execute');*/
         } else {
             //console.error('decode failed');
             return res.status(400).end();
