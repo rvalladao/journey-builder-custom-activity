@@ -105,6 +105,7 @@ exports.execute = function (req, res) {
                 console.log(JSON.stringify(handleSubmit));
                 res.status(200).send('Execute');
             }
+            handleSubmit();
             /*
             const req = axios.post(postURL, postData, { headers: options.headers }).then((response) => {
                 console.log(`Success`);
