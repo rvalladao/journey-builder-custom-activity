@@ -94,14 +94,14 @@ exports.execute = function (req, res) {
 
             //console.log("options:" + JSON.stringify(options));
 
-            axios.post(postURL, postData, { headers: options.headers }).then((response) => {
+            const req = axios.post(postURL, postData, { headers: options.headers }).then((response) => {
                 console.log(`Success`);
                 console.log(response.data.Attributes.FirstName);
+                return response;
             }).catch((err) => {
                 console.error(`ERROR: ${err}`)
             })
-            console.log('execute request');
-            console.log(JSON.stringify(res));
+            console.log(JSON.stringify(req));
             res.status(200).send('Execute');
 
             /*const req = https.request(options, (res) => {
