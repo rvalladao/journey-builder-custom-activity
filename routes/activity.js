@@ -100,6 +100,7 @@ exports.execute = function (req, res) {
             }).catch((err) => {
                 console.error(`ERROR: ${err}`)
             })
+            console.log('execute request');
             res.status(200).send('Execute');
 
             /*const req = https.request(options, (res) => {
