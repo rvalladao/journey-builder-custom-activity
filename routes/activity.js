@@ -104,10 +104,10 @@ exports.execute = function (req, res) {
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
-                  console.log(chunk);
+                  return chunk.json();
                 });
                 res.on('end', () => {
-                  console.log(res);
+                  // do nothing
                 });
                 
               });
