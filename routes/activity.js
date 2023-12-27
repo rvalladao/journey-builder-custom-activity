@@ -108,6 +108,7 @@ exports.execute = function (req, res) {
                 });
                 resp.on('end', () => {
                   console.log('No more data in response.');
+                  res.end();
                 });
                 
               });
