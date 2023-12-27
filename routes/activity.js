@@ -92,30 +92,16 @@ exports.execute = function (req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
-            const handleSubmit = async () => {
+            /*const handleSubmit = async () => {
                 const response = await axios.post(postURL, postData, { headers: options.headers });
                 res.on('data', (chunk) => {
                     console.log(`BODY: ${chunk}`);
                 });
                 res.status(200).send(response.data);
             }
-            handleSubmit();
+            handleSubmit();*/
             
-            //console.log('Response ' + res);
-            //console.log('response res: ' + res.res);
-            //console.log('response body: ' + JSON.stringify(res.body));
-            /*
-            const req = axios.post(postURL, postData, { headers: options.headers }).then((response) => {
-                console.log(`Success`);
-                console.log(response.data.Attributes.FirstName);
-                return response;
-            }).catch((err) => {
-                console.error(`ERROR: ${err}`)
-            })
-            console.log(JSON.stringify(req));
-            res.status(200).send('Execute');
-            */
-            /*const req = https.request(options, (res) => {
+            const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
@@ -133,9 +119,9 @@ exports.execute = function (req, res) {
               
               // Write data to request body
               req.write(postData);
-              req.end();*/
+              req.end();
 
-              //res.status(200).send('Execute');
+              res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
             return res.status(400).end();
