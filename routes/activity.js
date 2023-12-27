@@ -135,7 +135,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();*/
 
-              console.log('req :' + JSON.stringify(req));
+              console.log('req :' + req);
               //res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
