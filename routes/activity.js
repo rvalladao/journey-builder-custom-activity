@@ -95,12 +95,7 @@ exports.execute = function (req, res) {
             //console.log("options:" + JSON.stringify(options));
 
             const handleSubmit = async () => {
-                try {
-                    const response = await axios.post(postURL, postData, { headers: options.headers });
-                    return response;
-                } catch (err) {
-                    console.log(err)
-                }
+                const response = await axios.post(postURL, postData, { headers: options.headers });
                 console.log(JSON.stringify(response));
                 res.status(200).send('Execute');
             }
