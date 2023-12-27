@@ -94,6 +94,15 @@ exports.execute = function (req, res) {
 
             //console.log("options:" + JSON.stringify(options));
 
+            const handleSubmit = async() => {
+                try {
+                    const response = await axios.post(postURL, postData, { headers: options.headers });
+                    console.log(response);
+                } catch (err) {
+                    console.log(err)
+                }
+            }
+            /*
             const req = axios.post(postURL, postData, { headers: options.headers }).then((response) => {
                 console.log(`Success`);
                 console.log(response.data.Attributes.FirstName);
@@ -103,7 +112,7 @@ exports.execute = function (req, res) {
             })
             console.log(JSON.stringify(req));
             res.status(200).send('Execute');
-
+            */
             /*const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
