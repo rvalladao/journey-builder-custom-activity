@@ -96,11 +96,13 @@ exports.execute = function (req, res) {
 
             axios.post(postURL, postData, { headers: options.headers }).then((res) => {
                 console.log(`Success`);
+                console.log(res);
+                res.status(200).send('Execute');
             }).catch((err) => {
                 console.error(`ERROR: ${err}`)
             })
 
-            const req = https.request(options, (res) => {
+            /*const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
                 console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
@@ -118,10 +120,10 @@ exports.execute = function (req, res) {
               
               // Write data to request body
               req.write(postData);
-              req.end();
+              req.end();*/
 
-              //console.log(res);*/
-              res.status(200).send('Execute');
+              //console.log(res);
+              //res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
             return res.status(400).end();
