@@ -111,7 +111,8 @@ exports.execute = function (req, res) {
                 res.on('end', () => {
                   console.log('No more data in response.');
                 });*/
-                console.log(`res: ${JSON.stringify(res.data)}`)
+                console.log(`res: ${JSON.stringify(res.data)}`);
+                console.log(res);
               });
               
               req.on('error', (e) => {
