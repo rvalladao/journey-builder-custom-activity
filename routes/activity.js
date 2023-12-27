@@ -63,7 +63,6 @@ exports.save = function (req, res) {
 
 exports.execute = function (req, res) {
     //console.log('execute request');
-    //console.log(req.body);
     //logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -77,7 +76,6 @@ exports.execute = function (req, res) {
         if (decoded) {
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
-            //console.log("postData:" + JSON.stringify(postData));
             const options = {
                 hostname: postURL.host,
                 path: postURL.pathname,
@@ -111,7 +109,6 @@ exports.execute = function (req, res) {
                 res.on('end', () => {
                   console.log('No more data in response.');
                 });*/
-                console.log(`res: ${JSON.stringify(res.data)}`);
                 console.log(res);
               });
               
