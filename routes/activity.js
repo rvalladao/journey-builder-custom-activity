@@ -99,14 +99,14 @@ exports.execute = function (req, res) {
             }
             handleSubmit();*/
             
-            const req = https.request(options, (res) => {
+            const req = https.request(options, (resp) => {
                 //console.log(`STATUS: ${res.statusCode}`);
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-                res.setEncoding('utf8');
-                res.on('data', (chunk) => {
+                resp.setEncoding('utf8');
+                resp.on('data', (chunk) => {
                     res.write(chunk)
                 });
-                res.on('end', () => {
+                resp.on('end', () => {
                   console.log('No more data in response.');
                 });
                 
