@@ -104,10 +104,10 @@ exports.execute = function (req, res) {
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 res.setEncoding('utf8');
                 res.on('data', (chunk) => {
-                  return chunk.json();
+                  return chunk;
                 });
                 res.on('end', () => {
-                  // do nothing
+                  console.log('No more data in response.');
                 });
                 
               });
@@ -119,6 +119,8 @@ exports.execute = function (req, res) {
               // Write data to request body
               req.write(postData);
               req.end();
+
+              console.log(chunk);
 
               res.status(200).send('Execute');
         } else {
