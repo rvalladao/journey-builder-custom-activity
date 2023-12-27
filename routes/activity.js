@@ -96,6 +96,7 @@ exports.execute = function (req, res) {
                 const response = await axios.post(postURL, postData, { headers: options.headers });
                 console.log(response.data.Attributes.FirstName);
                 res.status(200).send(response.data);
+                console.log(response.data);
                 return response;
             }
             handleSubmit();
@@ -135,7 +136,6 @@ exports.execute = function (req, res) {
               req.end();*/
 
               console.log('req :' + req);
-              console.log('response :' + response);
               //res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
