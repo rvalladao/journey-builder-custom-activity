@@ -97,7 +97,7 @@ exports.execute = function (req, res) {
             axios.post(postURL, postData, { headers: options.headers }).then((res) => {
                 console.log(`Success`);
                 console.log(res);
-                res.status(200).send('Execute');
+                res.send(200);
             }).catch((err) => {
                 console.error(`ERROR: ${err}`)
             })
