@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Salesforce MarketCloud Custom Activity",
   "engines": {
-    "node": "6.11.1"
+    "node": "20.10.0"
   },
   "scripts": {
     "start": "node app.js"
