@@ -97,7 +97,7 @@ exports.execute = function (req, res) {
                 console.log(response.data.Attributes.FirstName);
                 res.status(200).send(response.data);
                 console.log(response.data);
-                return response;
+                //return response;
             }
             handleSubmit();
             
@@ -135,7 +135,7 @@ exports.execute = function (req, res) {
               req.write(postData);
               req.end();*/
 
-              console.log('req :' + req);
+              console.log('req :' + JSON.stringify(req));
               //res.status(200).send('Execute');
         } else {
             //console.error('decode failed');
