@@ -97,10 +97,11 @@ exports.execute = function (req, res) {
             axios.post(postURL, postData, { headers: options.headers }).then((res) => {
                 console.log(`Success`);
                 console.log(res.data.Attributes.FirstName);
-                res.send(200);
+                var codeax = res.status;
             }).catch((err) => {
                 console.error(`ERROR: ${err}`)
             })
+            res.status(codeax).send('Execute');
 
             /*const req = https.request(options, (res) => {
                 console.log(`STATUS: ${res.statusCode}`);
