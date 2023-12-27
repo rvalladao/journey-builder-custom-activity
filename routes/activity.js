@@ -104,7 +104,7 @@ exports.execute = function (req, res) {
                 //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                 resp.setEncoding('utf8');
                 resp.on('data', (chunk) => {
-                    res.write(chunk)
+                    res.json(chunk)
                 });
                 resp.on('end', () => {
                   console.log('No more data in response.');
