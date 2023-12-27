@@ -94,9 +94,9 @@ exports.execute = function (req, res) {
 
             const handleSubmit = async () => {
                 const response = await axios.post(postURL, postData, { headers: options.headers });
-                console.log(response.data.Attributes.FirstName);
-                res.status(200).send(response);
-                return res;
+                console.log(response);
+                res.status(200).send(response.body);
+                return response;
             }
             handleSubmit();
             
