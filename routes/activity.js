@@ -73,7 +73,6 @@ exports.execute = function (req, res) {
 
         // console.log('buffer hex', req.body.toString('hex'));
 
-        if (decoded) {
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
             const options = {
@@ -93,10 +92,10 @@ exports.execute = function (req, res) {
             const handleSubmit = async () => {
                 const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
                 console.log(response.data);
-                return response.data;
+                res.status(200).json(response.data);
+                console.log(res);
             }
-            res.status(200).json(handleSubmit);
-            console.log(res);
+            handleSubmit();
             
             
             /*const req = https.request(options, (resp) => {
@@ -121,10 +120,7 @@ exports.execute = function (req, res) {
 
               console.log(res);
               res.status(200).send('Execute');*/
-        } else {
-            //console.error('decode failed');
-            return res.status(400).end();
-        }
+        
     });
 };
 
