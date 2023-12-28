@@ -90,11 +90,12 @@ exports.execute = function(req, res) {
 
             const handleSubmit = async() => {
                 const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                return res.send(200, response.data);
+                //return res.send(200, response.data);
             }
-            handleSubmit();
+            //handleSubmit();
         
     });
+    return res.send(200, handleSubmit());
 };
 
 exports.publish = function (req, res) {
