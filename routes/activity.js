@@ -61,7 +61,7 @@ exports.save = function (req, res) {
     res.status(200).send('Save');
 };
 
-exports.execute = function (req, res) {
+exports.execute = function(req, res) {
     //console.log('execute request');
     //logData(req);
 
@@ -89,13 +89,13 @@ exports.execute = function (req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
-            const handleSubmit = async () => {
-                const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                console.log(response.data);
-                res.status(200).json(response.data);
-                console.log(res);
+            async function handleSubmit() {
+                await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+                //res.status(200).json(response.data);
+                //console.log(res);
             }
-            handleSubmit();
+            console.log("response obj", JSON.stringify(handleSubmit));
+            return res.status(200).json(handleSubmit);
             
             
             /*const req = https.request(options, (resp) => {
