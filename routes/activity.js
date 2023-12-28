@@ -95,8 +95,10 @@ exports.execute = function(req, res) {
                 //res.status(200).json(response.data);
                 //console.log(res);
             }
-            console.log("response obj", JSON.stringify(handleSubmit));
-            return res.status(200).json(handleSubmit);
+            handleSubmit().then(() => {
+                console.log("response obj", JSON.stringify(handleSubmit));
+                return res.status(200).json(handleSubmit);
+            });
             
             
             /*const req = https.request(options, (resp) => {
