@@ -63,7 +63,6 @@ exports.save = function (req, res) {
 
 exports.execute = function(req, res) {
     console.log('execute request');
-    logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
@@ -91,15 +90,12 @@ exports.execute = function(req, res) {
 
             const handleSubmit = async() => {
                 const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                return response.data;
-                //res.status(200).json(response.data);
-                //console.log(res);
+                return res.status(200).json(response.data);
             }
-            handleSubmit().then(() => {
-                console.log("response obj", JSON.stringify(handleSubmit));
-                return res.status(200).json(handleSubmit);
-            });
+            handleSubmit();
+                
             
+            logData(req);
             
             
         
