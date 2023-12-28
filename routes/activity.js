@@ -70,10 +70,10 @@ exports.execute = function(req, res) {
             return res.status(401).end();
         }
 
-         console.log('req', JSON.stringify(req.body));
 
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
+            console.log(decoded);
             const options = {
                 hostname: postURL.host,
                 path: postURL.pathname,
