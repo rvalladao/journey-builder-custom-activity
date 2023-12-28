@@ -93,11 +93,6 @@ exports.execute = function(req, res) {
                 return res.status(200).json(response.data);
             }
             handleSubmit();
-                
-            
-            logData(req);
-            
-            
         
     });
 };
