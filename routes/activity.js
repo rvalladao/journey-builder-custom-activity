@@ -91,10 +91,11 @@ exports.execute = function(req, res) {
 
             async function handleSubmit() {
                 await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+                return response.data;
                 //res.status(200).json(response.data);
                 //console.log(res);
             }
-            console.log("response obj", JSON.stringify(handleSubmit));
+            console.log("response obj:", JSON.stringify(handleSubmit));
             return res.status(200).json(handleSubmit);
             
             
