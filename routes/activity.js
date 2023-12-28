@@ -62,8 +62,8 @@ exports.save = function (req, res) {
 };
 
 exports.execute = function(req, res) {
-    //console.log('execute request');
-    //logData(req);
+    console.log('execute request');
+    logData(req);
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
@@ -101,28 +101,7 @@ exports.execute = function(req, res) {
             });
             
             
-            /*const req = https.request(options, (resp) => {
-                //console.log(`STATUS: ${res.statusCode}`);
-                //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-                resp.setEncoding('utf8');
-                resp.on('data', (chunk) => {
-                    return chunk;
-                });
-                resp.on('end', () => {
-                  console.log('No more data in response.');
-                });
-              });
-              
-              req.on('error', (e) => {
-                console.error(`problem with request: ${e.message}`);
-              });
-              
-              // Write data to request body
-              req.write(postData);
-              req.end();
-
-              console.log(res);
-              res.status(200).send('Execute');*/
+            
         
     });
 };
