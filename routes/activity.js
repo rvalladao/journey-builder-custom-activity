@@ -70,7 +70,7 @@ exports.execute = function(req, res) {
             return res.status(401).end();
         }
 
-        // console.log('buffer hex', req.body.toString('hex'));
+         console.log('buffer hex', req.body.toString('hex'));
 
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
