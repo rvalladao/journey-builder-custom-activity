@@ -88,12 +88,14 @@ exports.execute = function(req, res) {
                 options.headers[headerKey] = headerValue;
             }
 
-            const handleSubmit = async() => {
+            async function handleSubmit() {
                 const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
                 return response.data;
             }
-            console.log(handleSubmit());
-            return res.send(200, handleSubmit());
+            handleSubmit().then(items => {
+                console.log(items);
+                res.send(200,items);
+            })
     });
 };
 
