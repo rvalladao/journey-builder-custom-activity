@@ -6,6 +6,7 @@ const util = require('util');
 const https = require('https');
 const axios = require('axios');
 var url = require('url');
+const logger = require('../lib/logger');
 
 exports.logExecuteData = [];
 
@@ -61,7 +62,7 @@ exports.save = function (req, res) {
     res.status(200).send('Save');
 };
 
-exports.execute = function(req, res) {
+/*exports.execute = function(req, res) {
     console.log('execute request');
 
     JWT(req.body, process.env.jwtSecret, (err, decoded) => {
@@ -73,7 +74,6 @@ exports.execute = function(req, res) {
 
             var postURL = url.parse(decoded.url, true);
             const postData = decoded.data;
-            console.log(decoded);
             const options = {
                 hostname: postURL.host,
                 path: postURL.pathname,
@@ -97,6 +97,47 @@ exports.execute = function(req, res) {
                 res.send(200,items);
             })
     });
+};*/
+
+exports.execute = function(req, res) {
+    console.log('execute request');
+
+    const data = JWT(req.body);
+
+    logger.info(data);
+
+    /*JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+        if (err) {
+            console.error(err);
+            return res.status(401).end();
+        }
+
+
+            var postURL = url.parse(decoded.url, true);
+            const postData = decoded.data;
+            const options = {
+                hostname: postURL.host,
+                path: postURL.pathname,
+                method: decoded.methodType,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+            for (var i=0; i<decoded.headers.length; i++){
+                var headerKey = decoded.headers[i].key;
+                var headerValue = decoded.headers[i].value;
+                options.headers[headerKey] = headerValue;
+            }
+
+            async function handleSubmit() {
+                const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+                return response.data;
+            }
+            handleSubmit().then(items => {
+                console.log(items);
+                res.send(200,items);
+            })
+    });*/
 };
 
 exports.publish = function (req, res) {

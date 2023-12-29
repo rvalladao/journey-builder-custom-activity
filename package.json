@@ -33,6 +33,7 @@
     "jsonwebtoken": "^8.0.1",
     "node-http": "^0.0.5",
     "request": "^2.81.0",
-    "require": "^2.4.20"
+    "require": "^2.4.20",
+    "winston": "^3.11.0"
   }
 }
