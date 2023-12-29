@@ -127,7 +127,7 @@ exports.execute = async (req, res) => {
         }
         console.log('req: ', decoded);
         console.log('resp: ', await handleSubmit());
-        res.status(200).send(await handleSubmit());
+        res.status(200).send(decoded);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
