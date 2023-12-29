@@ -6,7 +6,6 @@ const util = require('util');
 const https = require('https');
 const axios = require('axios');
 var url = require('url');
-const logger = require('../lib/logger');
 
 exports.logExecuteData = [];
 
@@ -104,7 +103,9 @@ exports.execute = function(req, res) {
 
     const data = JWT(req.body);
 
-    logger.info(data);
+    console.log(data);
+
+    return res.status(200).send('Execute');
 
     /*JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
