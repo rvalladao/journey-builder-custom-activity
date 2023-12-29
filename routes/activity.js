@@ -116,6 +116,11 @@ exports.execute = async (req, res) => {
             }
             
         }
+        for (var i=0; i<decoded.headers.length; i++){
+            var headerKey = decoded.headers[i].key;
+            var headerValue = decoded.headers[i].value;
+            options.headers[headerKey] = headerValue;
+        }
         async function handleSubmit() {
             const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
             return response.data;
