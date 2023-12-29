@@ -118,7 +118,7 @@ exports.execute = async (req, res) => {
         }
         const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
         console.log(response.data);
-        return res.status(200).send(response.data);
+        return await res.status(200).json(response.data);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
