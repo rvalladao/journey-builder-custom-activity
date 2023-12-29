@@ -123,7 +123,7 @@ exports.execute = async (req, res) => {
         }
         async function handleSubmit() {
             const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-            return response.data;
+            return response.data.json();
         }
         console.log(await handleSubmit());
         res.status(500).json(await handleSubmit());
