@@ -126,7 +126,7 @@ exports.execute = async (req, res) => {
             return response.data.json();
         }
         console.log(await handleSubmit());
-        res.status(500).json(await handleSubmit());
+        res.status(200).send(await handleSubmit());
         setTimeout(() => {
             console.log('resp: ', res);
         }, 2000);
