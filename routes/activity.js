@@ -98,14 +98,33 @@ exports.save = function (req, res) {
     });
 };*/
 
-exports.execute = function(req, res) {
+exports.execute = async (req, res) => {
     console.log('execute request');
 
-    const data = JWT(req.body);
+    const decoded = JWT(req.body);
 
-    console.log(data);
+    try {
+        var postURL = url.parse(decoded.url, true);
+        const postData = decoded.data;
+        const options = {
+            hostname: postURL.host,
+            path: postURL.pathname,
+            method: decoded.methodType,
+            headers: {
+                "Content-Type": "application/json"
+            }
+            
+        }
+        
+        console.log(postData);
 
-    return res.status(200).send('Execute');
+        const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+
+        return res.status(200).send(response.data);
+    } catch (error) {
+        console.log(error);
+    }
+
 
     /*JWT(req.body, process.env.jwtSecret, (err, decoded) => {
         if (err) {
