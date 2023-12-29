@@ -103,6 +103,7 @@ exports.execute = async (req, res) => {
 
     const decoded = JWT(req.body);
 
+
     try {
         var postURL = url.parse(decoded.url, true);
         const postData = decoded.data;
@@ -115,14 +116,12 @@ exports.execute = async (req, res) => {
             }
             
         }
-        
-        console.log(postData);
-
         const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-
+        console.log(response.data);
         return res.status(200).send(response.data);
     } catch (error) {
         console.log(error);
+        return res.status(401).end();
     }
 
 
