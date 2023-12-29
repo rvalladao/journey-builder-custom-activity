@@ -121,7 +121,7 @@ exports.execute = async (req, res) => {
             return response.data;
         }
         console.log(await handleSubmit());
-        return await res.status(200).send('execute');
+        return res.status(200).json(await handleSubmit());
     } catch (error) {
         console.log(error);
         return res.status(401).end();
