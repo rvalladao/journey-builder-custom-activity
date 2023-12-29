@@ -126,10 +126,7 @@ exports.execute = async (req, res) => {
             return response.data;
         }
         console.log(await handleSubmit());
-        res.status(500).send(await handleSubmit());
-        setTimeout(() => {
-            console.log('resp: ', res);
-        }, 2000);
+        res.status(200).send(await handleSubmit());
     } catch (error) {
         console.log(error);
         return res.status(401).end();
