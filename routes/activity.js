@@ -126,8 +126,10 @@ exports.execute = async (req, res) => {
             return response.data;
         }
         //console.log('req: ', decoded);
-        console.log('resp: ', await handleSubmit());
-        res.status(200).json({"outArguments": [ await handleSubmit() ]});
+        //console.log('resp: ', await handleSubmit());
+        var jsonOut = { "arguments": { "execute": { "inArguments": [], "outArguments": [ await handleSubmit()] }}};
+        console.log(jsonOut);
+        res.status(200).json(jsonOut);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
