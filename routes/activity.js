@@ -125,8 +125,8 @@ exports.execute = async (req, res) => {
             const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
             return response.data;
         }
-        console.log(decoded);
-        console.log(await handleSubmit());
+        console.log('req: ', decoded);
+        console.log('resp: ', await handleSubmit());
         res.status(200).send(await handleSubmit());
     } catch (error) {
         console.log(error);
