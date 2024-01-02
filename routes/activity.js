@@ -165,7 +165,7 @@ exports.execute = async (req, res) => {
           
           module.exports = logReqRes;
 
-          logReqRes(req, res, next);
+          logReqRes(req, res);
 
         //console.log('req: ', decoded);
         //console.log('resp: ', await handleSubmit());
