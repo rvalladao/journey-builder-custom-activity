@@ -126,45 +126,6 @@ exports.execute = async (req, res) => {
             return response.data;
         }
 
-        function logReqRes(req, res, next) {
-            const oldWrite = res.write;
-            const oldEnd = res.end;
-          
-            const chunks = [];
-          
-            res.write = (...restArgs) => {
-              chunks.push(Buffer.from(restArgs[0]));
-              oldWrite.apply(res, restArgs);
-            };
-          
-            res.end = (...restArgs) => {
-              if (restArgs[0]) {
-                chunks.push(Buffer.from(restArgs[0]));
-              }
-              const body = Buffer.concat(chunks).toString('utf8');
-              const reqBody = req.body;
-          
-              console.log({
-                time: new Date().toUTCString(),
-                fromIP: req.headers['x-forwarded-for'] || 
-                req.connection.remoteAddress,
-                method: req.method,
-                originalUri: req.originalUrl,
-                uri: req.url,
-                requestData: reqBody.toJSON(),
-                responseData: body,
-                referer: req.headers.referer || '',
-                ua: req.headers['user-agent']
-              });
-          
-              // console.log(body);
-              oldEnd.apply(res, restArgs);
-            };
-          
-            handleSubmit();
-          }
-          
-          module.exports = logReqRes;
 
           
 
@@ -172,7 +133,6 @@ exports.execute = async (req, res) => {
         //console.log('resp: ', await handleSubmit());
         const jsonOut = await handleSubmit();
         //console.log(JSON.stringify(jsonOut));
-        res.body(jsonOut);
         res.status(200).json(jsonOut);
         //logReqRes(req, res);
         //console.log('tostring: ', JSON.stringify(res.toString()));

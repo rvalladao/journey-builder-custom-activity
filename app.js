@@ -17,6 +17,17 @@ app.use(bodyParser.raw({ type: 'application/jwt' }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  let send = res.send;
+  res.send = c => {
+      console.log(`Code: ${res.statusCode}`);
+      console.log("Body: ", c);
+      res.send = send;
+      return res.send(c);
+  }
+  next();
+});
+
 if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
@@ -28,7 +39,7 @@ app.post('/logout', routes.logout);
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
 app.post('/journeybuilder/publish/', activity.publish);
-app.post('/journeybuilder/execute/', activity.execute);
+app.post('/journeybuilder/execute/', activity.execute, res);
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
