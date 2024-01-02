@@ -61,42 +61,6 @@ exports.save = function (req, res) {
     res.status(200).send('Save');
 };
 
-/*exports.execute = function(req, res) {
-    console.log('execute request');
-
-    JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-        if (err) {
-            console.error(err);
-            return res.status(401).end();
-        }
-
-
-            var postURL = url.parse(decoded.url, true);
-            const postData = decoded.data;
-            const options = {
-                hostname: postURL.host,
-                path: postURL.pathname,
-                method: decoded.methodType,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-            for (var i=0; i<decoded.headers.length; i++){
-                var headerKey = decoded.headers[i].key;
-                var headerValue = decoded.headers[i].value;
-                options.headers[headerKey] = headerValue;
-            }
-
-            async function handleSubmit() {
-                const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                return response.data;
-            }
-            handleSubmit().then(items => {
-                console.log(items);
-                res.send(200,items);
-            })
-    });
-};*/
 
 exports.execute = async (req, res) => {
     console.log('execute request');
@@ -129,54 +93,15 @@ exports.execute = async (req, res) => {
 
           
 
-        //console.log('req: ', decoded);
-        //console.log('resp: ', await handleSubmit());
-        //const jsonOut = await handleSubmit();
-        //console.log(JSON.stringify(jsonOut));
-        //res.status(200).json(jsonOut);
-        //logReqRes(req, res);
-        //console.log('tostring: ', JSON.stringify(res.toString()));
-        //console.log(util.inspect(res.req.res));
-        //const jsonbody = res.body.toJSON();
-        //console.log('buffer: ', jsonbody);
+        const jsonOut = await handleSubmit();
+        res.status(200).json(jsonOut);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
     }
 
 
-    /*JWT(req.body, process.env.jwtSecret, (err, decoded) => {
-        if (err) {
-            console.error(err);
-            return res.status(401).end();
-        }
-
-
-            var postURL = url.parse(decoded.url, true);
-            const postData = decoded.data;
-            const options = {
-                hostname: postURL.host,
-                path: postURL.pathname,
-                method: decoded.methodType,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            }
-            for (var i=0; i<decoded.headers.length; i++){
-                var headerKey = decoded.headers[i].key;
-                var headerValue = decoded.headers[i].value;
-                options.headers[headerKey] = headerValue;
-            }
-
-            async function handleSubmit() {
-                const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-                return response.data;
-            }
-            handleSubmit().then(items => {
-                console.log(items);
-                res.send(200,items);
-            })
-    });*/
+    
 };
 
 exports.publish = function (req, res) {
