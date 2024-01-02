@@ -150,7 +150,7 @@ exports.execute = async (req, res) => {
                 method: req.method,
                 originalUri: req.originalUrl,
                 uri: req.url,
-                requestData: req.body,
+                requestData: util.inspect(req.body),
                 responseData: body,
                 referer: req.headers.referer || '',
                 ua: req.headers['user-agent']
@@ -165,13 +165,14 @@ exports.execute = async (req, res) => {
           
           module.exports = logReqRes;
 
-          logReqRes(req, res);
+          
 
         //console.log('req: ', decoded);
         //console.log('resp: ', await handleSubmit());
         const jsonOut = await handleSubmit();
         //console.log(JSON.stringify(jsonOut));
         res.status(200).json(jsonOut);
+        logReqRes(req, res, handleSubmit());
         //console.log('tostring: ', JSON.stringify(res.toString()));
         //console.log(util.inspect(res.req.res));
         //const jsonbody = res.body.toJSON();
