@@ -91,7 +91,7 @@ exports.execute = async (req, res) => {
         }
 
         const jsonOut = await handleSubmit();
-        res.status(200).json(jsonOut);
+        res.status(200).json(await jsonOut);
 
     } catch (error) {
         console.log(error);
