@@ -18,17 +18,6 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  let send = res.send;
-  res.send = c => {
-      console.log(`Code: ${res.statusCode}`);
-      console.log("Body: ", c);
-      res.send = send;
-      return res.send(c);
-  }
-  next();
-});
-
 if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
