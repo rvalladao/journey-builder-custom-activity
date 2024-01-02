@@ -142,6 +142,7 @@ exports.execute = async (req, res) => {
                 chunks.push(Buffer.from(restArgs[0]));
               }
               const body = Buffer.concat(chunks).toString('utf8');
+              const reqBody = req.body;
           
               console.log({
                 time: new Date().toUTCString(),
@@ -150,7 +151,7 @@ exports.execute = async (req, res) => {
                 method: req.method,
                 originalUri: req.originalUrl,
                 uri: req.url,
-                requestData: util.inspect(req.body),
+                requestData: reqBody.toJSON(),
                 responseData: body,
                 referer: req.headers.referer || '',
                 ua: req.headers['user-agent']
@@ -160,7 +161,7 @@ exports.execute = async (req, res) => {
               oldEnd.apply(res, restArgs);
             };
           
-            next();
+            handleSubmit();
           }
           
           module.exports = logReqRes;
@@ -171,8 +172,8 @@ exports.execute = async (req, res) => {
         //console.log('resp: ', await handleSubmit());
         const jsonOut = await handleSubmit();
         //console.log(JSON.stringify(jsonOut));
-        res.status(200).json(jsonOut);
-        logReqRes(req, res, handleSubmit());
+        //res.status(200).json(jsonOut);
+        logReqRes(req, res);
         //console.log('tostring: ', JSON.stringify(res.toString()));
         //console.log(util.inspect(res.req.res));
         //const jsonbody = res.body.toJSON();
