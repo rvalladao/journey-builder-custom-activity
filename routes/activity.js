@@ -127,9 +127,9 @@ exports.execute = async (req, res) => {
         }
         //console.log('req: ', decoded);
         //console.log('resp: ', await handleSubmit());
-        var jsonOut = { "arguments": { "execute": { "inArguments": [], "outArguments": [ await handleSubmit()] }}};
+        const jsonOut = { "arguments": { "execute": { "inArguments": [], "outArguments": [ await handleSubmit()] }}};
         console.log(JSON.stringify(jsonOut));
-        res.status(200).json(jsonOut);
+        return res.status(200).json(jsonOut);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
