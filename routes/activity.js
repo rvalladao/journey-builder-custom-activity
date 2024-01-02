@@ -131,9 +131,9 @@ exports.execute = async (req, res) => {
 
         //console.log('req: ', decoded);
         //console.log('resp: ', await handleSubmit());
-        const jsonOut = await handleSubmit();
+        //const jsonOut = await handleSubmit();
         //console.log(JSON.stringify(jsonOut));
-        res.status(200).json(jsonOut);
+        //res.status(200).json(jsonOut);
         //logReqRes(req, res);
         //console.log('tostring: ', JSON.stringify(res.toString()));
         //console.log(util.inspect(res.req.res));
