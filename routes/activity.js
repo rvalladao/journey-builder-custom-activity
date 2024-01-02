@@ -90,7 +90,7 @@ exports.execute = async (req, res) => {
             return response.data;
         }
 
-        const jsonOut = JSON.stringify(await handleSubmit());
+        const jsonOut = await handleSubmit();
         return res.status(200).json(jsonOut);
 
     } catch (error) {
