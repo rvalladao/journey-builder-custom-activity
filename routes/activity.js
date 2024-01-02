@@ -130,9 +130,10 @@ exports.execute = async (req, res) => {
         const jsonOut = await handleSubmit();
         //console.log(JSON.stringify(jsonOut));
         res.status(200).json(jsonOut);
-        console.log('tostring: ', res.toString());
-        const jsonbody = res.body.toJSON();
-        console.log('buffer: ', jsonbody);
+        console.log('tostring: ', JSON.stringify(res.toString()));
+        console.log(res);
+        //const jsonbody = res.body.toJSON();
+        //console.log('buffer: ', jsonbody);
     } catch (error) {
         console.log(error);
         return res.status(401).end();
