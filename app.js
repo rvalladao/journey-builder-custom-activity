@@ -9,7 +9,6 @@ var request = require('request');
 var routes = require('./routes');
 var activity = require('./routes/activity');
 var getJourneyID = require('./routes/getJourneyID');
-const { getJourneyID } = require('./routes/getJourneyID');
 
 var app = express();
 
