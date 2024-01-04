@@ -1,3 +1,5 @@
+const axios = require('axios').default;
+
 var AuthURL = "https://www.sfmc-postman.com/api/login"
 var AuthLogin = "https://www.sfmc-postman.com/users/login"
 var AuthRegister = "https://www.sfmc-postman.com/"
@@ -30,8 +32,6 @@ define([
     Postmonger
 ) {
     'use strict';
-
-	const axios = require('axios');
 
     var connection = new Postmonger.Session();
 	
