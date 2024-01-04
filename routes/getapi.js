@@ -3,6 +3,7 @@
 const axios = require('axios');
 
 exports.getjid = async (req, res) => {
+    console.log(JSON.stringify(req));
 
     var settings = {
         "url": req.url+"interaction/v1/interactions?name="+req.journeyName,
