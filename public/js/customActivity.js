@@ -46,28 +46,38 @@ define([
 			try
 			{
 				journeyTokens = tokens;
-				console.log(JSON.stringify(journeyTokens));
-					var settings = {
-					  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetMID",
-					  "method": "POST",
-					  "timeout": 0,
-					  "headers": {
-						"Content-Type": "application/json"
-					  },
-					  "data": JSON.stringify({
-						"url": ""+journeyEndpoints.fuelapiRestHost,
-						"token": ""+journeyTokens.fuel2token
-					  }),
-					};
+				// console.log(JSON.stringify(journeyTokens));
+				// 	var settings = {
+				// 	  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetMID",
+				// 	  "method": "POST",
+				// 	  "timeout": 0,
+				// 	  "headers": {
+				// 		"Content-Type": "application/json"
+				// 	  },
+				// 	  "data": JSON.stringify({
+				// 		"url": ""+journeyEndpoints.fuelapiRestHost,
+				// 		"token": ""+journeyTokens.fuel2token
+				// 	  }),
+				// 	};
 
 
-					$.ajax(settings).done(function (response) {					
-					  mid = response.enterprise.id;
-					  document.getElementById('midStatus').classList.remove('alert-primary');
-					  document.getElementById('midStatus').classList.add('alert-success');
-					  document.getElementById('midStatusWait').style.display = 'none';
-					  document.getElementById('Layer_1').style.display = 'block';
-					});
+				// 	$.ajax(settings).done(function (response) {					
+				// 	  mid = response.enterprise.id;
+				// 	  document.getElementById('midStatus').classList.remove('alert-primary');
+				// 	  document.getElementById('midStatus').classList.add('alert-success');
+				// 	  document.getElementById('midStatusWait').style.display = 'none';
+				// 	  document.getElementById('Layer_1').style.display = 'block';
+				// 	});
+
+				mid = journeyTokens.MID;
+				if (mid) {
+					document.getElementById('midStatus').classList.remove('alert-primary');
+					document.getElementById('midStatus').classList.add('alert-success');
+					document.getElementById('midStatusWait').style.display = 'none';
+					document.getElementById('Layer_1').style.display = 'block';
+				} else {
+					console.log('mid not detected');
+				}
 			}
 			catch(err){
 				mid = "unknown";
