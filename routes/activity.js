@@ -95,7 +95,7 @@ exports.execute = async (req, res) => {
             json: jsonResponse
         };
         console.log('response object: ', JSON.stringify(jsonObject));
-        res.status(200).send(jsonObject);
+        res.status(200).send(JSON.stringify(jsonObject));
 
     } catch (error) {
         console.log(error);
