@@ -84,26 +84,20 @@ define([
 					};
 
 					$.ajax(settings).done(function (response) {		
-					 	console.log(JSON.stringify(response));
+					 	//console.log(JSON.stringify(response));
+						try
+						{
+							journeyIDReal = response.journeyid;
+							document.getElementById('journeyStatus').classList.remove('alert-primary');
+							document.getElementById('journeyStatus').classList.add('alert-success');
+							document.getElementById('journeyIdStatusWait').style.display = 'none';
+							document.getElementById('Layer_2').style.display = 'block';
+						}
+						catch(err) {
+
+						}
 					});
 
-				
-					// $.ajax(settings).done(function (response) {		
-					// 	console.log(JSON.stringify(response));
-				    // try
-					// {
-					// 		  journeyIDReal = response.items[0].id;
-					// 		  document.getElementById('journeyStatus').classList.remove('alert-primary');
-					// 		  document.getElementById('journeyStatus').classList.add('alert-success');
-					// 		  document.getElementById('journeyIdStatusWait').style.display = 'none';
-					// 		  document.getElementById('Layer_2').style.display = 'block';
-					// }
-					// catch(err){
-
-					// }
-					  
-					  
-					// });
 			}
 			catch(err){
 				journeyIDReal = "unknown";
