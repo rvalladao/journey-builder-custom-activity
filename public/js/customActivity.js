@@ -71,7 +71,7 @@ define([
 
 				console.log('eventjn:', eventJourneyName);
 					var settings = {
-					  "url": "../routes/getJourneyID",
+					  "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid",
 					  "method": "POST",
 					  "timeout": 0,
 					  "crossDomain": true,

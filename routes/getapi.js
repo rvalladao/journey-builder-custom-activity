@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-exports.getJourneyID = async (req, res) => {
+exports.getjid = async (req, res) => {
 
     var settings = {
         "url": req.url+"interaction/v1/interactions?name="+req.journeyName,
