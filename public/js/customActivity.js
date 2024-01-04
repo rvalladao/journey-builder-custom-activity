@@ -75,14 +75,13 @@ define([
 					  "method": "GET",
 					  "timeout": 0,
 					  "headers": {
-						"Content-Type": "application/json",
 						"Authorization": "Bearer "+journeyTokens.fuel2token
 					  },
 					  "crossDomain": true					
 					};
 
 					async function getjid() {
-						const response = await axios({method: settings.method, headers: settings.headers, url: settings.url});
+						const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false,});
 						return response;
 					}
 					console.log(JSON.stringify(getjid()));
