@@ -91,17 +91,13 @@ define([
 
 				console.log('eventjn:', eventJourneyName);
 					var settings = {
-					  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetJourneyID",
-					  "method": "POST",
+					  "url": journeyEndpoints.fuelapiRestHost+"interaction/v1/interactions?name="+eventJourneyName,
+					  "method": "GET",
 					  "timeout": 0,
 					  "headers": {
-						"Content-Type": "application/json"
-					  },
-					  "data": JSON.stringify({
-						"url": ""+journeyEndpoints.fuelapiRestHost,
-						"token": ""+journeyTokens.fuel2token,
-						"journeyName":""+eventJourneyName
-					  }),
+						"Content-Type": "application/json",
+						"Authorization": "Bearer "+journeyTokens.fuel2token
+					  }
 					};
 				
 					$.ajax(settings).done(function (response) {		
