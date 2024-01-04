@@ -92,7 +92,7 @@ exports.execute = async (req, res) => {
 
         const jsonResponse = await handleSubmit();
         const jsonObject = {
-            jsonResponse
+            json: jsonResponse
         };
         console.log('response object: ', JSON.stringify(jsonObject));
         res.status(200).send(jsonObject);
