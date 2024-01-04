@@ -22,7 +22,12 @@ exports.getjid = async (req, res) => {
         return response.data.items[0];
     }
 
+    const jsonResponse = await getjourneyid();
+    const jsonObject = {
+        journeyid: jsonResponse.id
+    };
+
     console.log(await getjourneyid());
-    res.status(200).send(await getjourneyid);
+    res.status(200).send(jsonObject);
 
 }
