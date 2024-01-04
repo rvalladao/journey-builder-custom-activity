@@ -16,7 +16,7 @@ exports.getjid = async (req, res) => {
         },
         "crossDomain": true					
     };
-
+//a
     async function getjourneyid() {
         const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
         return response;
