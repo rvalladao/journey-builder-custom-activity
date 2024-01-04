@@ -76,6 +76,7 @@ define([
 					document.getElementById('midStatusWait').style.display = 'none';
 					document.getElementById('Layer_1').style.display = 'block';
 				} else {
+					mid = "unknown";
 					console.log('mid not detected');
 				}
 			}
