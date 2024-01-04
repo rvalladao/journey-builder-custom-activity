@@ -43,7 +43,7 @@ define([
 	
 	connection.trigger('requestTokens');
 	connection.on('requestedTokens', function(tokens) { 
-	
+		console.log(JSON.stringify(journeyTokens));
 			try
 			{
 				journeyTokens = tokens;
