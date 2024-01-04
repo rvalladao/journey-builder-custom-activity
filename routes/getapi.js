@@ -5,12 +5,14 @@ const axios = require('axios');
 exports.getjid = async (req, res) => {
     console.log(JSON.stringify(req.body));
 
+    var json = req.body;
+
     var settings = {
-        "url": req.url+"interaction/v1/interactions?name="+req.journeyName,
+        "url": json.url+"interaction/v1/interactions?name="+json.journeyName,
         "method": "GET",
         "timeout": 0,
         "headers": {
-        "Authorization": "Bearer "+req.token
+        "Authorization": "Bearer "+json.token
         },
         "crossDomain": true					
     };
