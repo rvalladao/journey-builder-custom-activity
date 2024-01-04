@@ -92,8 +92,7 @@ exports.execute = async (req, res) => {
 
         const jsonResponse = await handleSubmit();
         const jsonObject = {
-            name_status: jsonResponse.resource.name_status,
-            status: jsonResponse.resource.status
+            json: jsonResponse
         };
         console.log('response object: ', JSON.stringify(jsonObject));
         res.status(200).send(jsonObject);

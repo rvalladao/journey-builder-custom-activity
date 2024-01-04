@@ -38,6 +38,7 @@ define([
 	connection.on('requestedEndpoints', function(endpoints) {
 		
 		journeyEndpoints = endpoints;
+		console.log(JSON.stringify(journeyEndpoints));
 	});
 	
 	connection.trigger('requestTokens');
@@ -58,6 +59,7 @@ define([
 						"token": ""+journeyTokens.fuel2token
 					  }),
 					};
+
 
 					$.ajax(settings).done(function (response) {					
 					  mid = response.enterprise.id;
