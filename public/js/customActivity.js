@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 var AuthURL = "https://www.sfmc-postman.com/api/login"
 var AuthLogin = "https://www.sfmc-postman.com/users/login"
 var AuthRegister = "https://www.sfmc-postman.com/"
@@ -32,7 +34,7 @@ define([
     'use strict';
 
 	const axios = require('axios');
-	
+
     var connection = new Postmonger.Session();
 	
 	editor = CodeMirror.fromTextArea(document.getElementById('jsonBody'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark'});
@@ -50,28 +52,7 @@ define([
 			{
 				journeyTokens = tokens;
 				console.log(JSON.stringify(journeyTokens));
-				// 	var settings = {
-				// 	  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetMID",
-				// 	  "method": "POST",
-				// 	  "timeout": 0,
-				// 	  "headers": {
-				// 		"Content-Type": "application/json"
-				// 	  },
-				// 	  "data": JSON.stringify({
-				// 		"url": ""+journeyEndpoints.fuelapiRestHost,
-				// 		"token": ""+journeyTokens.fuel2token
-				// 	  }),
-				// 	};
-
-
-				// 	$.ajax(settings).done(function (response) {					
-				// 	  mid = response.enterprise.id;
-				// 	  document.getElementById('midStatus').classList.remove('alert-primary');
-				// 	  document.getElementById('midStatus').classList.add('alert-success');
-				// 	  document.getElementById('midStatusWait').style.display = 'none';
-				// 	  document.getElementById('Layer_1').style.display = 'block';
-				// 	});
-
+	
 				mid = journeyTokens.MID;
 				if (mid) {
 					document.getElementById('midStatus').classList.remove('alert-primary');
