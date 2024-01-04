@@ -98,26 +98,31 @@ define([
 						"Content-Type": "application/json",
 						"Authorization": "Bearer "+journeyTokens.fuel2token
 					  },
-					  "crossDomain": true,
-					  "dataType": "jsonp"
+					  "crossDomain": true					
 					};
-				
-					$.ajax(settings).done(function (response) {		
-						console.log(JSON.stringify(response));
-				    try
-					{
-							  journeyIDReal = response.items[0].id;
-							  document.getElementById('journeyStatus').classList.remove('alert-primary');
-							  document.getElementById('journeyStatus').classList.add('alert-success');
-							  document.getElementById('journeyIdStatusWait').style.display = 'none';
-							  document.getElementById('Layer_2').style.display = 'block';
-					}
-					catch(err){
 
+					async function getjid() {
+						const response = await axios({method: settings.method, headers: settings.headers, url: settings.url});
+						return response;
 					}
+					console.log(JSON.stringify(getjid()));
+				
+					// $.ajax(settings).done(function (response) {		
+					// 	console.log(JSON.stringify(response));
+				    // try
+					// {
+					// 		  journeyIDReal = response.items[0].id;
+					// 		  document.getElementById('journeyStatus').classList.remove('alert-primary');
+					// 		  document.getElementById('journeyStatus').classList.add('alert-success');
+					// 		  document.getElementById('journeyIdStatusWait').style.display = 'none';
+					// 		  document.getElementById('Layer_2').style.display = 'block';
+					// }
+					// catch(err){
+
+					// }
 					  
 					  
-					});
+					// });
 			}
 			catch(err){
 				journeyIDReal = "unknown";
