@@ -97,7 +97,8 @@ define([
 					  "headers": {
 						"Content-Type": "application/json",
 						"Authorization": "Bearer "+journeyTokens.fuel2token
-					  }
+					  },
+					  "crossDomain": true
 					};
 				
 					$.ajax(settings).done(function (response) {		
