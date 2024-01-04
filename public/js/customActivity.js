@@ -74,7 +74,8 @@ define([
 					  "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid/",
 					  "method": "POST",
 					  "timeout": 0,
-					  "crossDomain": true,
+					  "contentType": "application/json",
+					  "processData": false,
 					  "data": JSON.stringify({
 						"url": ""+journeyEndpoints.fuelapiRestHost,
 						"token": ""+journeyTokens.fuel2token,
