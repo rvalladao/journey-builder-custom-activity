@@ -19,7 +19,7 @@ exports.getjid = async (req, res) => {
 
     async function getjourneyid() {
         const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
-        return response;
+        return response.data.items[0];
     }
 
     console.log(await getjourneyid());
