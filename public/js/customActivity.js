@@ -46,7 +46,7 @@ define([
 			try
 			{
 				journeyTokens = tokens;
-				// console.log(JSON.stringify(journeyTokens));
+				console.log(JSON.stringify(journeyTokens));
 				// 	var settings = {
 				// 	  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetMID",
 				// 	  "method": "POST",
@@ -82,13 +82,14 @@ define([
 			}
 			catch(err){
 				mid = "unknown";
-				alert("Please save your journey first before using the postman activity to ensure best experience.");
 			}
 			
 			
 			try
 			{
 
+
+				console.log('eventjn:', eventJourneyName);
 					var settings = {
 					  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetJourneyID",
 					  "method": "POST",
@@ -191,6 +192,7 @@ define([
 	function(eventDefinitionModel) {
 		
 		if(eventDefinitionModel){
+			console.log('journeyeventdefmodel:', JSON.stringify(eventDefinitionModel));
 			journeyEventDefinitionModel= eventDefinitionModel;
 			eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
 			eventJourneyName = eventDefinitionModel.name;
