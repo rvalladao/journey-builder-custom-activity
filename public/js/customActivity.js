@@ -71,20 +71,21 @@ define([
 
 				console.log('eventjn:', eventJourneyName);
 					var settings = {
-					  "url": journeyEndpoints.fuelapiRestHost+"interaction/v1/interactions?name="+eventJourneyName,
-					  "method": "GET",
+					  "url": "../routes/getJourneyID",
+					  "method": "POST",
 					  "timeout": 0,
-					  "headers": {
-						"Authorization": "Bearer "+journeyTokens.fuel2token
-					  },
-					  "crossDomain": true					
+					  "crossDomain": true,
+					  "data": JSON.stringify({
+						"url": ""+journeyEndpoints.fuelapiRestHost,
+						"token": ""+journeyTokens.fuel2token,
+						"journeyName":""+eventJourneyName
+					  })
 					};
 
-					async function getjid() {
-						const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false,});
-						return response;
-					}
-					console.log(JSON.stringify(getjid()));
+					$.ajax(settings).done(function (response) {		
+					 	console.log(JSON.stringify(response));
+					});
+
 				
 					// $.ajax(settings).done(function (response) {		
 					// 	console.log(JSON.stringify(response));
