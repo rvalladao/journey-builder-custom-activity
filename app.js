@@ -8,6 +8,8 @@ var path = require('path');
 var request = require('request');
 var routes = require('./routes');
 var activity = require('./routes/activity');
+var getJourneyID = require('./routes/getJourneyID');
+const { getJourneyID } = require('./routes/getJourneyID');
 
 var app = express();
 
@@ -30,6 +32,7 @@ app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
 app.post('/journeybuilder/publish/', activity.publish);
 app.post('/journeybuilder/execute/', activity.execute);
+app.post('/getjourneyid/', getJourneyID)
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
