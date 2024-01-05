@@ -574,7 +574,7 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
-        console.log(stringify(configuration['arguments'].execute.body));
+        console.log(JSON.stringify(configuration['arguments'].execute.body));
 	});
 	
 
