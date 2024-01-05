@@ -78,32 +78,36 @@ exports.execute = async (req, res) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            responseargs: {}
         }
-        var outArgumentFilter = {};
-        for (var i=0; i<decoded.outArgumentCode.length; i++){
-            var outArgumentKey = decoded.outArgumentCode[i].key;
-            var outArgumentValue = decoded.outArgumentCode[i].value;
-            options.responseargs[outArgumentKey] = outArgumentValue;
-        }
+        
         for (var i=0; i<decoded.headers.length; i++){
             var headerKey = decoded.headers[i].key;
             var headerValue = decoded.headers[i].value;
             options.headers[headerKey] = headerValue;
         }
-        console.log(options);
+
         async function handleSubmit() {
             const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
             return response.data;
         }
 
         const jsonResponse = await handleSubmit();
+
         // const jsonObject = {
-        //     json: jsonResponse
-        // };
+        //     json: jsonResponse   
+        // }
+
         const jsonObject = {
-            json: jsonResponse   
+            
         }
+
+        for (var i=0; i<decoded.outArgumentCode.length; i++){
+            var outArgumentKey = decoded.outArgumentCode[i].key;
+            var outArgumentValue = decoded.outArgumentCode[i].value;
+            jsonObject[outArgumentKey] = jsonResponse.outArgumentValue;
+        }
+        
+
         console.log('response object: ', JSON.stringify(jsonObject));
         res.status(200).send(jsonObject);
 
