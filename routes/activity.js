@@ -78,8 +78,8 @@ exports.execute = async (req, res) => {
             headers: {
                 "Content-Type": "application/json"
             }
-            
         }
+        //const outargumentCode = decoded.;
         for (var i=0; i<decoded.headers.length; i++){
             var headerKey = decoded.headers[i].key;
             var headerValue = decoded.headers[i].value;

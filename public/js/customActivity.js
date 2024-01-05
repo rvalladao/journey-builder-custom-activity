@@ -550,7 +550,6 @@ define([
 				
 				}
 			}
-			console.log('jsonbodyout:', jsonBody.outArgumentCode);
 		}
 
 		
@@ -574,7 +573,7 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
-        console.log(JSON.stringify(configuration['arguments'].execute.body));
+        console.log(configuration['arguments'].execute.body);
 	});
 	
 
