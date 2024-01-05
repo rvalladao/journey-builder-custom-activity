@@ -79,7 +79,13 @@ exports.execute = async (req, res) => {
                 "Content-Type": "application/json"
             }
         }
-        //const outargumentCode = decoded.;
+        const outArgumentFilter = {};
+        for (var i=0; i<decoded.outArgumentCode.lenght; i++){
+            var outArgumentKey = decoded.outArgumentCode[i].key;
+            var outArgumentValue = decoded.outArgumentCode[i].value;
+            outArgumentFilter[outArgumentKey] = outArgumentValue;
+        }
+        console.log(outArgumentFilter);
         for (var i=0; i<decoded.headers.length; i++){
             var headerKey = decoded.headers[i].key;
             var headerValue = decoded.headers[i].value;
