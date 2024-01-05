@@ -548,9 +548,9 @@ define([
 						"key":""+document.getElementsByName('responsekey[]')[indexResponse].value,
 						"value":""+document.getElementsByName('responseCode[]')[indexResponse].value});
 				
-					console.log('jsonbodyout:', jsonBody.outArgumentCode);
 				}
 			}
+			console.log('jsonbodyout:', jsonBody.outArgumentCode);
 		}
 
 		
