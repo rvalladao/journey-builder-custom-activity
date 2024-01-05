@@ -80,7 +80,7 @@ exports.execute = async (req, res) => {
             }
         }
         var outArgumentFilter = {};
-        for (var i=0; i<decoded.outArgumentCode.lenght; i++){
+        for (var i=0; i<decoded.outArgumentCode.length; i++){
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
             outArgumentFilter[outArgumentKey] = outArgumentValue;
