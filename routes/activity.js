@@ -98,13 +98,15 @@ exports.execute = async (req, res) => {
         // }
 
         const jsonObject = {
-            
+            response: {
+
+            }
         }
 
         for (var i=0; i<decoded.outArgumentCode.length; i++){
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
-            jsonObject[outArgumentKey] = jsonResponse.outArgumentValue;
+            jsonObject.response[outArgumentKey] = jsonResponse;
         }
         
 
