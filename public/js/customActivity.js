@@ -370,6 +370,7 @@ define([
 		var configuration = JSON.parse(document.getElementById('configuration').value);
 		
 	    var jsonBody = JSON.parse(configuration['arguments'].execute.body);
+		console.log('jsonbody init:', jsonBody);
 		try {
 			jsonBody.methodType = document.getElementById('methodType').value;
 		}
@@ -547,9 +548,11 @@ define([
 						"key":""+document.getElementsByName('responsekey[]')[indexResponse].value,
 						"value":""+document.getElementsByName('responseCode[]')[indexResponse].value});
 				
+					console.log('jsonbodyout:', jsonBody.outArgumentCode);
 				}
 			}
 		}
+
 		
 		configuration['arguments'].execute.body =JSON.stringify(jsonBody,null,2);
 			 for (var index = 0; index < journeyDataObject.schema.length; ++index) {
@@ -571,7 +574,7 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
-        console.log(configuration['arguments'].execute.body);
+        console.log(stringify(configuration['arguments'].execute.body));
 	});
 	
 
