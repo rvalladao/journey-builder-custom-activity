@@ -69,7 +69,6 @@ define([
 			{
 
 
-				console.log('eventjn:', eventJourneyName);
 					var settings = {
 					  "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid/",
 					  "method": "POST",
@@ -196,6 +195,10 @@ define([
         $('#ResetButton').click(function(data) {
 		  SetDefaultConfig(); 
         });
+
+		$('#ResetButton').click(function(data) {
+			TestAPI(); 
+		  });
 		
 	 }
 	 
@@ -425,24 +428,34 @@ define([
 			try
 			{
 
-					var settings = {
-					  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetJourneyID",
-					  "method": "POST",
-					  "timeout": 0,
-					  "headers": {
-						"Content-Type": "application/json"
-					  },
-					  "data": JSON.stringify({
-						"url": ""+journeyEndpoints.fuelapiRestHost,
-						"token": ""+journeyTokens.fuel2token,
-						"journeyName":""+eventJourneyName
-					  }),
-					};
+				var settings = {
+					"url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid/",
+					"method": "POST",
+					"timeout": 0,
+					"contentType": "application/json",
+					"processData": false,
+					"data": JSON.stringify({
+					  "url": ""+journeyEndpoints.fuelapiRestHost,
+					  "token": ""+journeyTokens.fuel2token,
+					  "journeyName":""+eventJourneyName
+					})
+				  };
 
-					$.ajax(settings).done(function (response) {		
-				
-					  journeyIDReal = response.items[0].id;
-					});
+				  $.ajax(settings).done(function (response) {		
+					   //console.log(JSON.stringify(response));
+					  try
+					  {
+						  journeyIDReal = response.journeyid;
+						  document.getElementById('journeyStatus').classList.remove('alert-primary');
+						  document.getElementById('journeyStatus').classList.add('alert-success');
+						  document.getElementById('journeyIdStatusWait').style.display = 'none';
+						  document.getElementById('Layer_2').style.display = 'block';
+					  }
+					  catch(err) {
+
+					  }
+				  });
+
 			}
 			catch(err){
 				journeyIDReal = "unknown";
@@ -471,22 +484,18 @@ define([
 		try
 			{
 				journeyTokens = tokens;
-					var settings = {
-					  "url": "https://sfmc-postman.azurewebsites.net/api/RestRelay/GetMID",
-					  "method": "POST",
-					  "timeout": 0,
-					  "headers": {
-						"Content-Type": "application/json"
-					  },
-					  "data": JSON.stringify({
-						"url": ""+journeyEndpoints.fuelapiRestHost,
-						"token": ""+journeyTokens.fuel2token
-					  }),
-					};
-
-					$.ajax(settings).done(function (response) {					
-					  mid = response.enterprise.id;
-					});
+				console.log(JSON.stringify(journeyTokens));
+	
+				mid = journeyTokens.MID;
+				if (mid) {
+					document.getElementById('midStatus').classList.remove('alert-primary');
+					document.getElementById('midStatus').classList.add('alert-success');
+					document.getElementById('midStatusWait').style.display = 'none';
+					document.getElementById('Layer_1').style.display = 'block';
+				} else {
+					mid = "unknown";
+					console.log('mid not detected');
+				}
 			}
 			catch(err){
 				mid = "unknown";
@@ -598,6 +607,33 @@ define([
     var str = this;
     return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
 	};
+
+	async function TestAPI() {
+		var postURL = configuration['arguments'].execute.url;
+        const postData = configuration['arguments'].execute.body;
+        const options = {
+            hostname: postURL.host,
+            path: postURL.pathname,
+            method: configuration['arguments'].execute.verb,
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+        
+        for (var i=0; i<jsonBody.headers.length; i++){
+            var headerKey = jsonBody.headers[i].key;
+            var headerValue = jsonBody.headers[i].value;
+            options.headers[headerKey] = headerValue;
+        }
+
+        async function handleSubmit() {
+            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+            return response.data;
+        }
+
+        const jsonResponse = await handleSubmit();
+		console.log(jsonResponse);
+	}
 	
 });
 

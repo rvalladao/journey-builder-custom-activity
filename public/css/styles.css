@@ -401,7 +401,7 @@ select {
 }
 
 /* button */
-.btn-success {
+/*.btn-success {
     color: #09B66D;
     background-color: rgba(9, 182, 109, .1);
     border-color: #09B66D;
@@ -413,7 +413,7 @@ select {
     color: #fff !important;
     background-color: #09B66D;
     border-color: #09B66D;
-}
+}*/
 
 .btn.btn-outline-info {
     border: 1px solid #5780f7;
