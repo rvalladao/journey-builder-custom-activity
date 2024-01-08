@@ -72,7 +72,7 @@ exports.execute = async (req, res) => {
     try {
         var postURL = url.parse(decoded.url, true);
         const postData = decoded.data;
-        const mediaType = dedodec.mediaType
+        const mediaType = dedoded.mediaType
         const options = {
             hostname: postURL.host,
             path: postURL.pathname,
