@@ -78,7 +78,7 @@ exports.execute = async (req, res) => {
             path: postURL.pathname,
             method: decoded.methodType,
             headers: {
-                mediaType
+                "Content-Type": mediaType
             },
         }
      
