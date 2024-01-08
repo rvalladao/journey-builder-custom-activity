@@ -88,18 +88,12 @@ exports.execute = async (req, res) => {
             options.headers[headerKey] = headerValue;
         }
 
-        console.log(options);
-
         async function handleSubmit() {
             const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
             return response.data;
         }
 
         const jsonResponse = await handleSubmit();
-
-        // const jsonObject = {
-        //     json: jsonResponse   
-        // }
 
         var jsonObject = {
             
@@ -108,13 +102,9 @@ exports.execute = async (req, res) => {
         for (var i=0; i<decoded.outArgumentCode.length; i++){
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
-            console.log(outArgumentValue);
             var value = jp.value(jsonResponse, '$.'+outArgumentValue);
             jsonObject[outArgumentKey] = value;
         }
-
-        
-        
 
         console.log('response object: ', JSON.stringify(jsonObject));
         res.status(200).send(jsonObject);

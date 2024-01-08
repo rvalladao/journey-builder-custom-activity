@@ -22,6 +22,7 @@ var creditRemaining = "0";
 var templatesArray = [];
 var templateSelected;
 var editor;
+var responsecodeblock;
 var environmentsArray = [];
 
 define([
@@ -33,13 +34,12 @@ define([
 
     var connection = new Postmonger.Session();
 	
-	editor = CodeMirror.fromTextArea(document.getElementById('jsonBody'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark'});
+	editor = CodeMirror.fromTextArea(document.getElementById('jsonBody'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', scrollbarStyle:"overlay", lineWrapping: true});
 	
 	connection.trigger('requestEndpoints');
 	connection.on('requestedEndpoints', function(endpoints) {
 		
 		journeyEndpoints = endpoints;
-		console.log(JSON.stringify(journeyEndpoints));
 	});
 	
 	connection.trigger('requestTokens');
@@ -47,7 +47,6 @@ define([
 			try
 			{
 				journeyTokens = tokens;
-				console.log(JSON.stringify(journeyTokens));
 	
 				mid = journeyTokens.MID;
 				if (mid) {
@@ -140,17 +139,71 @@ define([
 			}
 		}
 
-		console.log('url:',postURL);
-		console.log('options:',options);
-		console.log('data:',postData);
+		if(!postURL || !postData) {
+			$.notify("Preencha o campo de URL e Body para realizar testes", "error");
+		} else if(isJsonString(postData) == false) {
+			$.notify("JSON inválido", "error");
+		} else {
+			document.getElementById("testHeader").style.display = "flex";
+			document.getElementById("loadResponse").style.display = "block";
+			if (responsecodeblock) {
+				responsecodeblock.getWrapperElement().style.display = "none";
+			}
+			$("#test-status").remove();
+			async function handleSubmit() {
+				const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData, timeout:7000})
+					.then(function(response) {
+						document.getElementById("loadResponse").style.display = "none";
+						responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
+						var htmlextra = '<button id="test-status" type="button" class="btn btn-success" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + response.data.status + '</button>';
+		 				$('.title_response').append(htmlextra);
+						//console.log('response:',response.data);
+						responsecodeblock.setValue(JSON.stringify(response.data,null,' '));
+						return;
+					})
+					.catch(function(error) {
+						document.getElementById("loadResponse").style.display = "none";
+						responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
+						if(error.code === 'ECONNABORTED') {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Timed Out</button>';
+		 					$('.title_response').append(htmlextra);
+							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							return;
+						} else if(error.code === 'ERR_NETWORK') {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Invalid URL</button>';
+		 					$('.title_response').append(htmlextra);
+							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							return;
+						} else if (error.code) {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + error.response.status + '</button>';
+		 					$('.title_response').append(htmlextra);
+							 console.log('code:',error.code);
+							 console.log('message:',error.message);
+							 console.log('stack:',error.stack);
+							 responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							 return;
+						}
+						console.log('code:',error.code);
+						console.log('message:',error.message);
+						console.log('stack:',error.stack);
+						//$.notify("Erro ao realizar o teste, verifique a url e o payload", "error");
+						//responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+						//return "Error";
+					});
+			}
+	
+			const jsonResponse = await handleSubmit();
+			
+		}
 
-        async function handleSubmit() {
-            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-            return response.data;
-        }
-
-        const jsonResponse = await handleSubmit();
-		console.log(jsonResponse);
+		function isJsonString(str) {
+			try {
+				JSON.parse(str);
+			} catch (e) {
+				return false;
+			}
+			return true;
+		}
 	}
 	
 	
@@ -203,7 +256,6 @@ define([
 	function(eventDefinitionModel) {
 		
 		if(eventDefinitionModel){
-			console.log('journeyeventdefmodel:', JSON.stringify(eventDefinitionModel));
 			journeyEventDefinitionModel= eventDefinitionModel;
 			eventDefinitionKey = eventDefinitionModel.eventDefinitionKey;
 			eventJourneyName = eventDefinitionModel.name;
@@ -406,7 +458,6 @@ define([
 		var configuration = JSON.parse(document.getElementById('configuration').value);
 		
 	    var jsonBody = JSON.parse(configuration['arguments'].execute.body);
-		console.log('jsonbody init:', jsonBody);
 		try {
 			jsonBody.methodType = document.getElementById('methodType').value;
 		}
@@ -517,7 +568,6 @@ define([
 		try
 			{
 				journeyTokens = tokens;
-				console.log(JSON.stringify(journeyTokens));
 	
 				mid = journeyTokens.MID;
 				if (mid) {
@@ -615,7 +665,6 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
-        console.log(configuration['arguments'].execute);
 	});
 	
 
@@ -627,7 +676,11 @@ define([
 		document.getElementById('methodType').value = "";
 
 		editor.getDoc().setValue('');
+		responsecodeblock.getDoc().setValue('');
+		responsecodeblock.getWrapperElement().style.display = "none";
+		document.getElementById("testHeader").style.display = "none";
 		editor.refresh();
+		responsecodeblock.refresh();
 		
 		configuration['arguments'].execute.body = "";
 		configuration['arguments'].execute.verb = "";

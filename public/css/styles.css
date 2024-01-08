@@ -365,6 +365,10 @@ select {
     padding: 1rem;
 }
 
+.tab-pane[aria-labelledby="body-tab"] {
+    font-size:14px;
+}
+
 /* Lists */
 .list-group {
     overflow: auto !important;
@@ -501,6 +505,43 @@ select {
 
 .payload_text_area {
     width: 100%;
+}
+
+#testHeader {
+    display:none;
+    margin: 20px 0 10px 0;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+#testTitle {
+    font-size:16px;
+    float:left;
+    margin:0 !important;
+}
+
+.title_response {
+    display:flex;
+    align-items:center;
+}
+
+.title_response .btn-danger:hover {
+    background-color:unset;
+    border-color:unset;
+}
+
+#closeTestTab {
+    float:right;
+    cursor:pointer;
+}
+
+#closeTestTab:hover svg line {
+    stroke:gray;
+}
+
+.response_text_area {
+    width:100%;
+    display:none;
 }
 
 .configuration_text_area {
