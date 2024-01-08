@@ -98,10 +98,8 @@ exports.execute = async (req, res) => {
         //     json: jsonResponse   
         // }
 
-        const jsonObject = {
-            response: {
-
-            }
+        var jsonObject = {
+            
         }
 
         for (var i=0; i<decoded.outArgumentCode.length; i++){
@@ -109,7 +107,7 @@ exports.execute = async (req, res) => {
             var outArgumentValue = decoded.outArgumentCode[i].value;
             console.log(outArgumentValue);
             var values = jp.query(jsonResponse, '$.'+outArgumentValue);
-            jsonObject.response[outArgumentKey] = values;
+            jsonObject[outArgumentKey] = values;
         }
 
         
