@@ -3,9 +3,10 @@
 const Path = require('path');
 const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
 const util = require('util');
-const https = require('https');
 const axios = require('axios');
 var url = require('url');
+var jp = require('jsonpath');
+
 
 exports.logExecuteData = [];
 
@@ -107,8 +108,11 @@ exports.execute = async (req, res) => {
         for (var i=0; i<decoded.outArgumentCode.length; i++){
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
-            jsonObject.response[outArgumentKey] = eval("jsonResponse."+[outArgumentValue]);
+            var values = jp.query(jsonResponse, '$'+outArgumentValue);
+            jsonObject.response[outArgumentKey] = values;
         }
+
+        
         
 
         console.log('response object: ', JSON.stringify(jsonObject));
