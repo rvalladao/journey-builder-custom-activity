@@ -119,6 +119,39 @@ define([
 				catch(err) {}			
 		 }
 	}
+
+	async function TestAPI() {
+		var postURL = document.getElementById("jsonURL").value;
+        const postData = editor.getValue();
+        const options = {
+            method: document.getElementById("methodType").value,
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+        
+        if(document.getElementsByName('headerkey[]').length>0){
+			for (var index = 0; index < document.getElementsByName('headerkey[]').length; ++index) {
+				if(document.getElementsByName('headerkey[]')[index].value != "" && document.getElementsByName('headerkey[]')[index].value != null){
+					var headerKey = document.getElementsByName('headerkey[]')[index].value;
+            		var headerValue = document.getElementsByName('headervalue[]')[index].value;
+            		options.headers[headerKey] = headerValue;
+				}
+			}
+		}
+
+		console.log('url:',postURL);
+		console.log('options:',options);
+		console.log('data:',postData);
+
+        async function handleSubmit() {
+            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
+            return response.data;
+        }
+
+        const jsonResponse = await handleSubmit();
+		console.log(jsonResponse);
+	}
 	
 	
 	
@@ -196,7 +229,7 @@ define([
 		  SetDefaultConfig(); 
         });
 
-		$('#ResetButton').click(function(data) {
+		$('#TestButton').click(function(data) {
 			TestAPI(); 
 		  });
 		
@@ -582,7 +615,7 @@ define([
 		}
 	
 		connection.trigger('updateActivity',configuration);
-        console.log(configuration['arguments'].execute.body);
+        console.log(configuration['arguments'].execute);
 	});
 	
 
@@ -607,33 +640,6 @@ define([
     var str = this;
     return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
 	};
-
-	async function TestAPI() {
-		var postURL = configuration['arguments'].execute.url;
-        const postData = configuration['arguments'].execute.body;
-        const options = {
-            hostname: postURL.host,
-            path: postURL.pathname,
-            method: configuration['arguments'].execute.verb,
-            headers: {
-                "Content-Type": "application/json"
-            },
-        };
-        
-        for (var i=0; i<jsonBody.headers.length; i++){
-            var headerKey = jsonBody.headers[i].key;
-            var headerValue = jsonBody.headers[i].value;
-            options.headers[headerKey] = headerValue;
-        }
-
-        async function handleSubmit() {
-            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
-            return response.data;
-        }
-
-        const jsonResponse = await handleSubmit();
-		console.log(jsonResponse);
-	}
 	
 });
 
