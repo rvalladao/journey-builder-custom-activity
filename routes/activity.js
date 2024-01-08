@@ -106,8 +106,8 @@ exports.execute = async (req, res) => {
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
             console.log(outArgumentValue);
-            var values = jp.query(jsonResponse, '$.'+outArgumentValue);
-            jsonObject[outArgumentKey] = JSON.stringify(values);
+            var value = jp.value(jsonResponse, '$.'+outArgumentValue);
+            jsonObject[outArgumentKey] = value;
         }
 
         
