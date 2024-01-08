@@ -100,7 +100,8 @@ exports.execute = async (req, res) => {
         const jsonObject = {
             response: {
 
-            }
+            },
+            raw: jsonResponse
         }
 
         for (var i=0; i<decoded.outArgumentCode.length; i++){
