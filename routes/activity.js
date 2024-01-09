@@ -113,20 +113,17 @@ exports.execute = async (req, res) => {
         try
 			{
 
-                // console.log(decoded.mid);
+                // console.log(decoded.mid)
                 // console.log(process.env.clientId);
                 // console.log(process.env.clientSecret);
                 // console.log(process.env.subDomain);
 
-                var payloadAuth = JSON.stringify({
-                    "grant_type": "client_credentials",
-                    "client_id": process.env.clientId,
-                    "client_secret": process.env.clientSecret,
-                    "account_id": decoded.mid
+                var payloadPost = JSON.stringify({
+                    "postData": decoded
                 });
 				var settings = {
-                    "hostname": +".auth.marketingcloudapis.com",
-                    "path": "/v2/token",
+                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "path": "/logtodataextension/",
                     "method": "POST",
 					"headers": {
                         "Content-Type": "application/json"
@@ -143,7 +140,7 @@ exports.execute = async (req, res) => {
                   req.on('error',(e) => {
                     console.error(e);
                   });
-                  req.write(payloadAuth);
+                  req.write(payloadPost);
                   req.end();
 			}
 			catch(err){

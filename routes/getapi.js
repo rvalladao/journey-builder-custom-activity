@@ -45,15 +45,17 @@ exports.logToDataExtension = async (req, res) => {
     
     try {
 
+        const token = getAuthToken();
         var json = req.body;
 
 
         var settings = {
-            "url": json.url+"data/v1/async/dataextensions/key:0E607D2A-88A7-4F3C-8180-2DE458756120/rows",
+            "url": process.env.subDomain+"data/v1/async/dataextensions/key:0E607D2A-88A7-4F3C-8180-2DE458756120/rows",
             "method": "POST",
             "timeout": 0,
             "headers": {
-            "Authorization": "Bearer "+json.token
+                "Authorization": "Bearer "+token.access_token,
+                "Content-Type": "application/json"
             },
             "crossDomain": true,
             "data": JSON.stringify({items: [{data: json.postData}]})
@@ -76,4 +78,22 @@ exports.logToDataExtension = async (req, res) => {
     }
 
 
+}
+
+async function getAuthToken() {
+    var settings = {
+        "url": process.env.subDomain+".auth.marketingcloudapis.com",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": {
+            "grant_type": "client_credentials",
+            "client_id": process.env.clientId,
+            "client_secret": process.env.clientSecret,
+            "account_id": decoded.mid
+        }
+    }
+    const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});
+    return response;
 }
