@@ -44,9 +44,9 @@ exports.logToDataExtension = async (req, res) => {
     
     try {
 
-        console.log(req);
+        console.log(req.body);
 
-        var json = req;
+        var json = req.body;
 
 
         var settings = {
