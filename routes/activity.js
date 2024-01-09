@@ -68,8 +68,6 @@ exports.execute = async (req, res) => {
     console.log('execute request');
 
     const decoded = JWT(req.body);
-    console.log(decoded);
-
 
     try {
         var postURL = url.parse(decoded.url, true);
@@ -108,7 +106,7 @@ exports.execute = async (req, res) => {
             jsonObject[outArgumentKey] = value;
         }
 
-        console.log('response object: ', JSON.stringify(jsonObject));
+        //console.log('response object: ', JSON.stringify(jsonObject));
 
             try
 			{
@@ -133,8 +131,8 @@ exports.execute = async (req, res) => {
 				  };
 
                   var req = https.request(settings, (res) => {
-                    console.log('statusCode:',res.statusCode);
-                    console.log('headers:',res.headers);
+                    // console.log('statusCode:',res.statusCode);
+                    // console.log('headers:',res.headers);
                     res.on('data', (d) => {
                         process.stdout.write(d);
                     });
@@ -177,8 +175,8 @@ exports.execute = async (req, res) => {
 				  };
 
                   var req = https.request(settings, (res) => {
-                    console.log('statusCode:',res.statusCode);
-                    console.log('headers:',res.headers);
+                    // console.log('statusCode:',res.statusCode);
+                    // console.log('headers:',res.headers);
                     res.on('data', (d) => {
                         process.stdout.write(d);
                     });
