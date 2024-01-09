@@ -40,7 +40,6 @@ define([
 	connection.on('requestedEndpoints', function(endpoints) {
 		
 		journeyEndpoints = endpoints;
-		console.log(journeyEndpoints);
 	});
 	
 	connection.trigger('requestTokens');
@@ -48,7 +47,6 @@ define([
 			try
 			{
 				journeyTokens = tokens;
-				console.log(journeyTokens);
 	
 				mid = journeyTokens.MID;
 				if (mid) {
@@ -634,8 +632,6 @@ define([
 		jsonBody.subscriberKey = "{{Contact.Key}}";
 		jsonBody.additional = "";
 		jsonBody.journeyVersionNumber = "{{Context.VersionNumber}}";
-		jsonBody.journeyEndpoints = journeyEndpoints;
-		jsonBody.journeyTokens = journeyTokens;
 		
 			debugger;
 		try

@@ -113,18 +113,20 @@ exports.execute = async (req, res) => {
         try
 			{
 
-                console.log(process.env.clientId);
-                console.log(process.env.clientSecret);
-                console.log(process.env.subDomain);
+                // console.log(decoded.mid);
+                // console.log(process.env.clientId);
+                // console.log(process.env.clientSecret);
+                // console.log(process.env.subDomain);
 
-                var payloadPost = JSON.stringify({
-                    "url": ""+decoded.journeyEndpoints.fuelapiRestHost,
-                    "token": ""+decoded.journeyTokens.fuel2token,
-                    "postData": decoded
+                var payloadAuth = JSON.stringify({
+                    "grant_type": "client_credentials",
+                    "client_id": process.env.clientId,
+                    "client_secret": process.env.clientSecret,
+                    "account_id": decoded.mid
                 });
 				var settings = {
-                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
-                    "path": "/logtodataextension/",
+                    "hostname": +".auth.marketingcloudapis.com",
+                    "path": "/v2/token",
                     "method": "POST",
 					"headers": {
                         "Content-Type": "application/json"
@@ -141,7 +143,7 @@ exports.execute = async (req, res) => {
                   req.on('error',(e) => {
                     console.error(e);
                   });
-                  req.write(payloadPost);
+                  req.write(payloadAuth);
                   req.end();
 			}
 			catch(err){
