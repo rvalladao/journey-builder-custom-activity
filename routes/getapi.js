@@ -58,7 +58,18 @@ exports.logToDataExtension = async (req, res) => {
                 "Content-Type": "application/json"
             },
             "crossDomain": true,
-            "data": JSON.stringify({items: [{data: json.postData}]})
+            "data": JSON.stringify(
+                {
+                    items: [{
+                        journeyId: json.postData.journeyIDReal,
+                        payload: json.postData.data,
+                        journeyName: json.postData.journeyName,
+                        subscriberKey: json.postData.subscriberKey,
+                        journeyVersion: json.postData.journeyVersionNumber,
+                        mid: json.postData.mid
+                    }]
+                }
+            )
         };
 
         console.log('settings:',settings);

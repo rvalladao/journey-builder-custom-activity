@@ -110,7 +110,7 @@ exports.execute = async (req, res) => {
 
         console.log('response object: ', JSON.stringify(jsonObject));
 
-        try
+            try
 			{
 
                 // console.log(decoded.mid)
@@ -120,6 +120,7 @@ exports.execute = async (req, res) => {
 
                 var payloadPost = JSON.stringify({
                     "postData": decoded,
+                    "status": 200,
                     "mid": decoded.mid
                 });
 				var settings = {
@@ -153,6 +154,45 @@ exports.execute = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        try
+			{
+
+                // console.log(decoded.mid)
+                // console.log(process.env.clientId);
+                // console.log(process.env.clientSecret);
+                // console.log(process.env.subDomain);
+
+                var payloadPost = JSON.stringify({
+                    "postData": decoded,
+                    "status": 401,
+                    "mid": decoded.mid
+                });
+				var settings = {
+                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "path": "/logtodataextension/",
+                    "method": "POST",
+					"headers": {
+                        "Content-Type": "application/json"
+                    }
+				  };
+
+                  var req = https.request(settings, (res) => {
+                    console.log('statusCode:',res.statusCode);
+                    console.log('headers:',res.headers);
+                    res.on('data', (d) => {
+                        process.stdout.write(d);
+                    });
+                  });
+                  req.on('error',(e) => {
+                    console.error(e);
+                  });
+                  req.write(payloadPost);
+                  req.end();
+			}
+			catch(err){
+				console.log('error:', err);
+				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
+			}
         return res.status(401).end();
     }
 
