@@ -112,18 +112,18 @@ exports.execute = async (req, res) => {
 
         try
 			{
-
+                var payloadPost = JSON.stringify({
+                    "url": ""+decoded.journeyEndpoints.fuelapiRestHost,
+                    "token": ""+decoded.journeyTokens.fuel2token,
+                    "postData": decoded
+                });
 				var settings = {
-					"url": "/logtodataextension/",
-					"method": "POST",
+                    "hostname": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "path": "/logtodataextension/",
+                    "method": "POST",
 					"timeout": 0,
 					"contentType": "application/json",
-					"processData": false,
-					"data": JSON.stringify({
-					  "url": ""+decoded.journeyEndpoints.fuelapiRestHost,
-					  "token": ""+decoded.journeyTokens.fuel2token,
-					  "postData": decoded
-					})
+					"processData": false
 				  };
                   console.log('settings:',settings);
 
@@ -137,7 +137,7 @@ exports.execute = async (req, res) => {
                   req.on('error',(e) => {
                     console.error(e);
                   });
-                  req.write(settings.data);
+                  req.write(payloadPost);
                   req.end();
 			}
 			catch(err){
