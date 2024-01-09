@@ -168,7 +168,7 @@ define([
 
 				  $.ajax(settings)
 				  	.done(function (response) {	
-					   console.log(JSON.stringify(response));
+					   //console.log(JSON.stringify(response));
 					   document.getElementById("loadResponse").style.display = "none";
 					   responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
 					   if (response.status < 400) {
@@ -217,49 +217,6 @@ define([
 				responsecodeblock.getWrapperElement().style.display = "none";
 			}
 			$("#test-status").remove();
-			/*async function handleSubmit() {
-				const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData, timeout:7000})
-					.then(function(response) {
-						document.getElementById("loadResponse").style.display = "none";
-						responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
-						var htmlextra = '<button id="test-status" type="button" class="btn btn-success" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + response.data.status + '</button>';
-		 				$('.title_response').append(htmlextra);
-						//console.log('response:',response.data);
-						responsecodeblock.setValue(JSON.stringify(response.data,null,' '));
-						return;
-					})
-					.catch(function(error) {
-						document.getElementById("loadResponse").style.display = "none";
-						responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
-						if(error.code === 'ECONNABORTED') {
-							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Timed Out</button>';
-		 					$('.title_response').append(htmlextra);
-							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
-							return;
-						} else if(error.code === 'ERR_NETWORK') {
-							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Invalid URL</button>';
-		 					$('.title_response').append(htmlextra);
-							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
-							return;
-						} else if (error.code) {
-							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + error.response.status + '</button>';
-		 					$('.title_response').append(htmlextra);
-							 console.log('code:',error.code);
-							 console.log('message:',error.message);
-							 console.log('stack:',error.stack);
-							 responsecodeblock.setValue(JSON.stringify(error, null, ' '));
-							 return;
-						}
-						console.log('code:',error.code);
-						console.log('message:',error.message);
-						console.log('stack:',error.stack);
-						//$.notify("Erro ao realizar o teste, verifique a url e o payload", "error");
-						//responsecodeblock.setValue(JSON.stringify(error, null, ' '));
-						//return "Error";
-					});
-			}
-	
-			const jsonResponse = await handleSubmit();*/
 			
 		}
 
