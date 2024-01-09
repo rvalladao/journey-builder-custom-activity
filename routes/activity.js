@@ -123,6 +123,7 @@ exports.execute = async (req, res) => {
 					  "postData": decoded
 					})
 				  };
+                  console.log('settings:',settings);
 
 				  $.ajax(settings).done(function (response) {		
 					   console.log(JSON.stringify(response));
