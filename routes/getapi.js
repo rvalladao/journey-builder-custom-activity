@@ -44,8 +44,6 @@ exports.logToDataExtension = async (req, res) => {
     
     try {
 
-        console.log(req.body);
-
         var json = req.body;
 
 
@@ -63,7 +61,7 @@ exports.logToDataExtension = async (req, res) => {
         console.log('settings:',settings);
 
         async function logDE() {
-            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.postData, withCredentials: false});
+            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});
             return response;
         }
 
