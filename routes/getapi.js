@@ -45,7 +45,7 @@ exports.logToDataExtension = async (req, res) => {
     
     try {
 
-        const token = getAuthToken();
+        const token = getAuthToken(req.mid);
         var json = req.body;
 
 
@@ -80,7 +80,7 @@ exports.logToDataExtension = async (req, res) => {
 
 }
 
-async function getAuthToken() {
+async function getAuthToken(mid) {
     var settings = {
         "url": process.env.subDomain+".auth.marketingcloudapis.com",
         "method": "POST",
@@ -91,7 +91,7 @@ async function getAuthToken() {
             "grant_type": "client_credentials",
             "client_id": process.env.clientId,
             "client_secret": process.env.clientSecret,
-            "account_id": decoded.mid
+            "account_id": mid
         }
     }
     const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});

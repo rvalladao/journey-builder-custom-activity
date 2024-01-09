@@ -119,7 +119,8 @@ exports.execute = async (req, res) => {
                 // console.log(process.env.subDomain);
 
                 var payloadPost = JSON.stringify({
-                    "postData": decoded
+                    "postData": decoded,
+                    "mid": decoded.mid
                 });
 				var settings = {
                     "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
