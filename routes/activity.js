@@ -121,17 +121,16 @@ exports.execute = async (req, res) => {
                     "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
                     "path": "/logtodataextension/",
                     "method": "POST",
-					"timeout": 0,
-					"contentType": "application/json",
-					"processData": false
+					"headers": {
+                        "Content-Type": "application/json"
+                    }
 				  };
-                  console.log('settings:',settings);
 
                   var req = https.request(settings, (res) => {
                     console.log('statusCode:',res.statusCode);
                     console.log('headers:',res.headers);
                     res.on('data', (d) => {
-                        proccess.stdout.write(d);
+                        process.stdout.write(d);
                     });
                   });
                   req.on('error',(e) => {
