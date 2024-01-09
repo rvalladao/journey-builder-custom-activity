@@ -50,7 +50,7 @@ exports.logToDataExtension = async (req, res) => {
 
 
         var settings = {
-            "url": "https://"+process.env.subDomain+"/data/v1/async/dataextensions/key:0E607D2A-88A7-4F3C-8180-2DE458756120/rows",
+            "url": "https://"+process.env.subDomain+".rest.marketingcloudapis.com/data/v1/async/dataextensions/key:0E607D2A-88A7-4F3C-8180-2DE458756120/rows",
             "method": "POST",
             "timeout": 0,
             "headers": {
