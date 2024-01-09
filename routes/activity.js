@@ -118,7 +118,7 @@ exports.execute = async (req, res) => {
                     "postData": decoded
                 });
 				var settings = {
-                    "hostname": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
                     "path": "/logtodataextension/",
                     "method": "POST",
 					"timeout": 0,
