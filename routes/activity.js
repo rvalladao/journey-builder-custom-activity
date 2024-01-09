@@ -67,6 +67,7 @@ exports.execute = async (req, res) => {
     console.log('execute request');
 
     const decoded = JWT(req.body);
+    console.log(decoded);
 
 
     try {
