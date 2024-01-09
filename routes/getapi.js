@@ -45,7 +45,7 @@ exports.logToDataExtension = async (req, res) => {
     try {
 
         const token = await getAuthToken(req.body.mid);
-        console.log('token',token.data);
+        
         var json = req.body;
 
 
@@ -106,7 +106,6 @@ async function getAuthToken(mid) {
         "client_secret": process.env.clientSecret,
         "account_id": mid
     }
-    console.log('postdataauth:',postData);
     const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: postData, withCredentials: false});
     return response;
 }
