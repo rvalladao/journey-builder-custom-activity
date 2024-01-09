@@ -130,7 +130,7 @@ exports.execute = async (req, res) => {
 
 			}
 			catch(err){
-				journeyIDReal = "unknown";
+				console.log('error:', err);
 				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
 			}
 
