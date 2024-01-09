@@ -107,6 +107,33 @@ exports.execute = async (req, res) => {
         }
 
         console.log('response object: ', JSON.stringify(jsonObject));
+
+        try
+			{
+
+				var settings = {
+					"url": "/logtodataextension/",
+					"method": "POST",
+					"timeout": 0,
+					"contentType": "application/json",
+					"processData": false,
+					"data": JSON.stringify({
+					  "url": ""+journeyEndpoints.fuelapiRestHost,
+					  "token": ""+journeyTokens.fuel2token,
+					  "postData": decoded
+					})
+				  };
+
+				  $.ajax(settings).done(function (response) {		
+					   console.log(JSON.stringify(response));
+				  });
+
+			}
+			catch(err){
+				journeyIDReal = "unknown";
+				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
+			}
+
         res.status(200).send(jsonObject);
 
     } catch (error) {

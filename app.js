@@ -33,6 +33,7 @@ app.post('/journeybuilder/validate/', activity.validate);
 app.post('/journeybuilder/publish/', activity.publish);
 app.post('/journeybuilder/execute/', activity.execute);
 app.post('/getjourneyid/', getapi.getjid);
+app.post('/logtodataextension/', getapi.logToDataExtension);
 app.post('/apihandler/', apiproxy.apiHandler);
 
 http.createServer(app).listen(app.get('port'), function () {
