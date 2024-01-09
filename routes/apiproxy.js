@@ -6,26 +6,27 @@ exports.apiHandler = async (req, res) => {
     
     try {
 
-        console.log(JSON.stringify(req.body));
+        console.log('body:',JSON.stringify(req.body));
 
         var json = req.body;
 
         var settings = {
             "url": json.url,
-            "method": json.options.method,
+            "payload": json.payload,
+            "method": json.method,
             "timeout": 7000,
-            "headers": json.options.headers,
+            "headers": json.headers,
             "crossDomain": true					
         };
 
         async function getjourneyid() {
-            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
-            return response.data.items[0];
+            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data:settings.payload, withCredentials: false});
+            return response.data;
         }
 
         const jsonResponse = await getjourneyid();
         const jsonObject = {
-            journeyid: jsonResponse.id
+            journeyid: jsonResponse
         };
 
         //console.log(await getjourneyid());

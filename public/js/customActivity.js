@@ -157,7 +157,8 @@ define([
 					"data": JSON.stringify({
 					  "url": postURL,
 					  "payload": postData,
-					  "headers": options
+					  "headers": options.headers,
+					  "method": options.method
 					})
 				  };
 
