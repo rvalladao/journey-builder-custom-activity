@@ -6,6 +6,7 @@ const util = require('util');
 const axios = require('axios');
 var url = require('url');
 var jp = require('jsonpath');
+const https = require('https');
 
 
 exports.logExecuteData = [];
@@ -126,10 +127,18 @@ exports.execute = async (req, res) => {
 				  };
                   console.log('settings:',settings);
 
-				  $.ajax(settings).done(function (response) {		
-					   console.log(JSON.stringify(response));
-				  });
-
+                  var req = https.request(settings, (res) => {
+                    console.log('statusCode:',res.statusCode);
+                    console.log('headers:',res.headers);
+                    res.on('data', (d) => {
+                        proccess.stdout.write(d);
+                    });
+                  });
+                  req.on('error',(e) => {
+                    console.error(e);
+                  });
+                  req.write(settings.data);
+                  req.end();
 			}
 			catch(err){
 				console.log('error:', err);
