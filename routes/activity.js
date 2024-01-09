@@ -119,8 +119,8 @@ exports.execute = async (req, res) => {
 					"contentType": "application/json",
 					"processData": false,
 					"data": JSON.stringify({
-					  "url": ""+journeyEndpoints.fuelapiRestHost,
-					  "token": ""+journeyTokens.fuel2token,
+					  "url": ""+decoded.journeyEndpoints.fuelapiRestHost,
+					  "token": ""+decoded.journeyTokens.fuel2token,
 					  "postData": decoded
 					})
 				  };
