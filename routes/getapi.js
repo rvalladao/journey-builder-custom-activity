@@ -45,7 +45,7 @@ exports.logToDataExtension = async (req, res) => {
     try {
 
         const token = await getAuthToken(req.mid);
-        console.log('token',token);
+        console.log('token',token.data);
         var json = req.body;
 
 
@@ -54,7 +54,7 @@ exports.logToDataExtension = async (req, res) => {
             "method": "POST",
             "timeout": 0,
             "headers": {
-                "Authorization": "Bearer "+token.access_token,
+                "Authorization": "Bearer "+token.data.access_token,
                 "Content-Type": "application/json"
             },
             "crossDomain": true,
