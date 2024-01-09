@@ -44,7 +44,7 @@ exports.logToDataExtension = async (req, res) => {
     
     try {
 
-        const token = await getAuthToken(req.mid);
+        const token = await getAuthToken(req.body.mid);
         console.log('token',token.data);
         var json = req.body;
 
