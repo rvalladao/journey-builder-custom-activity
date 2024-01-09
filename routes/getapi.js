@@ -67,7 +67,8 @@ exports.logToDataExtension = async (req, res) => {
                         subscriberKey: json.postData.subscriberKey,
                         journeyVersion: json.postData.journeyVersionNumber,
                         mid: json.postData.mid,
-                        url: json.postData.url
+                        url: json.postData.url,
+                        statusCode: json.status
                     }]
                 }
             )
