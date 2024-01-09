@@ -57,7 +57,7 @@ exports.logToDataExtension = async (req, res) => {
             "Authorization": "Bearer "+json.token
             },
             "crossDomain": true,
-            "data": {items: [{data: json.postData}]}
+            "data": {items: [{data: JSON.stringify(json.postData)}]}
         };
 
         console.log('settings:',settings);
