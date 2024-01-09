@@ -112,6 +112,11 @@ exports.execute = async (req, res) => {
 
         try
 			{
+
+                console.log(process.env.clientId);
+                console.log(process.env.clientSecret);
+                console.log(process.env.subDomain);
+
                 var payloadPost = JSON.stringify({
                     "url": ""+decoded.journeyEndpoints.fuelapiRestHost,
                     "token": ""+decoded.journeyTokens.fuel2token,
