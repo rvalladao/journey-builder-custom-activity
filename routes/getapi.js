@@ -82,7 +82,7 @@ exports.logToDataExtension = async (req, res) => {
 //
 async function getAuthToken(mid) {
     var settings = {
-        "url": "https://"+process.env.subDomain+".auth.marketingcloudapis.com",
+        "url": "https://"+process.env.subDomain+".auth.marketingcloudapis.com/v2/token",
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
