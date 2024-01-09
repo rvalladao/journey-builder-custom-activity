@@ -9,6 +9,7 @@ var request = require('request');
 var routes = require('./routes');
 var activity = require('./routes/activity');
 var getapi = require('./routes/getapi');
+var apiproxy = require('./routes/apiproxy');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.post('/journeybuilder/validate/', activity.validate);
 app.post('/journeybuilder/publish/', activity.publish);
 app.post('/journeybuilder/execute/', activity.execute);
 app.post('/getjourneyid/', getapi.getjid);
+app.post('/apihandler/', apiproxy.apiHandler);
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));

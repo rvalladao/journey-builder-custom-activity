@@ -144,13 +144,52 @@ define([
 		} else if(isJsonString(postData) == false) {
 			$.notify("JSON inválido", "error");
 		} else {
+
+			try
+			{
+
+				var settings = {
+					"url": "/apihandler",
+					"method": "POST",
+					"timeout": 0,
+					"contentType": "application/json",
+					"processData": false,
+					"data": JSON.stringify({
+					  "url": postURL,
+					  "payload": postData,
+					  "headers": options
+					})
+				  };
+
+				  $.ajax(settings).done(function (response) {		
+					   console.log(JSON.stringify(response));
+					  /*try
+					  {
+						  journeyIDReal = response.journeyid;
+						  document.getElementById('journeyStatus').classList.remove('alert-primary');
+						  document.getElementById('journeyStatus').classList.add('alert-success');
+						  document.getElementById('journeyIdStatusWait').style.display = 'none';
+						  document.getElementById('Layer_2').style.display = 'block';
+					  }
+					  catch(err) {
+
+					  }*/
+				  });
+
+			}
+			catch(err){
+				//journeyIDReal = "unknown";
+				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
+			}
+
+
 			document.getElementById("testHeader").style.display = "flex";
 			document.getElementById("loadResponse").style.display = "block";
 			if (responsecodeblock) {
 				responsecodeblock.getWrapperElement().style.display = "none";
 			}
 			$("#test-status").remove();
-			async function handleSubmit() {
+			/*async function handleSubmit() {
 				const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData, timeout:7000})
 					.then(function(response) {
 						document.getElementById("loadResponse").style.display = "none";
@@ -192,7 +231,7 @@ define([
 					});
 			}
 	
-			const jsonResponse = await handleSubmit();
+			const jsonResponse = await handleSubmit();*/
 			
 		}
 
