@@ -632,6 +632,7 @@ define([
 		jsonBody.subscriberKey = "{{Contact.Key}}";
 		jsonBody.additional = "";
 		jsonBody.journeyVersionNumber = "{{Context.VersionNumber}}";
+		jsonBody.journeyEndpoints = journeyEndpoints;
 		
 			debugger;
 		try
