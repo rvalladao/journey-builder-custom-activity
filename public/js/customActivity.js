@@ -144,10 +144,7 @@ define([
 		} else if(isJsonString(postData) == false) {
 			$.notify("JSON inválido", "error");
 		} else {
-
-			try
-			{
-
+			try {
 				var settings = {
 					"url": "/apihandler",
 					"method": "POST",
@@ -162,20 +159,50 @@ define([
 					})
 				  };
 
-				  $.ajax(settings).done(function (response) {		
-					   console.log(JSON.stringify(response));
-					  /*try
-					  {
-						  journeyIDReal = response.journeyid;
-						  document.getElementById('journeyStatus').classList.remove('alert-primary');
-						  document.getElementById('journeyStatus').classList.add('alert-success');
-						  document.getElementById('journeyIdStatusWait').style.display = 'none';
-						  document.getElementById('Layer_2').style.display = 'block';
-					  }
-					  catch(err) {
+				document.getElementById("testHeader").style.display = "flex";
+				document.getElementById("loadResponse").style.display = "block";
+				if (responsecodeblock) {
+					responsecodeblock.getWrapperElement().style.display = "none";
+				}
+				$("#test-status").remove();
 
-					  }*/
-				  });
+				  $.ajax(settings)
+				  	.done(function (response) {	
+					   console.log(JSON.stringify(response));
+					   document.getElementById("loadResponse").style.display = "none";
+					   responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
+					   if (response.status < 400) {
+						var htmlextra = '<button id="test-status" type="button" class="btn btn-success" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + response.status + '</button>';
+					   } else if (response.status) {
+						var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + response.status + '</button>';
+					   } else {
+						var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Error</button>';
+					   }
+						$('.title_response').append(htmlextra);
+					   //console.log('response:',response.data);
+					   responsecodeblock.setValue(JSON.stringify(response.data,null,' '));
+					   return;
+				  	})
+					.fail(function (error) {
+						document.getElementById("loadResponse").style.display = "none";
+						responsecodeblock = CodeMirror.fromTextArea(document.getElementById('jsonTestResponse'), {mode: "application/ld+json",lineNumbers: true, theme: 'base16-dark', readOnly:true, scrollbarStyle:"overlay", lineWrapping: true});
+						if(error.code === 'ECONNABORTED') {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Timed Out</button>';
+		 					$('.title_response').append(htmlextra);
+							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							return;
+						} else if(error.code === 'ERR_NETWORK') {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Invalid URL</button>';
+		 					$('.title_response').append(htmlextra);
+							responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							return;
+						} else if (error) {
+							var htmlextra = '<button id="test-status" type="button" class="btn btn-danger" style="cursor:default; font-size:12px; padding:2px 10px; margin-left:10px; pointer-events: none">Code: ' + error.status + '</button>';
+		 					$('.title_response').append(htmlextra);
+							 responsecodeblock.setValue(JSON.stringify(error, null, ' '));
+							 return;
+						}
+					});
 
 			}
 			catch(err){

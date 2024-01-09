@@ -4,10 +4,7 @@ const axios = require('axios');
 
 exports.apiHandler = async (req, res) => {
     
-    try {
-
-        console.log('body:',JSON.stringify(req.body));
-
+    try{
         var json = req.body;
 
         var settings = {
@@ -19,22 +16,48 @@ exports.apiHandler = async (req, res) => {
             "crossDomain": true					
         };
 
-        async function getjourneyid() {
-            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data:settings.payload, withCredentials: false});
-            return response.data;
+
+        async function getResponse() {
+            const responseaxios = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.payload});
+            return responseaxios;
+            //console.log('testresponse:', responseaxios);
         }
-
-        const jsonResponse = await getjourneyid();
+        const jsonResponse = await getResponse();
         const jsonObject = {
-            journeyid: jsonResponse
-        };
+            status: jsonResponse.status,
+            statusText: jsonResponse.statusText,
+            data: jsonResponse.data
+        }
+        return res.status(200).send(jsonObject);
 
-        //console.log(await getjourneyid());
-        res.status(200).send(jsonObject);
     } catch (error) {
-        console.log(error);
-        return res.status(401).end();
+        if(error.code === 'ENOTFOUND') {
+            const jsonObject = {
+                status: 400,
+                data: {message: error.message}
+            }
+            return res.status(200).send(jsonObject);
+        } else if (error.code === 'ETIMEDOUT') {
+            const jsonObject = {
+                status: 400,
+                data: {message: error.message}
+            }
+            return res.status(200).send(jsonObject);
+        } else if (error.message === 'Request failed with status code 400') {
+            const jsonObject = {
+                status: 400,
+                data: {message: error.message}
+            }
+            return res.status(200).send(jsonObject);
+        }
+        console.log('erro:',error.response.data);
+        const jsonObject = {
+            data: error.response.data
+        }
+        return res.status(200).send(jsonObject);
     }
+
+        
 
 
 }
