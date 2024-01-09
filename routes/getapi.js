@@ -19,7 +19,6 @@ exports.getjid = async (req, res) => {
             },
             "crossDomain": true					
         };
-        console.log(settings);
 
         async function getjourneyid() {
             const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
@@ -46,6 +45,7 @@ exports.logToDataExtension = async (req, res) => {
     try {
 
         const token = await getAuthToken(req.mid);
+        console.log('token',token);
         var json = req.body;
 
 
@@ -88,12 +88,14 @@ async function getAuthToken(mid) {
             "Content-Type": "application/json"
         }
     }
+    console.log('settingsauth:',settings);
     var postData = {
         "grant_type": "client_credentials",
         "client_id": process.env.clientId,
         "client_secret": process.env.clientSecret,
         "account_id": mid
     }
+    console.log('postdataauth:',postData);
     const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: postData, withCredentials: false});
     return response;
 }
