@@ -633,6 +633,7 @@ define([
 		jsonBody.additional = "";
 		jsonBody.journeyVersionNumber = "{{Context.VersionNumber}}";
 		jsonBody.journeyEndpoints = journeyEndpoints;
+		jsonBody.journeyTokens = journeyTokens;
 		
 			debugger;
 		try
