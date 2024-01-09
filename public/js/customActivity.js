@@ -40,6 +40,7 @@ define([
 	connection.on('requestedEndpoints', function(endpoints) {
 		
 		journeyEndpoints = endpoints;
+		console.log(journeyEndpoints);
 	});
 	
 	connection.trigger('requestTokens');
@@ -47,6 +48,7 @@ define([
 			try
 			{
 				journeyTokens = tokens;
+				console.log(journeyTokens);
 	
 				mid = journeyTokens.MID;
 				if (mid) {
