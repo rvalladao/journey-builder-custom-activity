@@ -69,7 +69,7 @@ exports.logToDataExtension = async (req, res) => {
         }
 
         const jsonResponse = await logDE();
-//
+
         //console.log(await getjourneyid());
         res.status(200).send('Logged');
     } catch (error) {
