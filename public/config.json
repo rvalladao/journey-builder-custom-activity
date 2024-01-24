@@ -25,7 +25,7 @@
     "execute": {
       "inArguments": [],
       "outArguments": [],
-      "url": "https://math-journey-api.vercel.app/journeybuilder/execute",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/execute",
       "verb": "POST",
       "body": "{\"data\":\"\",\"headers\":[],\"outArgumentCode\":[],\"url\":\"\",\"methodType\":\"\",\"mediaType\":\"application/json\",\"t\":\"\",\"journeyName\":\"\",\"logData\":\"\",\"mid\":\"\",\"subscriberKey\":\"{{Contact.Key}}\",\"journeyVersionNumber\":\"{{Context.VersionNumber}}\",\"additional\":\"{{Context}}\",\"journeyIDReal\":\"\"}",
       "journeyDataObject": "",
@@ -44,22 +44,22 @@
   "configurationArguments": {
     "applicationExtensionKey": "846afa74-67d0-4f86-91d8-b5551a83cbc3",
     "save": {
-      "url": "https://math-journey-api.vercel.app/journeybuilder/save",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/save",
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
-      "url": "https://math-journey-api.vercel.app/journeybuilder/publish",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/publish",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://math-journey-api.vercel.app/journeybuilder/validate",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/validate",
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
-      "url": "https://math-journey-api.vercel.app/journeybuilder/stop",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/stop",
       "verb": "POST",
       "useJwt": true
     }
