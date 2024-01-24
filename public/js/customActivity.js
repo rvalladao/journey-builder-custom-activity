@@ -25,8 +25,6 @@ var editor;
 var responsecodeblock;
 var environmentsArray = [];
 
-const sql = require('@vercel/postgres');
-
 define([
     'postmonger'
 ], function (
@@ -97,7 +95,6 @@ define([
 						}
 					});
 
-					sql`INSERT INTO requests (journeyid) VALUES ("teste");`;
 
 			}
 			catch(err){
