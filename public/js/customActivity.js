@@ -146,7 +146,7 @@ define([
 		} else {
 			try {
 				var settings = {
-					"url": "/apihandler",
+					"url": "/api/apihandler/",
 					"method": "POST",
 					"timeout": 0,
 					"contentType": "application/json",
