@@ -80,6 +80,7 @@ define([
 						"journeyName":""+eventJourneyName
 					  })
 					};
+					console.log(settings);
 
 					$.ajax(settings).done(function (response) {		
 					 	//console.log(JSON.stringify(response));
