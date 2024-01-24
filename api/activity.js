@@ -122,7 +122,7 @@ exports.execute = async (req, res) => {
                     "mid": decoded.mid
                 });
 				var settings = {
-                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "hostname": "math-journey-api.vercel.app",
                     "path": "/logtodataextension/",
                     "method": "POST",
 					"headers": {
@@ -166,7 +166,7 @@ exports.execute = async (req, res) => {
                     "mid": decoded.mid
                 });
 				var settings = {
-                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+                    "hostname": "math-journey-api.vercel.app",
                     "path": "/logtodataextension/",
                     "method": "POST",
 					"headers": {
