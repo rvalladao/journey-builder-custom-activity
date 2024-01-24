@@ -1,7 +1,7 @@
 'use strict';
 
 const axios = require('axios');
-const sql = require('@vercel/postgres');
+import { sql } from "@vercel/postgres";
 
 exports.getjid = async (req, res) => {
     
