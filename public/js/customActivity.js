@@ -69,7 +69,7 @@ define([
 
 
 					var settings = {
-					  "url": "https://math-journey-api.vercel.app/getjourneyid/",
+					  "url": "/getjourneyid/",
 					  "method": "POST",
 					  "timeout": 0,
 					  "contentType": "application/json",
@@ -80,7 +80,6 @@ define([
 						"journeyName":""+eventJourneyName
 					  })
 					};
-					console.log(settings);
 
 					$.ajax(settings).done(function (response) {		
 					 	//console.log(JSON.stringify(response));
