@@ -50,6 +50,9 @@ app.post('/journeybuilder/execute/', activity.execute);
 app.post('/getjourneyid/', getapi.getjid);
 app.post('/logtodataextension/', getapi.logToDataExtension);
 app.post('/apihandler/', apiproxy.apiHandler);
+app.get('/teste/', (req,res) => {
+    res.end('hello, world');
+})
 
 http.createServer(app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
