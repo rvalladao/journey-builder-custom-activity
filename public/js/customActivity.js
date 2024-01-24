@@ -25,6 +25,8 @@ var editor;
 var responsecodeblock;
 var environmentsArray = [];
 
+import { sql } from "@vercel/postgres";
+
 define([
     'postmonger'
 ], function (
