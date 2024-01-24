@@ -7,7 +7,7 @@ var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var request = require('request');
-var routes = require('./');
+// var routes = require('./');
 var activity = require('./activity');
 var getapi = require('./getapi');
 var apiproxy = require('./apiproxy');
@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-app.get('/', routes.index);
+// app.get('/', routes.index);
 
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
