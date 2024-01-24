@@ -25,7 +25,6 @@ exports.getjid = async (req, res) => {
 
         async function getjourneyid() {
             const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
-            await sql`INSERT INTO requests (journeyname) VALUES (${json.journeyName});`;
             return response.data.items[0];
         }
 
@@ -80,12 +79,11 @@ exports.logToDataExtension = async (req, res) => {
 
         async function logDE() {
             const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});
+            await sql `INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
             return response;
         }
 
         const jsonResponse = await logDE();
-
-        await sql `INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
 
         //console.log(await getjourneyid());
         res.status(200).send('Logged');
@@ -105,6 +103,7 @@ async function getAuthToken(mid) {
             "Content-Type": "application/json"
         }
     }
+    
     console.log('settingsauth:',settings);
     var postData = {
         "grant_type": "client_credentials",
