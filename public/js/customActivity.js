@@ -82,7 +82,6 @@ define([
 					};
 
 					$.ajax(settings).done(function (response) {		
-					 	console.log(JSON.stringify(response));
 						try
 						{
 							journeyIDReal = response.journeyid;
