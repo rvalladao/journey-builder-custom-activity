@@ -6,7 +6,7 @@ var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var request = require('request');
-var routes = require('./routes');
+var routes = require('./api');
 var activity = require('./api/activity');
 var getapi = require('./api/getapi');
 var apiproxy = require('./api/apiproxy');
@@ -24,9 +24,9 @@ if ('development' == app.get('env')) {
   app.use(errorhandler());
 }
 
-app.get('/', routes.index);
-app.post('/login', routes.login);
-app.post('/logout', routes.logout);
+// app.get('/', routes.index);
+// app.post('/login', routes.login);
+// app.post('/logout', routes.logout);
 
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
