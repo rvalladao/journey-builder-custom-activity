@@ -7,9 +7,9 @@ var http = require('http');
 var path = require('path');
 var request = require('request');
 var routes = require('./routes');
-var activity = require('./routes/activity');
-var getapi = require('./routes/getapi');
-var apiproxy = require('./routes/apiproxy');
+var activity = require('./api/activity');
+var getapi = require('./api/getapi');
+var apiproxy = require('./api/apiproxy');
 
 var app = express();
 
