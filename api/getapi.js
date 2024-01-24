@@ -83,7 +83,7 @@ exports.logToDataExtension = async (req, res) => {
             return response;
         }
 
-        const jsonResponse = await logDE();
+        await logDE();
 
         //console.log(await getjourneyid());
         res.status(200).send('Logged');
