@@ -23,7 +23,7 @@ exports.getjid = async (req, res) => {
 
         async function getjourneyid() {
             const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, withCredentials: false});
-            await sql`INSERT INTO requests (journeyid) VALUES ('name');`;
+            await sql`INSERT INTO requests ('journeyid') VALUES ('name');`;
             return response.data.items[0];
         }
 
