@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/lennonalvesdias/journey-builder-custom-activity#readme",
   "dependencies": {
+    "@vercel/postgres": "^0.7.2",
     "axios": "^0.19.2",
     "body-parser": "^1.18.2",
     "bower": "^1.8.0",

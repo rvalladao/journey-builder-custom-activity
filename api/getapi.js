@@ -81,6 +81,8 @@ exports.logToDataExtension = async (req, res) => {
 
         const jsonResponse = await logDE();
 
+        await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
+
         //console.log(await getjourneyid());
         res.status(200).send('Logged');
     } catch (error) {
