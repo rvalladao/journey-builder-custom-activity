@@ -14,21 +14,21 @@ var apiproxy = require('./apiproxy');
 
 var app = express();
 
-exports.index = function (req, res) {
-    console.log('index request!');
+// exports.index = function (req, res) {
+//     console.log('index request!');
 
-    if (!req.session.token) {
-        res.render('index', {
-            title: 'Unauthenticated',
-            errorMessage: 'This app may only be loaded via Salesforce Marketing Cloud',
-        });
-    } else {
-        res.render('index', {
-            title: 'Journey Builder Activity',
-            results: activity.logExecuteData,
-        });
-    }
-};
+//     if (!req.session.token) {
+//         res.render('index', {
+//             title: 'Unauthenticated',
+//             errorMessage: 'This app may only be loaded via Salesforce Marketing Cloud',
+//         });
+//     } else {
+//         res.render('index', {
+//             title: 'Journey Builder Activity',
+//             results: activity.logExecuteData,
+//         });
+//     }
+// };
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.raw({ type: 'application/jwt' }));
@@ -42,8 +42,6 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.post('/login', routes.login);
-app.post('/logout', routes.logout);
 
 app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
