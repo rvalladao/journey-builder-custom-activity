@@ -7,7 +7,7 @@ var errorhandler = require('errorhandler');
 var http = require('http');
 var path = require('path');
 var request = require('request');
-var routes = require('./routes');
+var routes = require('./api');
 var activity = require('./api/activity');
 var getapi = require('./api/getapi');
 var apiproxy = require('./api/apiproxy');
@@ -28,15 +28,6 @@ exports.index = function (req, res) {
             results: activity.logExecuteData,
         });
     }
-};
-
-exports.login = function (req, res) {
-    //console.log('req.body: ', req.body);
-    res.redirect('/');
-};
-
-exports.logout = function (req, res) {
-    req.session.token = '';
 };
 
 app.set('port', process.env.PORT || 3000);
