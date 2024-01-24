@@ -69,7 +69,7 @@ define([
 
 
 					var settings = {
-					  "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid/",
+					  "url": "https://math-journey-api.vercel.app/getjourneyid/",
 					  "method": "POST",
 					  "timeout": 0,
 					  "contentType": "application/json",
