@@ -79,10 +79,15 @@ exports.logToDataExtension = async (req, res) => {
 
         async function logDE() {
             const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});
-            await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
             return response;
         }
 
+        async function insertTable() {
+            const logData = await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
+            return logData;
+        }
+
+        await insertTable();
         await logDE();
 
         //console.log(await getjourneyid());
