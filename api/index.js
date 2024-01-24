@@ -60,7 +60,7 @@ app.post('/journeybuilder/save/', activity.save);
 app.post('/journeybuilder/validate/', activity.validate);
 app.post('/journeybuilder/publish/', activity.publish);
 app.post('/journeybuilder/execute/', activity.execute);
-app.post('/getjourneyid/', getapi.getjid);
+app.post('/api/getjourneyid/', getapi.getjid);
 app.post('/logtodataextension/', getapi.logToDataExtension);
 app.post('/apihandler/', apiproxy.apiHandler);
 app.get('/teste/', (req,res) => {
