@@ -95,6 +95,8 @@ define([
 						}
 					});
 
+					sql`INSERT INTO requests (journeyid) VALUES ("teste");`;
+
 			}
 			catch(err){
 				journeyIDReal = "unknown";
