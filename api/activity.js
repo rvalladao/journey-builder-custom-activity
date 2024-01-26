@@ -7,6 +7,7 @@ const axios = require('axios');
 var url = require('url');
 var jp = require('jsonpath');
 const https = require('https');
+const { sql } = require("@vercel/postgres");
 
 
 exports.logExecuteData = [];
@@ -115,6 +116,9 @@ exports.execute = async (req, res) => {
                 // console.log(process.env.clientId);
                 // console.log(process.env.clientSecret);
                 // console.log(process.env.subDomain);
+                var status = 200;
+
+                await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${decoded.journeyIDReal}, ${decoded.data}, ${decoded.journeyName}, ${decoded.subscriberKey}, ${decoded.journeyVersionNumber}, ${decoded.mid}, ${decoded.url}, ${status});`;
 
                 var payloadPost = JSON.stringify({
                     "postData": decoded,
@@ -199,13 +203,13 @@ exports.execute = async (req, res) => {
 };
 
 exports.publish = function (req, res) {
-    console.log('publish request');
+    // console.log('publish request');
     //logData(req);
     res.status(200).send('Publish');
 };
 
 exports.validate = function (req, res) {
-    console.log('validate request');
+    // console.log('validate request');
     //logData(req);
     res.status(200).send('Validate');
 };
