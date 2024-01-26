@@ -90,13 +90,14 @@ exports.logToDataExtension = async (req, res) => {
     }
 
     async function insertTable() {
-      const logData =
-        await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
+      console.log('b4 table insert');
+      const logData = await sql`INSERT INTO requests (journeyid, payload, journeyname, subscriberkey, journeyversion, mid, url, statuscode) VALUES (${json.postData.journeyIDReal}, ${json.postData.data}, ${json.postData.journeyName}, ${json.postData.subscriberKey}, ${json.postData.journeyVersionNumber}, ${json.postData.mid}, ${json.postData.url}, ${json.status});`;
+      console.log('after table insert');
       return logData;
     }
 
     await insertTable();
-    await logDE();
+    // await logDE();
 
     //console.log(await getjourneyid());
     res.status(200).send("Logged");

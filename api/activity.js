@@ -52,20 +52,20 @@ function logData(req) {
 }
 
 exports.edit = function (req, res) {
-    console.log('edit request');
+    // console.log('edit request');
     // logData(req);
     res.status(200).send('Edit');
 };
 
 exports.save = function (req, res) {
-    console.log('save request');
-    logData(req);
+    // console.log('save request');
+    // logData(req);
     res.status(200).send('Save');
 };
 
 
 exports.execute = async (req, res) => {
-    console.log('execute request');
+    // console.log('execute request');
 
     const decoded = JWT(req.body);
 
