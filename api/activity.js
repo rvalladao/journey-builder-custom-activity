@@ -123,7 +123,7 @@ exports.execute = async (req, res) => {
                 });
 				var settings = {
                     "hostname": "math-journey-api.vercel.app",
-                    "path": "/api/logtodataextension/",
+                    "path": "/logtodataextension/",
                     "method": "POST",
 					"headers": {
                         "Content-Type": "application/json"
@@ -167,7 +167,7 @@ exports.execute = async (req, res) => {
                 });
 				var settings = {
                     "hostname": "math-journey-api.vercel.app",
-                    "path": "/api/logtodataextension/",
+                    "path": "/logtodataextension/",
                     "method": "POST",
 					"headers": {
                         "Content-Type": "application/json"
