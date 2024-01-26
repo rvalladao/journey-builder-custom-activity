@@ -69,7 +69,7 @@ define([
 
 
 					var settings = {
-					  "url": "/getjourneyid/",
+					  "url": "api/getjourneyid/",
 					  "method": "POST",
 					  "timeout": 0,
 					  "contentType": "application/json",
