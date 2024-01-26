@@ -59,7 +59,7 @@ exports.edit = function (req, res) {
 
 exports.save = function (req, res) {
     console.log('save request');
-    // logData(req);
+    logData(req);
     res.status(200).send('Save');
 };
 
