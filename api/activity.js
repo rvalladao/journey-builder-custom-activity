@@ -58,7 +58,7 @@ exports.edit = function (req, res) {
 };
 
 exports.save = function (req, res) {
-    //console.log('save request');
+    console.log('save request');
     // logData(req);
     res.status(200).send('Save');
 };
@@ -199,13 +199,13 @@ exports.execute = async (req, res) => {
 };
 
 exports.publish = function (req, res) {
-    //console.log('publish request');
+    console.log('publish request');
     //logData(req);
     res.status(200).send('Publish');
 };
 
 exports.validate = function (req, res) {
-    //console.log('validate request');
+    console.log('validate request');
     //logData(req);
     res.status(200).send('Validate');
 };
