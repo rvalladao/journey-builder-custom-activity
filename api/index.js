@@ -44,10 +44,10 @@ if ('development' == app.get('env')) {
 
 // app.get('/', routes.index);
 
-app.post('/api/journeybuilder/save/', activity.save);
-app.post('/api/journeybuilder/validate/', activity.validate);
-app.post('/api/journeybuilder/publish/', activity.publish);
-app.post('/api/journeybuilder/execute/', activity.execute);
+app.post('/journeybuilder/save/', activity.save);
+app.post('/journeybuilder/validate/', activity.validate);
+app.post('/journeybuilder/publish/', activity.publish);
+app.post('/journeybuilder/execute/', activity.execute);
 app.post('/api/getjourneyid/', getapi.getjid);
 app.post('/api/logtodataextension/', getapi.logToDataExtension);
 app.post('/api/apihandler/', apiproxy.apiHandler);
