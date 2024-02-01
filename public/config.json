@@ -44,7 +44,7 @@
   "configurationArguments": {
     "applicationExtensionKey": "846afa74-67d0-4f86-91d8-b5551a83cbc3",
     "save": {
-      "url": "https://math-journey-api.vercel.app/api/save",
+      "url": "https://math-journey-api.vercel.app/api/journeybuilder/save",
       "verb": "POST",
       "useJwt": true
     },
