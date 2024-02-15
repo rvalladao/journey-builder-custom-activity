@@ -74,8 +74,17 @@ exports.execute = async (req, res) => {
 
         const uuid = uuidv4();
 
-        var originalPostData = JSON.stringify(decoded.data).replace(/GUID()/g, uuid); //convert to JSON string
+        var originalPostData = JSON.stringify(decoded.data).replace(/GUID\(\)/g, uuid); //convert to JSON string
         var postData = JSON.parse(originalPostData);
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+            .replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, 
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
 
         //const postData = decoded.data;
         const mediaType = decoded.mediaType
@@ -148,15 +157,6 @@ exports.execute = async (req, res) => {
 				console.log('error:', err);
 
 			}
-
-        function uuidv4() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-            .replace(/[xy]/g, function (c) {
-                const r = Math.random() * 16 | 0, 
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
 
         res.status(200).send(jsonObject);
 
