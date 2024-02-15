@@ -72,10 +72,12 @@ exports.execute = async (req, res) => {
     try {
         var postURL = url.parse(decoded.url, true);
 
-        const uuid = uuidv4();
+        const genuuid = uuidv4();
 
-        var originalPostData = JSON.stringify(decoded.data).replace(/GUID\(\)/g, uuid); //convert to JSON string
+        var originalPostData = JSON.stringify(decoded.data).replace(/GUID\(\)/g, genuuid); //convert to JSON string
+        console.log(originalPostData);
         var postData = JSON.parse(originalPostData);
+        console.log(postData);
 
         function uuidv4() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
@@ -86,7 +88,6 @@ exports.execute = async (req, res) => {
             });
         }
 
-        //const postData = decoded.data;
         const mediaType = decoded.mediaType
         const options = {
             hostname: postURL.host,
