@@ -74,7 +74,7 @@ exports.execute = async (req, res) => {
 
         const genuuid = uuidv4();
 
-        var originalPostData = JSON.stringify(decoded.data).replace(/GUID\(\)/g, genuuid); //convert to JSON string
+        var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
         console.log(originalPostData);
         var postData = JSON.parse(originalPostData);
         console.log(postData);
