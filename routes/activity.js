@@ -71,7 +71,13 @@ exports.execute = async (req, res) => {
 
     try {
         var postURL = url.parse(decoded.url, true);
-        const postData = decoded.data;
+
+        const uuid = uuidv4();
+
+        var originalPostData = JSON.stringify(decoded.data).replace(/GUID()/g, uuid); //convert to JSON string
+        var postData = JSON.parse(originalPostData);
+
+        //const postData = decoded.data;
         const mediaType = decoded.mediaType
         const options = {
             hostname: postURL.host,
@@ -106,15 +112,11 @@ exports.execute = async (req, res) => {
             jsonObject[outArgumentKey] = value;
         }
 
-        //console.log('response object: ', JSON.stringify(jsonObject));
 
             try
 			{
 
-                // console.log(decoded.mid)
-                // console.log(process.env.clientId);
-                // console.log(process.env.clientSecret);
-                // console.log(process.env.subDomain);
+                
 
                 var payloadPost = JSON.stringify({
                     "postData": decoded,
@@ -131,8 +133,7 @@ exports.execute = async (req, res) => {
 				  };
 
                   var req = https.request(settings, (res) => {
-                    // console.log('statusCode:',res.statusCode);
-                    // console.log('headers:',res.headers);
+
                     res.on('data', (d) => {
                         process.stdout.write(d);
                     });
@@ -145,8 +146,17 @@ exports.execute = async (req, res) => {
 			}
 			catch(err){
 				console.log('error:', err);
-				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
+
 			}
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+            .replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0, 
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
 
         res.status(200).send(jsonObject);
 
@@ -154,11 +164,6 @@ exports.execute = async (req, res) => {
         console.log(error);
         try
 			{
-
-                // console.log(decoded.mid)
-                // console.log(process.env.clientId);
-                // console.log(process.env.clientSecret);
-                // console.log(process.env.subDomain);
 
                 var payloadPost = JSON.stringify({
                     "postData": decoded,
@@ -175,8 +180,6 @@ exports.execute = async (req, res) => {
 				  };
 
                   var req = https.request(settings, (res) => {
-                    // console.log('statusCode:',res.statusCode);
-                    // console.log('headers:',res.headers);
                     res.on('data', (d) => {
                         process.stdout.write(d);
                     });
@@ -189,7 +192,6 @@ exports.execute = async (req, res) => {
 			}
 			catch(err){
 				console.log('error:', err);
-				/*alert("Please save your journey first before using the postman activity to ensure best experience.");*/
 			}
         return res.status(401).end();
     }

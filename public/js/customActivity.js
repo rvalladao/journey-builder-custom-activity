@@ -1,9 +1,3 @@
-var AuthURL = "https://www.sfmc-postman.com/api/login"
-var AuthLogin = "https://www.sfmc-postman.com/users/login"
-var AuthRegister = "https://www.sfmc-postman.com/"
-var AuthKey = "This@is@random_encrypted"
-var UserAutheticated = false;
-var authTokens = {};
 var payload = {};
 var eventDefinitionKey;
 var mid;
@@ -266,7 +260,7 @@ define([
 		 $('#Data_Extension_Attributes').append(htmlextra);
 		 htmlextra = '<li style="cursor:pointer;" onclick="OnAttributeClicked(this)" class="list-group-item attributes-list">GETDATE()<strong></strong></li>';
 		 $('#Data_Extension_Attributes').append(htmlextra);
-		 htmlextra = '<li style="cursor:pointer;" onclick="OnAttributeClicked(this)" class="list-group-item attributes-list">GETCONTACTKEY()<strong></strong></li>';
+		 htmlextra = '<li style="cursor:pointer;" onclick="OnAttributeClicked(this)" class="list-group-item attributes-list">GUID()<strong></strong></li>';
 		 $('#Data_Extension_Attributes').append(htmlextra);
 	});
 	
@@ -373,21 +367,6 @@ define([
 		editor.getDoc().setValue(jsonBody.data);	
 		
 		document.getElementById('jsonURL').value =jsonBody.url;
-		
-	
-		try
-		{
-	    document.getElementById('LogData').checked =jsonBody.logData;
-		
-		if(!jsonBody.logData) {
-			document.getElementById('logger').classList.remove('off');
-		} else {
-			document.getElementById('logger').classList.add('off');
-		}
-	
-		 $('#LogData').prop('checked', jsonBody.logData).change();
-		}
-		catch{}
 		
 		try
 		{
@@ -719,28 +698,3 @@ define([
 	};
 	
 });
-
-	
-	
-		function SetViewActive(){
-					UserAutheticated = true;
-					document.getElementById('AuthenticateActivity').style.display = 'none';
-					document.getElementById('MainActivity').style.display = 'block';
-					creditRemaining = "0";
-					t = "0";
-					document.getElementById('apiCounter').innerHTML = creditRemaining;
-	}
-	
-		
-	
-
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-		  if(e.target.id=="templates-tab"){
-		
-			LoadTemplates();	
-		  }
-		  else if(e.target.id=="body-tab"){
-			
-			editor.refresh();
-		  }
-	});

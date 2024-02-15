@@ -513,23 +513,12 @@
     <body>
         <!-- Activity Data -->
         <div id="MainActivity"  class="container-fluid">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 ">
                 <div class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
                     <img src="images/MATH_logo_claro.svg" alt="" class="d-inline-block crown" height="24">
                     <ul class="nav col-12 col-md-auto ms-4 mb-2 mb-md-0">
                         <li style="font-family:'Source Code Pro', Courier, monospace; font-size:22px; font-weight:700;">Journey API</li>
                     </ul>
-                </div>
-                <div class="col-md-6 text-end">
-                    <!-- Update current selected template -->
-                    <button id="updateTemplate" onclick="SaveTemplate()" type="button" class="btn btn-danger" style="visibility: hidden;" title="Save current selected Template">
-                        <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z"/>
-                        </svg>
-                        Save <span id="lbl_SelectedTemplate"></span>
-                    </button>
-                    <input id="updateTemplateName" type="hidden" name="saveTemplateNameText" class="form-control" placeholder="TEMPLATE NAME" autocomplete="off" style="visibility: hidden;">
-                    <!-- End Update current selected template -->
                 </div>
             </header>
             <div class="row">
@@ -537,9 +526,9 @@
                 <div class="col-md-8 api-create">
                     <!-- Mehtod and URL -->
                     <div class="form-inline form-group">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <select class="form-control" value="POST" id="methodType" title="REST api method type">
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend" style="width:10%">
+                                <select class="form-control" value="POST" id="methodType" title="Método REST">
                                     <option value="POST">POST</option>
                                     <option value="GET">GET</option>
                                     <option value="PUT">PUT</option>
@@ -547,7 +536,8 @@
                                     <option value="PATCH">PATCH</option>
                                 </select>
                             </div>
-                            <input class="form-control" style="width:60%" class="url_input" id="jsonURL" placeholder="Request URL" title="REST api URL route"></input>
+                            <input class="form-control" style="width:60%; border-radius: 0 5px 5px 0;" class="url_input" id="jsonURL" placeholder="URL do endpoint" title="URL da API REST"></input>
+                            <button id="TestButton" type="button" class="btn btn-success" style="margin-left:10px; border-radius:5px; width:10%;">Testar</button>
                         </div>
                     </div>
                     <!-- Tabs -->
@@ -596,7 +586,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="addHeaderRow" type="button" class="mt-2 btn btn-outline-secondary float end">Add Row</button>
+                                    <button id="addHeaderRow" type="button" class="mt-2 btn btn-outline-secondary float end">+ Linha</button>
                                 </div>
                             </form>
                         </div>
@@ -631,7 +621,6 @@
                                 </label>
                                 </div>
                             </div>
-                            <button id="TestButton" type="button" class="btn btn-success">Testar</button>
                             <button id="ResetButton" type="button" class="btn btn-danger">Limpar</button>
                         </div>
                         <!-- End API Body -->
@@ -670,7 +659,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="addResponseRow" type="button" class="mt-2 btn btn-outline-secondary float end">Add Row</button>
+                                    <button id="addResponseRow" type="button" class="mt-2 btn btn-outline-secondary float end">+ Linha</button>
                                 </div>
                             </form>
                         </div>
@@ -680,18 +669,12 @@
                 </div>
                 <!-- Second column with variables -->
                 <div class="col-md-4">
-                    <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-bs-toggle="tab" href="#journeyAttr" role="tab">
-                                <span class="d-none d-sm-block" style="font-family:'Source Code Pro', 'Courier', monospace;">Atributos</span>
-                            </a>
-                        </li>
-                    </ul>
                     <div class="tab-content text-muted">
                         <!-- Journey Attributes -->
                         <div class="tab-pane active p-0" id="journeyAttr" role="tabpanel">
                             <div class="card">
                                 <div class="card-body">
+                                    <span class="d-none d-sm-block mb-4" style="font-family:'Source Code Pro', 'Courier', monospace; text-align:center; color: #fff; font-size:24px;">Atributos da jornada</span>
                                     <input class="form-control mr-sm-2" type="search" placeholder="Procurar" aria-label="Search" id="attributeFilter" onkeyup="attributeFilter()" title="Type in a attribute name">
                                     <div class="attributes-list">
                                         <ul id="Data_Extension_Attributes" class="list-unstyled"></ul>
