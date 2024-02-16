@@ -63,7 +63,7 @@ define([
 
 
 					var settings = {
-					  "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/getjourneyid/",
+					  "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/getjourneyid/",
 					  "method": "POST",
 					  "timeout": 0,
 					  "contentType": "application/json",
