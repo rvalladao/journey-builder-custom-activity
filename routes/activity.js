@@ -70,13 +70,13 @@ exports.execute = async function (req, res) {
 
     const guid_id = uuidv4();
     var originalPostData = JSON.stringify(decoded.data);
-    var replacedPostData = originalPostData.replace(/GUID\(\)/gi, 'teste');
+    var replacedPostData = originalPostData.replace(/GUID\(\)/gi, guid_id);
     var postData = JSON.parse(replacedPostData);
 
     try {
         var postURL = url.parse(decoded.url, true);
 
-        const mediaType = decoded.mediaType
+        const mediaType = decoded.mediaType;
         const options = {
             hostname: postURL.host,
             path: postURL.pathname,
