@@ -9,8 +9,9 @@ exports.apiHandler = async (req, res) => {
 
         const genuuid = uuidv4();
 
-        var originalPostData = JSON.stringify(json.payload).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
-        var postData = JSON.parse(originalPostData);
+        var originalPostDataGUID = JSON.stringify(json.payload).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
+        var originalPostDataDATE = originalPostDataGUID.replace(/GETDATE\(\)/gi, new Date());
+        var postData = JSON.parse(originalPostDataDATE);
 
         var settings = {
             "url": json.url,
