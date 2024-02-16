@@ -153,8 +153,11 @@ exports.execute = async (req, res) => {
 			// 	console.log('error:', err);
 
 			// }
-
-        res.status(200).send(jsonObject);
+        if(jsonObject.length > 0) {
+            res.status(200).send(jsonObject);
+        } else {
+            res.status(200).send('Execute');
+        }
 
     } catch (error) {
         console.log(error);
