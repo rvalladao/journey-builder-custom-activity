@@ -65,14 +65,17 @@ exports.save = function (req, res) {
 
 
 exports.execute = async function (req, res) {
-    logData(req);
+    //logData(req);
     const decoded = JWT(req.body);
-    console.log(JSON.stringify(decoded));
 
     const guid_id = uuidv4();
+    console.log('guid: ', guid_id);
     var originalPostData = JSON.stringify(decoded.data);
+    console.log('stringified data: ', originalPostData);
     var replacedPostData = originalPostData.replace(/GUID\(\)/gi, guid_id);
+    console.log('replaceddata: ',replacedPostData);
     var postData = JSON.parse(replacedPostData);
+    console.log('final postdata: ',postData);
 
     try {
         var postURL = url.parse(decoded.url, true);
