@@ -111,6 +111,8 @@ exports.execute = async (req, res) => {
 
         const jsonResponse = await handleSubmit();
 
+        console.log('response: ',jsonResponse);
+
         var jsonObject = {
             
         }
@@ -133,6 +135,7 @@ exports.execute = async (req, res) => {
                     "status": 200,
                     "mid": decoded.mid
                 });
+                console.log('payload: ', payloadPost);
 				var settings = {
                     "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
                     "path": "/logtodataextension/",
