@@ -73,11 +73,11 @@ exports.execute = async function (req, res) {
         const genuuid = uuidv4();
         console.log(genuuid);
 
-        var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
+        var postData = decoded.data.replace(/(GUID\(\))/g, genuuid); //convert to JSON string
 
-        console.log(originalPostData);
-        var postData = JSON.parse(originalPostData);
-        console.log(postData);
+        // console.log(originalPostData);
+        // var postData = JSON.parse(originalPostData);
+        // console.log(postData);
 
         const mediaType = decoded.mediaType
         const options = {
