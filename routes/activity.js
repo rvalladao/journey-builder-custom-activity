@@ -66,6 +66,7 @@ exports.save = function (req, res) {
 
 exports.execute = async function (req, res) {
     const decoded = JWT(req.body);
+    console.log(JSON.stringify(decoded));
 
     const guid_id = uuidv4();
     var originalPostData = JSON.stringify(decoded.data);
@@ -92,7 +93,7 @@ exports.execute = async function (req, res) {
         }
 
         async function handleSubmit() {
-            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: replacePostData});
+            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: postData});
             return response.data;
         }
 
