@@ -7,9 +7,16 @@ exports.apiHandler = async (req, res) => {
     try{
         var json = req.body;
 
+        const genuuid = uuidv4();
+
+        var originalPostData = JSON.stringify(json.payload).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
+        console.log(originalPostData);
+        var postData = JSON.parse(originalPostData);
+        console.log(postData);
+
         var settings = {
             "url": json.url,
-            "payload": json.payload,
+            "payload": postData,
             "method": json.method,
             "timeout": 7000,
             "headers": json.headers,
