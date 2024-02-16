@@ -69,13 +69,10 @@ exports.execute = async function (req, res) {
     const decoded = JWT(req.body);
 
     const guid_id = uuidv4();
-    console.log('guid: ', guid_id);
     var originalPostData = JSON.stringify(decoded.data);
-    console.log('stringified data: ', originalPostData);
-    var replacedPostData = originalPostData.replace(/GUID\(\)/gi, guid_id);
-    console.log('replaceddata: ',replacedPostData);
-    var postData = JSON.parse(replacedPostData);
-    console.log('final postdata: ',postData);
+    var replacedPostDataGUID = originalPostData.replace(/GUID\(\)/gi, guid_id);
+    var replacedPostDataDATE = replacedPostDataGUID.replace(/DATE\(\)/gi, new Date());
+    var postData = JSON.parse(replacedPostDataDATE);
 
     try {
         var postURL = url.parse(decoded.url, true);
@@ -102,8 +99,6 @@ exports.execute = async function (req, res) {
         }
 
         const jsonResponse = await handleSubmit();
-
-        console.log('response: ',jsonResponse);
 
         var jsonObject = {
             
