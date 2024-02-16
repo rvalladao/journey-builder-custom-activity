@@ -92,7 +92,7 @@ exports.execute = async function (req, res) {
         }
 
         async function handleSubmit() {
-            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: originalPostData});
+            const response = await axios({method: options.method, headers: options.headers, url: postURL, data: replacePostData});
             return response.data;
         }
 
