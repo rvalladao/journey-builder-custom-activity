@@ -64,7 +64,7 @@ exports.save = function (req, res) {
 };
 
 
-exports.execute = function (req, res) {
+exports.execute = async function (req, res) {
     logData(req);
     const decoded = JWT(req.body);
     console.log(JSON.stringify(decoded));
@@ -98,7 +98,7 @@ exports.execute = function (req, res) {
             return response.data;
         }
 
-        const jsonResponse = handleSubmit();
+        const jsonResponse = await handleSubmit();
 
         console.log('response: ',jsonResponse);
 

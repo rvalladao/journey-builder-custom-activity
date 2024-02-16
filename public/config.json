@@ -25,7 +25,7 @@
     "execute": {
       "inArguments": [],
       "outArguments": [],
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/execute/",
+      "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/journeybuilder/execute/",
       "verb": "POST",
       "body": "{\"data\":\"\",\"headers\":[],\"outArgumentCode\":[],\"url\":\"\",\"methodType\":\"\",\"mediaType\":\"application/json\",\"t\":\"\",\"journeyName\":\"\",\"logData\":\"\",\"mid\":\"\",\"subscriberKey\":\"{{Contact.Key}}\",\"journeyVersionNumber\":\"{{Context.VersionNumber}}\",\"additional\":\"{{Context}}\",\"journeyIDReal\":\"\"}",
       "journeyDataObject": "",
@@ -44,22 +44,22 @@
   "configurationArguments": {
     "applicationExtensionKey": "846afa74-67d0-4f86-91d8-b5551a83cbc3",
     "save": {
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/save/",
+      "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/journeybuilder/save/",
       "verb": "POST",
       "useJwt": true
     },
     "publish": {
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/publish/",
+      "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/journeybuilder/publish/",
       "verb": "POST",
       "useJwt": true
     },
     "validate": {
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/validate/",
+      "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/journeybuilder/validate/",
       "verb": "POST",
       "useJwt": true
     },
     "stop": {
-      "url": "https://sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com/journeybuilder/stop/",
+      "url": "https://sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com/journeybuilder/stop/",
       "verb": "POST",
       "useJwt": true
     }
