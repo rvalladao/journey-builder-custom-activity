@@ -80,15 +80,6 @@ exports.execute = async (req, res) => {
         var postData = JSON.parse(originalPostData);
         console.log(postData);
 
-        function uuidv4() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-            .replace(/[xy]/g, function (c) {
-                const r = Math.random() * 16 | 0, 
-                    v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
-
         const mediaType = decoded.mediaType
         const options = {
             hostname: postURL.host,
@@ -126,78 +117,78 @@ exports.execute = async (req, res) => {
         }
 
 
-            try
-			{
+            // try
+			// {
 
                 
 
-                var payloadPost = JSON.stringify({
-                    "postData": decoded,
-                    "status": 200,
-                    "mid": decoded.mid
-                });
-                console.log('payload: ', payloadPost);
-				var settings = {
-                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
-                    "path": "/logtodataextension/",
-                    "method": "POST",
-					"headers": {
-                        "Content-Type": "application/json"
-                    }
-				  };
+            //     var payloadPost = JSON.stringify({
+            //         "postData": decoded,
+            //         "status": 200,
+            //         "mid": decoded.mid
+            //     });
+            //     console.log('payload: ', payloadPost);
+			// 	var settings = {
+            //         "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+            //         "path": "/logtodataextension/",
+            //         "method": "POST",
+			// 		"headers": {
+            //             "Content-Type": "application/json"
+            //         }
+			// 	  };
 
-                  var req = https.request(settings, (res) => {
+            //       var req = https.request(settings, (res) => {
 
-                    res.on('data', (d) => {
-                        process.stdout.write(d);
-                    });
-                  });
-                  req.on('error',(e) => {
-                    console.error(e);
-                  });
-                  req.write(payloadPost);
-                  req.end();
-			}
-			catch(err){
-				console.log('error:', err);
+            //         res.on('data', (d) => {
+            //             process.stdout.write(d);
+            //         });
+            //       });
+            //       req.on('error',(e) => {
+            //         console.error(e);
+            //       });
+            //       req.write(payloadPost);
+            //       req.end();
+			// }
+			// catch(err){
+			// 	console.log('error:', err);
 
-			}
+			// }
 
         res.status(200).send(jsonObject);
 
     } catch (error) {
         console.log(error);
-        try
-			{
+        // try
+		// 	{
 
-                var payloadPost = JSON.stringify({
-                    "postData": decoded,
-                    "status": 401,
-                    "mid": decoded.mid
-                });
-				var settings = {
-                    "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
-                    "path": "/logtodataextension/",
-                    "method": "POST",
-					"headers": {
-                        "Content-Type": "application/json"
-                    }
-				  };
+        //         var payloadPost = JSON.stringify({
+        //             "postData": decoded,
+        //             "status": 401,
+        //             "mid": decoded.mid
+        //         });
+		// 		var settings = {
+        //             "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
+        //             "path": "/logtodataextension/",
+        //             "method": "POST",
+		// 			"headers": {
+        //                 "Content-Type": "application/json"
+        //             }
+		// 		  };
 
-                  var req = https.request(settings, (res) => {
-                    res.on('data', (d) => {
-                        process.stdout.write(d);
-                    });
-                  });
-                  req.on('error',(e) => {
-                    console.error(e);
-                  });
-                  req.write(payloadPost);
-                  req.end();
-			}
-			catch(err){
-				console.log('error:', err);
-			}
+        //           var req = https.request(settings, (res) => {
+        //             res.on('data', (d) => {
+        //                 process.stdout.write(d);
+        //             });
+        //           });
+        //           req.on('error',(e) => {
+        //             console.error(e);
+        //           });
+        //           req.write(payloadPost);
+        //           req.end();
+		// 	}
+		// 	catch(err){
+		// 		console.log('error:', err);
+		// 	}
         return res.status(401).end();
     }
 
@@ -216,3 +207,12 @@ exports.validate = function (req, res) {
     //logData(req);
     res.status(200).send('Validate');
 };
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0, 
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
