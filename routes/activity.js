@@ -7,6 +7,7 @@ const axios = require('axios');
 var url = require('url');
 var jp = require('jsonpath');
 const https = require('https');
+const winston = require('winston')
 
 
 exports.logExecuteData = [];
@@ -76,6 +77,9 @@ exports.execute = async (req, res) => {
         console.log(genuuid);
 
         var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
+        winston.log('info', '------------Winston Log------------', {  
+            originalPostData
+        })
         console.log(originalPostData);
         var postData = JSON.parse(originalPostData);
         console.log(postData);
