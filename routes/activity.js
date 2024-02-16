@@ -7,7 +7,6 @@ const axios = require('axios');
 var url = require('url');
 var jp = require('jsonpath');
 const https = require('https');
-const winston = require('winston');
 
 
 exports.logExecuteData = [];
@@ -61,13 +60,11 @@ exports.edit = function (req, res) {
 exports.save = function (req, res) {
     console.log('save request');
     // logData(req);
-    res.status(200).send('Save');
+    res.send(200, 'Save');
 };
 
 
 exports.execute = async (req, res) => {
-    console.log('execute request');
-
     const decoded = JWT(req.body);
 
     try {
@@ -77,9 +74,7 @@ exports.execute = async (req, res) => {
         console.log(genuuid);
 
         var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
-        winston.log('info', '------------Winston Log------------', {  
-            originalPostData
-        })
+
         console.log(originalPostData);
         var postData = JSON.parse(originalPostData);
         console.log(postData);
@@ -196,7 +191,7 @@ exports.execute = async (req, res) => {
 		// 	catch(err){
 		// 		console.log('error:', err);
 		// 	}
-        return res.status(401).end();
+        return res.status(400).end();
     }
 
 
