@@ -59,12 +59,13 @@ exports.edit = function (req, res) {
 
 exports.save = function (req, res) {
     console.log('save request');
-    logData(req);
+    // logData(req);
     res.send(200, 'Save');
 };
 
 
 exports.execute = async function (req, res) {
+    logData(req);
     const decoded = JWT(req.body);
     console.log(JSON.stringify(decoded));
 
