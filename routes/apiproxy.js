@@ -10,9 +10,7 @@ exports.apiHandler = async (req, res) => {
         const genuuid = uuidv4();
 
         var originalPostData = JSON.stringify(json.payload).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
-        console.log(originalPostData);
         var postData = JSON.parse(originalPostData);
-        console.log(postData);
 
         var settings = {
             "url": json.url,
@@ -35,7 +33,6 @@ exports.apiHandler = async (req, res) => {
         async function getResponse() {
             const responseaxios = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.payload});
             return responseaxios;
-            //console.log('testresponse:', responseaxios);
         }
         const jsonResponse = await getResponse();
         const jsonObject = {
