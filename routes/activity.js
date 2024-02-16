@@ -67,8 +67,8 @@ exports.save = function (req, res) {
 exports.execute = async function (req, res) {
     const decoded = JWT(req.body);
 
-    const genuuid = uuidv4();
-    var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, genuuid); //convert to JSON string
+    const guid_id = uuidv4();
+    var originalPostData = JSON.stringify(decoded.data).replace(/(GUID\(\))/g, guid_id); //convert to JSON string
     var postData = JSON.parse(originalPostData);
 
     try {
