@@ -69,8 +69,8 @@ exports.execute = async function (req, res) {
 
     const guid_id = uuidv4();
     var originalPostData = JSON.stringify(decoded.data);
-    var postData = JSON.parse(originalPostData.replace(/(GUID\(\))/g, guid_id)); //convert to JSON string
-    // var postData = JSON.parse(originalPostData);
+    var replacePostData = originalPostData.replace(/(GUID\(\))/g, guid_id); //convert to JSON string
+    var postData = JSON.parse(replacePostData);
 
     try {
         var postURL = url.parse(decoded.url, true);
