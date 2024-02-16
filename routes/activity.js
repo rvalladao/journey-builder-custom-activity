@@ -7,7 +7,7 @@ const axios = require('axios');
 var url = require('url');
 var jp = require('jsonpath');
 const https = require('https');
-const winston = require('winston')
+const winston = require('winston');
 
 
 exports.logExecuteData = [];
