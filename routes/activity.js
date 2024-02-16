@@ -1,18 +1,18 @@
 'use strict';
 
-const Path = require('path');
-const JWT = require(Path.join(__dirname, '..', 'lib', 'jwtDecoder.js'));
-const util = require('util');
-const axios = require('axios');
-var url = require('url');
-var jp = require('jsonpath');
-const https = require('https');
+import { join } from 'path';
+const JWT = require(join(__dirname, '..', 'lib', 'jwtDecoder.js'));
+import { inspect } from 'util';
+import axios from 'axios';
+import { parse } from 'url';
+import { value as _value } from 'jsonpath';
+import https from 'https';
 
 
-exports.logExecuteData = [];
+export const logExecuteData = [];
 
 function logData(req) {
-    exports.logExecuteData.push({
+    logExecuteData.push({
         body: req.body,
         headers: req.headers,
         trailers: req.trailers,
@@ -32,13 +32,13 @@ function logData(req) {
         originalUrl: req.originalUrl
     });
     
-    console.log("body: " + util.inspect(req.body));
-    console.log("headers: " + util.inspect(req.headers));
+    console.log("body: " + inspect(req.body));
+    console.log("headers: " + inspect(req.headers));
     console.log("trailers: " + req.trailers);
     console.log("method: " + req.method);
     console.log("url: " + req.url);
-    console.log("params: " + util.inspect(req.params));
-    console.log("query: " + util.inspect(req.query));
+    console.log("params: " + inspect(req.params));
+    console.log("query: " + inspect(req.query));
     console.log("route: " + req.route);
     console.log("cookies: " + req.cookies);
     console.log("ip: " + req.ip);
@@ -51,20 +51,20 @@ function logData(req) {
     console.log("originalUrl: " + req.originalUrl);
 }
 
-exports.edit = function (req, res) {
+export function edit (req, res) {
     console.log('edit request');
     // logData(req);
     res.status(200).send('Edit');
-};
+}
 
-exports.save = function (req, res) {
+export function save (req, res) {
     console.log('save request');
     logData(req);
     res.send(200, 'Save');
-};
+}
 
 
-exports.execute = async function (req, res) {
+export async function execute (req, res) {
     const decoded = JWT(req.body);
     console.log(JSON.stringify(decoded));
 
@@ -74,7 +74,7 @@ exports.execute = async function (req, res) {
     var postData = JSON.parse(replacedPostData);
 
     try {
-        var postURL = url.parse(decoded.url, true);
+        var postURL = parse(decoded.url, true);
 
         const mediaType = decoded.mediaType;
         const options = {
@@ -108,7 +108,7 @@ exports.execute = async function (req, res) {
         for (var i=0; i<decoded.outArgumentCode.length; i++){
             var outArgumentKey = decoded.outArgumentCode[i].key;
             var outArgumentValue = decoded.outArgumentCode[i].value;
-            var value = jp.value(jsonResponse, '$.'+outArgumentValue);
+            var value = _value(jsonResponse, '$.'+outArgumentValue);
             jsonObject[outArgumentKey] = value;
         }
 
@@ -193,19 +193,19 @@ exports.execute = async function (req, res) {
 
 
     
-};
+}
 
-exports.publish = function (req, res) {
+export function publish (req, res) {
     console.log('publish request');
     //logData(req);
     res.status(200).send('Publish');
-};
+}
 
-exports.validate = function (req, res) {
+export function validate (req, res) {
     console.log('validate request');
     //logData(req);
     res.status(200).send('Validate');
-};
+}
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
