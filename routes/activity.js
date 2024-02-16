@@ -69,7 +69,7 @@ exports.execute = async function (req, res) {
     console.log(JSON.stringify(decoded));
 
     const guid_id = uuidv4();
-    var postData = decoded.data.replace("GUID()", "teste");
+    var postData = decoded.data.replace(/GUID()/g, "teste");
 
     try {
         var postURL = url.parse(decoded.url, true);
