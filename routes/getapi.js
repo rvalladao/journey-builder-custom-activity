@@ -60,6 +60,7 @@ exports.logToDB = async (req, res) => {
         const dbid = uuidv4();
 
         const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
+        console.log(supabase);
 
         const { data } = await supabase
             .from('apiusage')
