@@ -67,7 +67,7 @@ exports.logToDB = async (req, res) => {
         const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
 
         async function insertData() {
-            const { data } = await supabase
+            const { data, error } = await supabase
                 .from('apiusage')
                 .insert({ 
                     id: dbid,
@@ -78,9 +78,14 @@ exports.logToDB = async (req, res) => {
                     mid: fields.mid,
                     statusCode: fields.statusCode
                 })
-                .select()
+                .select('*');
+            
+            if (error) {
+                console.log('error: ', error);
+                return;
+            }
 
-            console.log(data);
+            console.log('data: ',data);
         }
 
         await insertData()
