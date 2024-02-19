@@ -83,7 +83,7 @@ exports.logToDB = async (req, res) => {
             console.log(data);
         }
 
-        insertData()
+        await insertData()
 
         res.status(200).send('Logged');
     } catch (error) {
