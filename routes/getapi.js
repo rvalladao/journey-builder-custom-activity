@@ -57,12 +57,14 @@ exports.logToDB = async (req, res) => {
             url: json.postData.url,
             statusCode: json.status
         };
+        const dbid = uuidv4();
 
         const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
 
         const { data } = await supabase
             .from('apiusage')
             .insert({ 
+                id: dbid,
                 journeyId: fields.journeyId,
                 journeyName: fields.journeyName,
                 journeyVersion: fields.journeyVersion,
@@ -81,4 +83,13 @@ exports.logToDB = async (req, res) => {
     }
 
 
+}
+
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+    .replace(/[xy]/g, function (c) {
+        const r = Math.random() * 16 | 0, 
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
