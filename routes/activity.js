@@ -122,7 +122,6 @@ exports.execute = async function (req, res) {
                     "status": 200,
                     "mid": decoded.mid
                 });
-                console.log('payload: ', payloadPost);
 				var settings = {
                     "hostname": "sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com",
                     "path": "/logtodb/",
