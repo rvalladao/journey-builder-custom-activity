@@ -112,42 +112,42 @@ exports.execute = async function (req, res) {
         }
 
 
-            // try
-			// {
+            try
+			{
 
                 
 
-            //     var payloadPost = JSON.stringify({
-            //         "postData": decoded,
-            //         "status": 200,
-            //         "mid": decoded.mid
-            //     });
-            //     console.log('payload: ', payloadPost);
-			// 	var settings = {
-            //         "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
-            //         "path": "/logtodataextension/",
-            //         "method": "POST",
-			// 		"headers": {
-            //             "Content-Type": "application/json"
-            //         }
-			// 	  };
+                var payloadPost = JSON.stringify({
+                    "postData": decoded,
+                    "status": 200,
+                    "mid": decoded.mid
+                });
+                console.log('payload: ', payloadPost);
+				var settings = {
+                    "hostname": "sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com",
+                    "path": "/logtodb/",
+                    "method": "POST",
+					"headers": {
+                        "Content-Type": "application/json"
+                    }
+				  };
 
-            //       var req = https.request(settings, (res) => {
+                  var req = https.request(settings, (res) => {
 
-            //         res.on('data', (d) => {
-            //             process.stdout.write(d);
-            //         });
-            //       });
-            //       req.on('error',(e) => {
-            //         console.error(e);
-            //       });
-            //       req.write(payloadPost);
-            //       req.end();
-			// }
-			// catch(err){
-			// 	console.log('error:', err);
+                    res.on('data', (d) => {
+                        process.stdout.write(d);
+                    });
+                  });
+                  req.on('error',(e) => {
+                    console.error(e);
+                  });
+                  req.write(payloadPost);
+                  req.end();
+			}
+			catch(err){
+				console.log('error:', err);
 
-			// }
+			}
         if(jsonObject.length > 0) {
             res.status(200).send(jsonObject);
         } else {
@@ -156,37 +156,37 @@ exports.execute = async function (req, res) {
 
     } catch (error) {
         console.log(error);
-        // try
-		// 	{
+        try
+			{
 
-        //         var payloadPost = JSON.stringify({
-        //             "postData": decoded,
-        //             "status": 401,
-        //             "mid": decoded.mid
-        //         });
-		// 		var settings = {
-        //             "hostname": "sfmc-custom-activity-math-ef70b3a192ad.herokuapp.com",
-        //             "path": "/logtodataextension/",
-        //             "method": "POST",
-		// 			"headers": {
-        //                 "Content-Type": "application/json"
-        //             }
-		// 		  };
+                var payloadPost = JSON.stringify({
+                    "postData": decoded,
+                    "status": 401,
+                    "mid": decoded.mid
+                });
+				var settings = {
+                    "hostname": "sfmc-custom-activity-math-ceea0ed6a000.herokuapp.com",
+                    "path": "/logtodb/",
+                    "method": "POST",
+					"headers": {
+                        "Content-Type": "application/json"
+                    }
+				  };
 
-        //           var req = https.request(settings, (res) => {
-        //             res.on('data', (d) => {
-        //                 process.stdout.write(d);
-        //             });
-        //           });
-        //           req.on('error',(e) => {
-        //             console.error(e);
-        //           });
-        //           req.write(payloadPost);
-        //           req.end();
-		// 	}
-		// 	catch(err){
-		// 		console.log('error:', err);
-		// 	}
+                  var req = https.request(settings, (res) => {
+                    res.on('data', (d) => {
+                        process.stdout.write(d);
+                    });
+                  });
+                  req.on('error',(e) => {
+                    console.error(e);
+                  });
+                  req.write(payloadPost);
+                  req.end();
+			}
+			catch(err){
+				console.log('error:', err);
+			}
         return res.status(400).end();
     }
 
