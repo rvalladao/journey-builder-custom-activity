@@ -59,23 +59,31 @@ exports.logToDB = async (req, res) => {
         };
         const dbid = uuidv4();
 
+        console.log('fields: ',fields);
+        console.log('uuid: ',dbid);
+        console.log('key: ',process.env.SUPABASE_KEY);
+
+
         const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
-        console.log(supabase);
 
-        const { data } = await supabase
-            .from('apiusage')
-            .insert({ 
-                id: dbid,
-                journeyId: fields.journeyId,
-                journeyName: fields.journeyName,
-                journeyVersion: fields.journeyVersion,
-                subscriberKey: fields.subscriberKey,
-                mid: fields.mid,
-                statusCode: fields.statusCode
-            })
-            .select()
+        async function insertData() {
+            const { data } = await supabase
+                .from('apiusage')
+                .insert({ 
+                    id: dbid,
+                    journeyId: fields.journeyId,
+                    journeyName: fields.journeyName,
+                    journeyVersion: fields.journeyVersion,
+                    subscriberKey: fields.subscriberKey,
+                    mid: fields.mid,
+                    statusCode: fields.statusCode
+                })
+                .select()
 
-        console.log(data);
+            console.log(data);
+        }
+
+        insertData()
 
         res.status(200).send('Logged');
     } catch (error) {
