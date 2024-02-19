@@ -1,6 +1,7 @@
 'use strict';
 
 const axios = require('axios');
+const createClient = require('https://esm.sh/@supabase/supabase-js@2');
 
 exports.getjid = async (req, res) => {
     
@@ -40,48 +41,38 @@ exports.getjid = async (req, res) => {
 
 }
 
-exports.logToDataExtension = async (req, res) => {
+exports.logToDB = async (req, res) => {
     
     try {
 
-        const token = await getAuthToken(req.body.mid);
-        
         var json = req.body;
-
-
-        var settings = {
-            "url": "https://"+process.env.subDomain+".rest.marketingcloudapis.com/data/v1/async/dataextensions/key:0E607D2A-88A7-4F3C-8180-2DE458756120/rows",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-                "Authorization": "Bearer "+token.data.access_token,
-                "Content-Type": "application/json"
-            },
-            "crossDomain": true,
-            "data": JSON.stringify(
-                {
-                    items: [{
-                        journeyId: json.postData.journeyIDReal,
-                        payload: json.postData.data,
-                        journeyName: json.postData.journeyName,
-                        subscriberKey: json.postData.subscriberKey,
-                        journeyVersion: json.postData.journeyVersionNumber,
-                        mid: json.postData.mid,
-                        url: json.postData.url,
-                        statusCode: json.status
-                    }]
-                }
-            )
+        var fields = {
+            journeyId: json.postData.journeyIDReal,
+            payload: json.postData.data,
+            journeyName: json.postData.journeyName,
+            subscriberKey: json.postData.subscriberKey,
+            journeyVersion: json.postData.journeyVersionNumber,
+            mid: json.postData.mid,
+            url: json.postData.url,
+            statusCode: json.status
         };
 
-        async function logDE() {
-            const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: settings.data, withCredentials: false});
-            return response;
-        }
+        const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
 
-        const jsonResponse = await logDE();
+        const { data } = await supabase
+            .from('apiusage')
+            .insert({ 
+                journeyId: fields.journeyId,
+                journeyName: fields.journeyName,
+                journeyVersion: fields.journeyVersion,
+                subscriberKey: fields.subscriberKey,
+                mid: fields.mid,
+                statusCode: fields.statusCode
+            })
+            .select()
 
-        //console.log(await getjourneyid());
+        console.log(data);
+
         res.status(200).send('Logged');
     } catch (error) {
         console.log(error);
@@ -89,23 +80,4 @@ exports.logToDataExtension = async (req, res) => {
     }
 
 
-}
-//
-async function getAuthToken(mid) {
-    var settings = {
-        "url": "https://"+process.env.subDomain+".auth.marketingcloudapis.com/v2/token",
-        "method": "POST",
-        "headers": {
-            "Content-Type": "application/json"
-        }
-    }
-    console.log('settingsauth:',settings);
-    var postData = {
-        "grant_type": "client_credentials",
-        "client_id": process.env.clientId,
-        "client_secret": process.env.clientSecret,
-        "account_id": mid
-    }
-    const response = await axios({method: settings.method, headers: settings.headers, url: settings.url, data: postData, withCredentials: false});
-    return response;
 }
