@@ -69,7 +69,7 @@ exports.logToDB = async (req, res) => {
         async function insertData() {
             const { data, error } = await supabase
                 .from('apiusage')
-                .insert({ 
+                .upsert({ 
                     id: dbid,
                     journeyId: fields.journeyId,
                     journeyName: fields.journeyName,
