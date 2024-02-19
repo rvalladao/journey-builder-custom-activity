@@ -1,6 +1,7 @@
 {
   "name": "jb-custom-activity",
   "version": "1.0.0",
+  "type": "module",
   "description": "Salesforce MarketCloud Custom Activity",
   "engines": {
     "node": "20.10.0"
