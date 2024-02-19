@@ -1,7 +1,7 @@
 'use strict';
 
 const axios = require('axios');
-const createClient = require('https://esm.sh/@supabase/supabase-js@2');
+const createClient = require('@supabase/supabase-js');
 
 exports.getjid = async (req, res) => {
     
