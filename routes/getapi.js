@@ -1,7 +1,8 @@
 'use strict';
 
 const axios = require('axios');
-const createClient = require('@supabase/supabase-js');
+//const createClient = require('@supabase/supabase-js');
+import { createClient } from '@supabase/supabase-js';
 
 exports.getjid = async (req, res) => {
     
