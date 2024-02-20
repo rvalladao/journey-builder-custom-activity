@@ -8,8 +8,6 @@ exports.getjid = async (req, res) => {
     
     try {
 
-        //console.log(JSON.stringify(req.body));
-
         var json = req.body;
 
         var settings = {
@@ -32,7 +30,6 @@ exports.getjid = async (req, res) => {
             journeyid: jsonResponse.id
         };
 
-        //console.log(await getjourneyid());
         res.status(200).send(jsonObject);
     } catch (error) {
         console.log(error);
@@ -57,7 +54,6 @@ exports.logToDB = async (req, res) => {
             url: json.postData.url,
             statusCode: json.status
         };
-        // const dbid = uuidv4();
 
         const supabase = createClient('https://xupcvntfxnhihogcgfmk.supabase.co', process.env.SUPABASE_KEY);
 
@@ -65,22 +61,18 @@ exports.logToDB = async (req, res) => {
             const { data, error } = await supabase
                 .from('apiusage')
                 .upsert({ 
-                    // id: dbid,
                     journeyId: fields.journeyId,
                     journeyName: fields.journeyName,
                     journeyVersion: fields.journeyVersion,
                     subscriberKey: fields.subscriberKey,
                     mid: fields.mid,
                     statusCode: fields.statusCode
-                })
-                .select('*');
+                });
             
             if (error) {
                 console.log('error: ', error);
                 return;
             }
-
-            console.log('data: ',data);
         }
 
         await insertData()
@@ -93,12 +85,3 @@ exports.logToDB = async (req, res) => {
 
 
 }
-
-// function uuidv4() {
-//     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-//     .replace(/[xy]/g, function (c) {
-//         const r = Math.random() * 16 | 0, 
-//             v = c == 'x' ? r : (r & 0x3 | 0x8);
-//         return v.toString(16);
-//     });
-// }
